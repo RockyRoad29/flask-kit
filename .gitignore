@@ -4,3 +4,4 @@
 .DS_Store
 /static/.webassets-cache
 /static/gen
+.venv

@@ -49,7 +49,7 @@ I hope, that you'll find this kit useful for your new Flask-based projects.
 
 ## Installation
 
-Flask Kit installation process is trivial. I'm sure, everyone use `virtualenv`
+Flask Kit installation process is trivial. I'm sure, everyone uses `virtualenv`
 and I don't have to explain how to setup and use it.
 
 1. ```git clone git://github.com/semirook/flask-kit.git```

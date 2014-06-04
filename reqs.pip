@@ -1,3 +1,7 @@
+# fix unicode error by downgrading werzeug first
+# cf http://stackoverflow.com/questions/17092849/flask-login-typeerror-decoding-unicode-is-not-supported
+Werkzeug==0.8.3
+
 Flask==0.9
 
 # Some useful extensions from official Flask extensions registry
@@ -18,3 +22,8 @@ nose==1.2.1
 # Additional packages for Flask-Assets
 cssmin==0.1.4
 jsmin==2.0.2
+
+# Extra packages needed for the tests
+lxml
+requests
+cssselect
