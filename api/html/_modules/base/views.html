@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>base.views &mdash; Flask Kit dev documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     'dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Flask Kit dev documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">Flask Kit dev documentation</a> &raquo;</li>
+          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for base.views</h1><div class="highlight"><pre>
+<span class="c"># -*- coding: utf-8 -*-</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    base.views</span>
+<span class="sd">    ~~~~~~~~~~</span>
+
+<span class="sd">    The most common views for the whole project.</span>
+
+<span class="sd">    :copyright: (c) 2012 by Roman Semirook.</span>
+<span class="sd">    :license: BSD, see LICENSE for more details.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">flask.templating</span> <span class="kn">import</span> <span class="n">render_template</span>
+<span class="kn">from</span> <span class="nn">flask.views</span> <span class="kn">import</span> <span class="n">MethodView</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">flash</span><span class="p">,</span> <span class="n">redirect</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">url_for</span>
+<span class="kn">from</span> <span class="nn">flask.ext.login</span> <span class="kn">import</span> <span class="n">login_user</span><span class="p">,</span> <span class="n">login_required</span><span class="p">,</span> <span class="n">logout_user</span>
+<span class="kn">from</span> <span class="nn">ext</span> <span class="kn">import</span> <span class="n">login_manager</span>
+<span class="kn">from</span> <span class="nn">base</span> <span class="kn">import</span> <span class="n">base</span>
+<span class="kn">from</span> <span class="nn">base.forms</span> <span class="kn">import</span> <span class="n">LoginForm</span>
+<span class="kn">from</span> <span class="nn">base.models</span> <span class="kn">import</span> <span class="n">User</span>
+
+
+<div class="viewcode-block" id="FrontView"><a class="viewcode-back" href="../../base.views.html#base.views.FrontView">[docs]</a><span class="k">class</span> <span class="nc">FrontView</span><span class="p">(</span><span class="n">MethodView</span><span class="p">):</span>
+
+<div class="viewcode-block" id="FrontView.get"><a class="viewcode-back" href="../../base.views.html#base.views.FrontView.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;base/main.html&#39;</span><span class="p">)</span>
+</div></div>
+<span class="n">base</span><span class="o">.</span><span class="n">add_url_rule</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">,</span> <span class="n">view_func</span><span class="o">=</span><span class="n">FrontView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(</span><span class="s">&#39;front_page&#39;</span><span class="p">))</span>
+
+
+<div class="viewcode-block" id="LoginView"><a class="viewcode-back" href="../../base.views.html#base.views.LoginView">[docs]</a><span class="k">class</span> <span class="nc">LoginView</span><span class="p">(</span><span class="n">MethodView</span><span class="p">):</span>
+    <span class="n">_messages</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;success&#39;</span><span class="p">:</span> <span class="s">&#39;You are the boss!&#39;</span><span class="p">,</span>
+                 <span class="s">&#39;invalid_auth&#39;</span><span class="p">:</span> <span class="s">&#39;Who are you?&#39;</span><span class="p">,</span>
+                 <span class="s">&#39;invalid_form&#39;</span><span class="p">:</span> <span class="s">&#39;Invalid form.&#39;</span><span class="p">,</span>
+                 <span class="p">}</span>
+
+<div class="viewcode-block" id="LoginView.get"><a class="viewcode-back" href="../../base.views.html#base.views.LoginView.get">[docs]</a>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;login.html&#39;</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="n">LoginForm</span><span class="p">())</span>
+</div>
+<div class="viewcode-block" id="LoginView.post"><a class="viewcode-back" href="../../base.views.html#base.views.LoginView.post">[docs]</a>    <span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">form</span> <span class="o">=</span> <span class="n">LoginForm</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">form</span><span class="o">.</span><span class="n">validate_on_submit</span><span class="p">():</span>
+            <span class="n">flash</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_messages</span><span class="p">[</span><span class="s">&#39;invalid_form&#39;</span><span class="p">])</span>
+            <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&#39;login.html&#39;</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="n">form</span><span class="p">)</span>
+
+        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">get_by_email</span><span class="p">(</span><span class="n">form</span><span class="o">.</span><span class="n">email</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">user</span> <span class="ow">and</span> <span class="n">user</span><span class="o">.</span><span class="n">check_password</span><span class="p">(</span><span class="n">form</span><span class="o">.</span><span class="n">password</span><span class="o">.</span><span class="n">data</span><span class="p">):</span>
+            <span class="n">login_user</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+            <span class="n">flash</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_messages</span><span class="p">[</span><span class="s">&#39;success&#39;</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">flash</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_messages</span><span class="p">[</span><span class="s">&#39;invalid_auth&#39;</span><span class="p">])</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s">&#39;base.login&#39;</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;next&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">url_for</span><span class="p">(</span><span class="s">&#39;base.front_page&#39;</span><span class="p">))</span>
+</div></div>
+<span class="n">base</span><span class="o">.</span><span class="n">add_url_rule</span><span class="p">(</span><span class="s">&#39;login&#39;</span><span class="p">,</span> <span class="n">view_func</span><span class="o">=</span><span class="n">LoginView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(</span><span class="s">&#39;login&#39;</span><span class="p">))</span>
+
+
+<span class="n">login_manager</span><span class="o">.</span><span class="n">login_view</span> <span class="o">=</span> <span class="s">&#39;base.login&#39;</span>
+<span class="n">login_manager</span><span class="o">.</span><span class="n">login_message</span> <span class="o">=</span> <span class="s">&#39;You have to log in to access this page.&#39;</span>
+
+
+<span class="nd">@login_manager.user_loader</span>
+<div class="viewcode-block" id="load_user"><a class="viewcode-back" href="../../base.views.html#base.views.load_user">[docs]</a><span class="k">def</span> <span class="nf">load_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">User</span><span class="o">.</span><span class="n">get_by_id</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
+
+</div>
+<span class="nd">@login_required</span>
+<div class="viewcode-block" id="logout"><a class="viewcode-back" href="../../base.views.html#base.views.logout">[docs]</a><span class="k">def</span> <span class="nf">logout</span><span class="p">():</span>
+    <span class="n">logout_user</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s">&#39;base.front_page&#39;</span><span class="p">))</span>
+</div>
+<span class="n">base</span><span class="o">.</span><span class="n">add_url_rule</span><span class="p">(</span><span class="s">&#39;logout&#39;</span><span class="p">,</span> <span class="n">view_func</span><span class="o">=</span><span class="n">logout</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;POST&#39;</span><span class="p">])</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../../index.html">Flask Kit dev documentation</a> &raquo;</li>
+          <li><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, rockyroad.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

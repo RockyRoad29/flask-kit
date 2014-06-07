@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>base.models module &mdash; Flask Kit dev documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     'dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Flask Kit dev documentation" href="index.html" />
+    <link rel="up" title="base package" href="base.html" />
+    <link rel="next" title="base.tests module" href="base.tests.html" />
+    <link rel="prev" title="base.forms module" href="base.forms.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="base.tests.html" title="base.tests module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="base.forms.html" title="base.forms module"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Flask Kit dev documentation</a> &raquo;</li>
+          <li><a href="modules.html" >&lt;no title&gt;</a> &raquo;</li>
+          <li><a href="base.html" accesskey="U">base package</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-base.models">
+<span id="base-models-module"></span><h1>base.models module<a class="headerlink" href="#module-base.models" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="base-models">
+<h2>base.models<a class="headerlink" href="#base-models" title="Permalink to this headline">¶</a></h2>
+<p>The most common models for the whole project.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">copyright:</th><td class="field-body"><ol class="first loweralpha simple" start="3">
+<li>2012 by Roman Semirook.</li>
+</ol>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">license:</th><td class="field-body"><p class="first last">BSD, see LICENSE for more details.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="class">
+<dt id="base.models.CRUDMixin">
+<em class="property">class </em><tt class="descclassname">base.models.</tt><tt class="descname">CRUDMixin</tt><a class="reference internal" href="_modules/base/models.html#CRUDMixin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#base.models.CRUDMixin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<dl class="classmethod">
+<dt id="base.models.CRUDMixin.create">
+<em class="property">classmethod </em><tt class="descname">create</tt><big>(</big><em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/base/models.html#CRUDMixin.create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#base.models.CRUDMixin.create" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="base.models.CRUDMixin.delete">
+<tt class="descname">delete</tt><big>(</big><em>commit=True</em><big>)</big><a class="reference internal" href="_modules/base/models.html#CRUDMixin.delete"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#base.models.CRUDMixin.delete" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="base.models.CRUDMixin.get_by_id">
+<em class="property">classmethod </em><tt class="descname">get_by_id</tt><big>(</big><em>id</em><big>)</big><a class="reference internal" href="_modules/base/models.html#CRUDMixin.get_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#base.models.CRUDMixin.get_by_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="base.models.CRUDMixin.id">
+<tt class="descname">id</tt><em class="property"> = Column(None, Integer(), table=None, primary_key=True, nullable=False)</em><a class="headerlink" href="#base.models.CRUDMixin.id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="base.models.CRUDMixin.save">
+<tt class="descname">save</tt><big>(</big><em>commit=True</em><big>)</big><a class="reference internal" href="_modules/base/models.html#CRUDMixin.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#base.models.CRUDMixin.save" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="base.models.CRUDMixin.update">
+<tt class="descname">update</tt><big>(</big><em>commit=True</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/base/models.html#CRUDMixin.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#base.models.CRUDMixin.update" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="base.models.User">
+<em class="property">class </em><tt class="descclassname">base.models.</tt><tt class="descname">User</tt><big>(</big><em>username</em>, <em>email</em>, <em>password</em><big>)</big><a class="reference internal" href="_modules/base/models.html#User"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#base.models.User" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">flask_login.UserMixin</span></tt>, <a class="reference internal" href="#base.models.CRUDMixin" title="base.models.CRUDMixin"><tt class="xref py py-class docutils literal"><span class="pre">base.models.CRUDMixin</span></tt></a>, <tt class="xref py py-class docutils literal"><span class="pre">flask_sqlalchemy.Model</span></tt></p>
+<dl class="method">
+<dt id="base.models.User.check_password">
+<tt class="descname">check_password</tt><big>(</big><em>password</em><big>)</big><a class="reference internal" href="_modules/base/models.html#User.check_password"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#base.models.User.check_password" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="base.models.User.email">
+<tt class="descname">email</tt><a class="headerlink" href="#base.models.User.email" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="base.models.User.get_by_email">
+<em class="property">classmethod </em><tt class="descname">get_by_email</tt><big>(</big><em>email</em><big>)</big><a class="reference internal" href="_modules/base/models.html#User.get_by_email"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#base.models.User.get_by_email" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="base.models.User.id">
+<tt class="descname">id</tt><a class="headerlink" href="#base.models.User.id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="base.models.User.password">
+<tt class="descname">password</tt><a class="headerlink" href="#base.models.User.password" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="base.models.User.username">
+<tt class="descname">username</tt><a class="headerlink" href="#base.models.User.username" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">base.models module</a><ul>
+<li><a class="reference internal" href="#base-models">base.models</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="base.forms.html"
+                        title="previous chapter">base.forms module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="base.tests.html"
+                        title="next chapter">base.tests module</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/base.models.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="base.tests.html" title="base.tests module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="base.forms.html" title="base.forms module"
+             >previous</a> |</li>
+        <li><a href="index.html">Flask Kit dev documentation</a> &raquo;</li>
+          <li><a href="modules.html" >&lt;no title&gt;</a> &raquo;</li>
+          <li><a href="base.html" >base package</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, rockyroad.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

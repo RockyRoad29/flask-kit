@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>testing &mdash; Flask Kit dev documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     'dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Flask Kit dev documentation" href="../index.html" />
+    <link rel="up" title="Module code" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">Flask Kit dev documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for testing</h1><div class="highlight"><pre>
+<span class="c"># -*- coding: utf-8 -*-</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    testing</span>
+<span class="sd">    ~~~~~~~</span>
+
+<span class="sd">    More useful TestCase for tests.</span>
+
+<span class="sd">    :copyright: (c) 2012 by Roman Semirook.</span>
+<span class="sd">    :license: BSD, see LICENSE for more details.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">flask.ext.testing</span> <span class="kn">import</span> <span class="n">TestCase</span>
+<span class="kn">from</span> <span class="nn">base</span> <span class="kn">import</span> <span class="n">User</span>
+<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="n">AppFactory</span>
+<span class="kn">from</span> <span class="nn">settings</span> <span class="kn">import</span> <span class="n">TestingConfig</span>
+<span class="kn">from</span> <span class="nn">ext</span> <span class="kn">import</span> <span class="n">db</span>
+
+
+<div class="viewcode-block" id="KitTestCase"><a class="viewcode-back" href="../testing.html#testing.KitTestCase">[docs]</a><span class="k">class</span> <span class="nc">KitTestCase</span><span class="p">(</span><span class="n">TestCase</span><span class="p">):</span>
+
+<div class="viewcode-block" id="KitTestCase.create_app"><a class="viewcode-back" href="../testing.html#testing.KitTestCase.create_app">[docs]</a>    <span class="k">def</span> <span class="nf">create_app</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">AppFactory</span><span class="p">(</span><span class="n">TestingConfig</span><span class="p">)</span><span class="o">.</span><span class="n">get_app</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="KitTestCase.setUp"><a class="viewcode-back" href="../testing.html#testing.KitTestCase.setUp">[docs]</a>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">create_all</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s">&#39;John Doe&#39;</span><span class="p">,</span> <span class="n">email</span><span class="o">=</span><span class="s">&#39;john@doe.com&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s">&#39;test&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="KitTestCase.tearDown"><a class="viewcode-back" href="../testing.html#testing.KitTestCase.tearDown">[docs]</a>    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">drop_all</span><span class="p">()</span>
+</div>
+<div class="viewcode-block" id="KitTestCase.assertContains"><a class="viewcode-back" href="../testing.html#testing.KitTestCase.assertContains">[docs]</a>    <span class="k">def</span> <span class="nf">assertContains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                       <span class="n">status_code</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">msg_prefix</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Asserts that a response indicates that some content was retrieved</span>
+<span class="sd">        successfully, (i.e., the HTTP status code was as expected), and that</span>
+<span class="sd">        ``text`` occurs ``count`` times in the content of the response.</span>
+<span class="sd">        If ``count`` is None, the count doesn&#39;t matter - the assertion is true</span>
+<span class="sd">        if the text occurs at least once in the response.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">msg_prefix</span><span class="p">:</span>
+            <span class="n">msg_prefix</span> <span class="o">+=</span> <span class="s">&quot;: &quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status_code</span><span class="p">,</span>
+            <span class="n">msg_prefix</span> <span class="o">+</span> <span class="s">&quot;Couldn&#39;t retrieve content: Response code was </span><span class="si">%d</span><span class="s">&quot;</span>
+                         <span class="s">&quot; (expected </span><span class="si">%d</span><span class="s">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span> <span class="n">status_code</span><span class="p">))</span>
+
+        <span class="n">real_count</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">count</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">real_count</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span>
+                <span class="n">msg_prefix</span> <span class="o">+</span> <span class="s">&quot;Found </span><span class="si">%d</span><span class="s"> instances of &#39;</span><span class="si">%s</span><span class="s">&#39; in response&quot;</span>
+                             <span class="s">&quot; (expected </span><span class="si">%d</span><span class="s">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">real_count</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">count</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">real_count</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">,</span>
+                <span class="n">msg_prefix</span> <span class="o">+</span> <span class="s">&quot;Couldn&#39;t find &#39;</span><span class="si">%s</span><span class="s">&#39; in response&quot;</span> <span class="o">%</span> <span class="n">text</span><span class="p">)</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">Flask Kit dev documentation</a> &raquo;</li>
+          <li><a href="index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, rockyroad.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>settings module &mdash; Flask Kit dev documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     'dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Flask Kit dev documentation" href="index.html" />
+    <link rel="up" title="&lt;no title&gt;" href="modules.html" />
+    <link rel="next" title="testing module" href="testing.html" />
+    <link rel="prev" title="manage module" href="manage.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="testing.html" title="testing module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="manage.html" title="manage module"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Flask Kit dev documentation</a> &raquo;</li>
+          <li><a href="modules.html" accesskey="U">&lt;no title&gt;</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-settings">
+<span id="settings-module"></span><h1>settings module<a class="headerlink" href="#module-settings" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="settings">
+<h2>settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
+<p>Global settings for project.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">copyright:</th><td class="field-body"><ol class="first loweralpha simple" start="3">
+<li>2012 by Roman Semirook.</li>
+</ol>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">license:</th><td class="field-body"><p class="first last">BSD, see LICENSE for more details.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="class">
+<dt id="settings.BaseConfig">
+<em class="property">class </em><tt class="descclassname">settings.</tt><tt class="descname">BaseConfig</tt><a class="reference internal" href="_modules/settings.html#BaseConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#settings.BaseConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<dl class="attribute">
+<dt id="settings.BaseConfig.BLUEPRINTS">
+<tt class="descname">BLUEPRINTS</tt><em class="property"> = ['base.base', 'info.info']</em><a class="headerlink" href="#settings.BaseConfig.BLUEPRINTS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="settings.BaseConfig.CONTEXT_PROCESSORS">
+<tt class="descname">CONTEXT_PROCESSORS</tt><em class="property"> = ['base.context_processors.common_context', 'base.context_processors.navigation', 'base.context_processors.common_forms']</em><a class="headerlink" href="#settings.BaseConfig.CONTEXT_PROCESSORS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="settings.BaseConfig.CSRF_ENABLED">
+<tt class="descname">CSRF_ENABLED</tt><em class="property"> = True</em><a class="headerlink" href="#settings.BaseConfig.CSRF_ENABLED" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="settings.BaseConfig.DEBUG">
+<tt class="descname">DEBUG</tt><em class="property"> = False</em><a class="headerlink" href="#settings.BaseConfig.DEBUG" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="settings.BaseConfig.EXTENSIONS">
+<tt class="descname">EXTENSIONS</tt><em class="property"> = ['ext.db', 'ext.assets', 'ext.login_manager', 'ext.gravatar', 'ext.toolbar']</em><a class="headerlink" href="#settings.BaseConfig.EXTENSIONS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="settings.BaseConfig.ROOT_PATH">
+<tt class="descname">ROOT_PATH</tt><em class="property"> = '/home/mich/Learn/webauth/flask/flask-kit'</em><a class="headerlink" href="#settings.BaseConfig.ROOT_PATH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="settings.BaseConfig.SECRET_KEY">
+<tt class="descname">SECRET_KEY</tt><em class="property"> = 'MY_VERY_SECRET_KEY'</em><a class="headerlink" href="#settings.BaseConfig.SECRET_KEY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="settings.BaseConfig.SQLALCHEMY_DATABASE_URI">
+<tt class="descname">SQLALCHEMY_DATABASE_URI</tt><em class="property"> = 'sqlite:////tmp/test.db'</em><a class="headerlink" href="#settings.BaseConfig.SQLALCHEMY_DATABASE_URI" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="settings.DevelopmentConfig">
+<em class="property">class </em><tt class="descclassname">settings.</tt><tt class="descname">DevelopmentConfig</tt><a class="reference internal" href="_modules/settings.html#DevelopmentConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#settings.DevelopmentConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#settings.BaseConfig" title="settings.BaseConfig"><tt class="xref py py-class docutils literal"><span class="pre">settings.BaseConfig</span></tt></a></p>
+<dl class="attribute">
+<dt id="settings.DevelopmentConfig.DEBUG">
+<tt class="descname">DEBUG</tt><em class="property"> = True</em><a class="headerlink" href="#settings.DevelopmentConfig.DEBUG" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="settings.DevelopmentConfig.DEBUG_TB_INTERCEPT_REDIRECTS">
+<tt class="descname">DEBUG_TB_INTERCEPT_REDIRECTS</tt><em class="property"> = False</em><a class="headerlink" href="#settings.DevelopmentConfig.DEBUG_TB_INTERCEPT_REDIRECTS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="settings.DevelopmentConfig.DEBUG_TB_PROFILER_ENABLED">
+<tt class="descname">DEBUG_TB_PROFILER_ENABLED</tt><em class="property"> = True</em><a class="headerlink" href="#settings.DevelopmentConfig.DEBUG_TB_PROFILER_ENABLED" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="settings.TestingConfig">
+<em class="property">class </em><tt class="descclassname">settings.</tt><tt class="descname">TestingConfig</tt><a class="reference internal" href="_modules/settings.html#TestingConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#settings.TestingConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#settings.BaseConfig" title="settings.BaseConfig"><tt class="xref py py-class docutils literal"><span class="pre">settings.BaseConfig</span></tt></a></p>
+<dl class="attribute">
+<dt id="settings.TestingConfig.SQLALCHEMY_DATABASE_URI">
+<tt class="descname">SQLALCHEMY_DATABASE_URI</tt><em class="property"> = 'sqlite:///:memory:'</em><a class="headerlink" href="#settings.TestingConfig.SQLALCHEMY_DATABASE_URI" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="settings.TestingConfig.TESTING">
+<tt class="descname">TESTING</tt><em class="property"> = True</em><a class="headerlink" href="#settings.TestingConfig.TESTING" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">settings module</a><ul>
+<li><a class="reference internal" href="#settings">settings</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="manage.html"
+                        title="previous chapter">manage module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="testing.html"
+                        title="next chapter">testing module</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/settings.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="testing.html" title="testing module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="manage.html" title="manage module"
+             >previous</a> |</li>
+        <li><a href="index.html">Flask Kit dev documentation</a> &raquo;</li>
+          <li><a href="modules.html" >&lt;no title&gt;</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, rockyroad.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>helpers module &mdash; Flask Kit dev documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     'dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Flask Kit dev documentation" href="index.html" />
+    <link rel="up" title="&lt;no title&gt;" href="modules.html" />
+    <link rel="next" title="info package" href="info.html" />
+    <link rel="prev" title="ext module" href="ext.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="info.html" title="info package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ext.html" title="ext module"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Flask Kit dev documentation</a> &raquo;</li>
+          <li><a href="modules.html" accesskey="U">&lt;no title&gt;</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-helpers">
+<span id="helpers-module"></span><h1>helpers module<a class="headerlink" href="#module-helpers" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="helpers">
+<h2>helpers<a class="headerlink" href="#helpers" title="Permalink to this headline">¶</a></h2>
+<p>Implements useful helpers.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">copyright:</th><td class="field-body"><ol class="first loweralpha simple" start="3">
+<li>2012 by Roman Semirook.</li>
+</ol>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">license:</th><td class="field-body"><p class="first last">BSD, see LICENSE for more details.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="class">
+<dt id="helpers.AppFactory">
+<em class="property">class </em><tt class="descclassname">helpers.</tt><tt class="descname">AppFactory</tt><big>(</big><em>config</em>, <em>envvar='PROJECT_SETTINGS'</em>, <em>bind_db_object=True</em><big>)</big><a class="reference internal" href="_modules/helpers.html#AppFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpers.AppFactory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<dl class="method">
+<dt id="helpers.AppFactory.get_app">
+<tt class="descname">get_app</tt><big>(</big><em>app_module_name</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/helpers.html#AppFactory.get_app"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpers.AppFactory.get_app" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="helpers.NoBlueprintException">
+<em class="property">exception </em><tt class="descclassname">helpers.</tt><tt class="descname">NoBlueprintException</tt><a class="reference internal" href="_modules/helpers.html#NoBlueprintException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpers.NoBlueprintException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="http://docs.python.org/library/exceptions.html#exceptions.Exception" title="(in Python v2.7)"><tt class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></tt></a></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="helpers.NoContextProcessorException">
+<em class="property">exception </em><tt class="descclassname">helpers.</tt><tt class="descname">NoContextProcessorException</tt><a class="reference internal" href="_modules/helpers.html#NoContextProcessorException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpers.NoContextProcessorException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="http://docs.python.org/library/exceptions.html#exceptions.Exception" title="(in Python v2.7)"><tt class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></tt></a></p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="helpers.NoExtensionException">
+<em class="property">exception </em><tt class="descclassname">helpers.</tt><tt class="descname">NoExtensionException</tt><a class="reference internal" href="_modules/helpers.html#NoExtensionException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpers.NoExtensionException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="http://docs.python.org/library/exceptions.html#exceptions.Exception" title="(in Python v2.7)"><tt class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></tt></a></p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">helpers module</a><ul>
+<li><a class="reference internal" href="#helpers">helpers</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="ext.html"
+                        title="previous chapter">ext module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="info.html"
+                        title="next chapter">info package</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/helpers.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="info.html" title="info package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ext.html" title="ext module"
+             >previous</a> |</li>
+        <li><a href="index.html">Flask Kit dev documentation</a> &raquo;</li>
+          <li><a href="modules.html" >&lt;no title&gt;</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, rockyroad.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

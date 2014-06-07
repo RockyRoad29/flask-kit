@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>base.views module &mdash; Flask Kit dev documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     'dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Flask Kit dev documentation" href="index.html" />
+    <link rel="up" title="base package" href="base.html" />
+    <link rel="next" title="ext module" href="ext.html" />
+    <link rel="prev" title="base.tests module" href="base.tests.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="ext.html" title="ext module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="base.tests.html" title="base.tests module"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Flask Kit dev documentation</a> &raquo;</li>
+          <li><a href="modules.html" >&lt;no title&gt;</a> &raquo;</li>
+          <li><a href="base.html" accesskey="U">base package</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-base.views">
+<span id="base-views-module"></span><h1>base.views module<a class="headerlink" href="#module-base.views" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="base-views">
+<h2>base.views<a class="headerlink" href="#base-views" title="Permalink to this headline">¶</a></h2>
+<p>The most common views for the whole project.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">copyright:</th><td class="field-body"><ol class="first loweralpha simple" start="3">
+<li>2012 by Roman Semirook.</li>
+</ol>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">license:</th><td class="field-body"><p class="first last">BSD, see LICENSE for more details.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="class">
+<dt id="base.views.FrontView">
+<em class="property">class </em><tt class="descclassname">base.views.</tt><tt class="descname">FrontView</tt><a class="reference internal" href="_modules/base/views.html#FrontView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#base.views.FrontView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">flask.views.MethodView</span></tt></p>
+<dl class="method">
+<dt id="base.views.FrontView.get">
+<tt class="descname">get</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/base/views.html#FrontView.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#base.views.FrontView.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="base.views.FrontView.methods">
+<tt class="descname">methods</tt><em class="property"> = ['GET']</em><a class="headerlink" href="#base.views.FrontView.methods" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="base.views.LoginView">
+<em class="property">class </em><tt class="descclassname">base.views.</tt><tt class="descname">LoginView</tt><a class="reference internal" href="_modules/base/views.html#LoginView"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#base.views.LoginView" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">flask.views.MethodView</span></tt></p>
+<dl class="method">
+<dt id="base.views.LoginView.get">
+<tt class="descname">get</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/base/views.html#LoginView.get"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#base.views.LoginView.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="base.views.LoginView.methods">
+<tt class="descname">methods</tt><em class="property"> = ['GET', 'POST']</em><a class="headerlink" href="#base.views.LoginView.methods" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="base.views.LoginView.post">
+<tt class="descname">post</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/base/views.html#LoginView.post"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#base.views.LoginView.post" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="base.views.load_user">
+<tt class="descclassname">base.views.</tt><tt class="descname">load_user</tt><big>(</big><em>user_id</em><big>)</big><a class="reference internal" href="_modules/base/views.html#load_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#base.views.load_user" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="base.views.logout">
+<tt class="descclassname">base.views.</tt><tt class="descname">logout</tt><big>(</big><em>*args</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/base/views.html#logout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#base.views.logout" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">base.views module</a><ul>
+<li><a class="reference internal" href="#base-views">base.views</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="base.tests.html"
+                        title="previous chapter">base.tests module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="ext.html"
+                        title="next chapter">ext module</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/base.views.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="ext.html" title="ext module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="base.tests.html" title="base.tests module"
+             >previous</a> |</li>
+        <li><a href="index.html">Flask Kit dev documentation</a> &raquo;</li>
+          <li><a href="modules.html" >&lt;no title&gt;</a> &raquo;</li>
+          <li><a href="base.html" >base package</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, rockyroad.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>
