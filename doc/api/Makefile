@@ -21,6 +21,21 @@ I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
 
 .PHONY: help clean html dirhtml singlehtml pickle json htmlhelp qthelp devhelp epub latex latexpdf text man changes linkcheck doctest gettext
 
+# [Customized Section
+PROJECT_BASE  = ../..
+apidoc:
+	@echo \    Sphinx apidoc would regenerate rst files\; here\'s a dry-run:
+	sphinx-apidoc -fe -n -o . $(PROJECT_BASE)
+	@echo "\n"    Run "make apidoc-force" to perform the changes.
+
+apidoc-force:
+	sphinx-apidoc -fe -o . $(PROJECT_BASE)
+
+clean_pyc:
+	cd $(PROJECT_BASE) && ./manage.py clean_pyc
+
+# Customized Section]
+
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
 	@echo "  html       to make standalone HTML files"
@@ -49,7 +64,7 @@ help:
 clean:
 	rm -rf $(BUILDDIR)/*
 
-html:
+html: clean_pyc
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
