@@ -8,7 +8,7 @@
     
     <title>helpers &mdash; Flask Kit dev documentation</title>
     
-    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -39,7 +39,24 @@
         <li><a href="../index.html">Flask Kit dev documentation</a> &raquo;</li>
           <li><a href="index.html" accesskey="U">Module code</a> &raquo;</li> 
       </ul>
-    </div>  
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
 
     <div class="document">
       <div class="documentwrapper">
@@ -50,13 +67,14 @@
 <span class="c"># -*- coding: utf-8 -*-</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    helpers</span>
-<span class="sd">    ~~~~~~~</span>
-
 <span class="sd">    Implements useful helpers.</span>
+
+<span class="sd">    There is the application factory and, maybe,</span>
+<span class="sd">    something else (in the future) to avoid routine.</span>
 
 <span class="sd">    :copyright: (c) 2012 by Roman Semirook.</span>
 <span class="sd">    :license: BSD, see LICENSE for more details.</span>
+
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
@@ -77,13 +95,34 @@
 
 </div>
 <div class="viewcode-block" id="AppFactory"><a class="viewcode-back" href="../helpers.html#helpers.AppFactory">[docs]</a><span class="k">class</span> <span class="nc">AppFactory</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Flask application factory.</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">envvar</span><span class="o">=</span><span class="s">&#39;PROJECT_SETTINGS&#39;</span><span class="p">,</span> <span class="n">bind_db_object</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+<span class="sd">    &gt;&gt;&gt; app = AppFactory(TestingConfig).get_app(__name__)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="AppFactory.__init__"><a class="viewcode-back" href="../helpers.html#helpers.AppFactory.__init__">[docs]</a>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">envvar</span><span class="o">=</span><span class="s">&#39;PROJECT_SETTINGS&#39;</span><span class="p">,</span> <span class="n">bind_db_object</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Defines default application settings</span>
+
+<span class="sd">        :param config: an object to load initial configuration from</span>
+<span class="sd">        :param envvar: The name of an environment variable to update configuration from</span>
+<span class="sd">        :param bind_db_object:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">app_config</span> <span class="o">=</span> <span class="n">config</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">app_envvar</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">envvar</span><span class="p">,</span> <span class="bp">False</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bind_db_object</span> <span class="o">=</span> <span class="n">bind_db_object</span>
-
+</div>
 <div class="viewcode-block" id="AppFactory.get_app"><a class="viewcode-back" href="../helpers.html#helpers.AppFactory.get_app">[docs]</a>    <span class="k">def</span> <span class="nf">get_app</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app_module_name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Actually instanciates a Flask application with active settings,</span>
+<span class="sd">        and taking care of registering extensions and blueprints</span>
+
+<span class="sd">        :param app_module_name: the name of the application package, see :py:class:`~flask.Flask`</span>
+
+<span class="sd">        :param kwargs: keyword arguments passed to the Flask constructor</span>
+<span class="sd">        :return: A new WSGI application object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">app_module_name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">from_object</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">app_config</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">from_envvar</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">app_envvar</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
@@ -129,23 +168,6 @@
 </pre></div>
 
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar">
-        <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>

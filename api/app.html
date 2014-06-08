@@ -8,7 +8,7 @@
     
     <title>app module &mdash; Flask Kit dev documentation</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -24,9 +24,9 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="Flask Kit dev documentation" href="index.html" />
-    <link rel="up" title="&lt;no title&gt;" href="modules.html" />
-    <link rel="next" title="base package" href="base.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="modules.html" /> 
+    <link rel="up" title="Modules" href="modules.html" />
+    <link rel="next" title="ext module" href="ext.html" />
+    <link rel="prev" title="Modules" href="modules.html" /> 
   </head>
   <body>
     <div class="related">
@@ -39,64 +39,23 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="base.html" title="base package"
+          <a href="ext.html" title="ext module"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="modules.html" title="&lt;no title&gt;"
+          <a href="modules.html" title="Modules"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">Flask Kit dev documentation</a> &raquo;</li>
-          <li><a href="modules.html" accesskey="U">&lt;no title&gt;</a> &raquo;</li> 
+          <li><a href="modules.html" accesskey="U">Modules</a> &raquo;</li> 
       </ul>
-    </div>  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body">
-            
-  <div class="section" id="module-app">
-<span id="app-module"></span><h1>app module<a class="headerlink" href="#module-app" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="application">
-<h2>application<a class="headerlink" href="#application" title="Permalink to this headline">¶</a></h2>
-<p>Application initialization
-and app-specific registrations.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">copyright:</th><td class="field-body"><ol class="first loweralpha simple" start="3">
-<li>2012 by Roman Semirook.</li>
-</ol>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">license:</th><td class="field-body"><p class="first last">BSD, see LICENSE for more details.</p>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-
-
-          </div>
-        </div>
-      </div>
+    </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">app module</a><ul>
-<li><a class="reference internal" href="#application">application</a></li>
-</ul>
-</li>
-</ul>
-
   <h4>Previous topic</h4>
   <p class="topless"><a href="modules.html"
-                        title="previous chapter">&lt;no title&gt;</a></p>
+                        title="previous chapter">Modules</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="base.html"
-                        title="next chapter">base package</a></p>
+  <p class="topless"><a href="ext.html"
+                        title="next chapter">ext module</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/app.txt"
@@ -117,6 +76,67 @@ and app-specific registrations.</p>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-app">
+<span id="app-module"></span><h1>app module<a class="headerlink" href="#module-app" title="Permalink to this headline">¶</a></h1>
+<p>Application initialization
+and app-specific registrations.</p>
+<p>There is your main app instance, created by <cite>AppFactory</cite>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Note, it&#8217;s just a point for blueprints,
+context processors and extensions binding.</p>
+<p>But <strong>don&#8217;t bind them explicit</strong>, as usual.
+And <strong>don&#8217;t bind any views to the main app</strong>.</p>
+<p>Why?</p>
+<p>You have at least two apps in your project –&nbsp;one as the basic app and one for testing.</p>
+<p>Each of them is created at runtime with some individual settings for database, debug level etc.</p>
+<p>And each of them has to have access to any views or extensions with their individual settings.</p>
+<p class="last">So dynamical application binding is much more flexible solution.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">copyright:</th><td class="field-body"><ol class="first loweralpha simple" start="3">
+<li>2012 by Roman Semirook.</li>
+</ol>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">license:</th><td class="field-body"><p class="first last">BSD, see LICENSE for more details.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="data">
+<dt id="app.app">
+<tt class="descclassname">app.</tt><tt class="descname">app</tt><em class="property"> = &lt;Flask 'app'&gt;</em><a class="headerlink" href="#app.app" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <tt class="xref py py-class docutils literal"><span class="pre">Flask</span></tt> application object</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="app.css_base">
+<tt class="descclassname">app.</tt><tt class="descname">css_base</tt><em class="property"> = &lt;Bundle output=gen/base.css, filters=[&lt;webassets.filter.cssmin.CSSMin object at 0x565b910&gt;], contents=('css/reset.css', 'css/typo.css', 'css/style.css', 'css/page.css', 'css/forms.css')&gt;</em><a class="headerlink" href="#app.css_base" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stylesheet assets bundle</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="app.js_base">
+<tt class="descclassname">app.</tt><tt class="descname">js_base</tt><em class="property"> = &lt;Bundle output=gen/base.js, filters=[&lt;webassets.filter.jsmin.JSMin object at 0x565b990&gt;], contents=('js/libs/json2.js', 'js/libs/jquery-1.8.2-min.js', 'js/libs/underscore-1.4.2-min.js', 'js/libs/backbone-0.9.2-min.js')&gt;</em><a class="headerlink" href="#app.js_base" title="Permalink to this definition">¶</a></dt>
+<dd><p>Javascript assets bundle</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
       <div class="clearer"></div>
     </div>
     <div class="related">
@@ -129,13 +149,13 @@ and app-specific registrations.</p>
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="base.html" title="base package"
+          <a href="ext.html" title="ext module"
              >next</a> |</li>
         <li class="right" >
-          <a href="modules.html" title="&lt;no title&gt;"
+          <a href="modules.html" title="Modules"
              >previous</a> |</li>
         <li><a href="index.html">Flask Kit dev documentation</a> &raquo;</li>
-          <li><a href="modules.html" >&lt;no title&gt;</a> &raquo;</li> 
+          <li><a href="modules.html" >Modules</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

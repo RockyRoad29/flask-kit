@@ -8,7 +8,7 @@
     
     <title>Welcome to Flask Kit’s documentation! &mdash; Flask Kit dev documentation</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -24,7 +24,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="Flask Kit dev documentation" href="#" />
-    <link rel="next" title="&lt;no title&gt;" href="modules.html" /> 
+    <link rel="next" title="Modules" href="modules.html" /> 
   </head>
   <body>
     <div class="related">
@@ -37,83 +37,36 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="modules.html" title="&lt;no title&gt;"
+          <a href="modules.html" title="Modules"
              accesskey="N">next</a> |</li>
         <li><a href="#">Flask Kit dev documentation</a> &raquo;</li> 
       </ul>
-    </div>  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body">
-            
-  <div class="section" id="welcome-to-flask-kit-s-documentation">
-<h1>Welcome to Flask Kit&#8217;s documentation!<a class="headerlink" href="#welcome-to-flask-kit-s-documentation" title="Permalink to this headline">¶</a></h1>
-<p>Contents:</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="app.html">app module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="app.html#application">application</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="base.html">base package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="base.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="base.html#module-base">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="ext.html">ext module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ext.html#ext">ext</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="helpers.html">helpers module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="helpers.html#helpers">helpers</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="info.html">info package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="info.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="info.html#module-info">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="manage.html">manage module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="manage.html#manage">manage</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="settings.html">settings module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="settings.html#settings">settings</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="testing.html">testing module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="testing.html#testing">testing</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-<div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><a class="reference internal" href="genindex.html"><em>Index</em></a></li>
-<li><a class="reference internal" href="py-modindex.html"><em>Module Index</em></a></li>
-<li><a class="reference internal" href="search.html"><em>Search Page</em></a></li>
-</ul>
-</div>
-
-
-          </div>
-        </div>
-      </div>
+    </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
   <h3><a href="#">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Welcome to Flask Kit&#8217;s documentation!</a></li>
+<li><a class="reference internal" href="#">Welcome to Flask Kit&#8217;s documentation!</a><ul>
+<li><a class="reference internal" href="#used-extensions">Used extensions</a><ul>
+<li><a class="reference internal" href="#debugtoolbar-in-browser-debug-tools">DebugToolbar : in-browser debug tools</a></li>
+<li><a class="reference internal" href="#login-user-authentification-layer">Login: user authentification layer</a></li>
+<li><a class="reference internal" href="#sqlalchemy">SQLAlchemy</a></li>
+<li><a class="reference internal" href="#wtf">WTF</a></li>
+<li><a class="reference internal" href="#testing">Testing</a></li>
+<li><a class="reference internal" href="#script">Script</a></li>
+<li><a class="reference internal" href="#assets">Assets</a></li>
+<li><a class="reference internal" href="#gravatar">Gravatar</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#flask-kit-modules">Flask Kit modules</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
 </ul>
 
   <h4>Next topic</h4>
   <p class="topless"><a href="modules.html"
-                        title="next chapter">&lt;no title&gt;</a></p>
+                        title="next chapter">Modules</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/index.txt"
@@ -134,6 +87,127 @@
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="welcome-to-flask-kit-s-documentation">
+<h1>Welcome to Flask Kit&#8217;s documentation!<a class="headerlink" href="#welcome-to-flask-kit-s-documentation" title="Permalink to this headline">¶</a></h1>
+<p>Flask Kit is extendable backbone for your new <a class="reference external" href="http://flask.pocoo.org/docs/">Flask</a> projects
+and the set of useful helpers to avoid some routine.</p>
+<p>It makes use of some useful extensions from
+<a class="reference external" href="http://flask.pocoo.org/extensions/">official Flask extensions registry</a>.</p>
+<p>Have a look in <a class="reference internal" href="ext.html#module-ext" title="ext"><tt class="xref py py-mod docutils literal"><span class="pre">ext</span></tt></a> and <a class="reference internal" href="app.html#module-app" title="app"><tt class="xref py py-mod docutils literal"><span class="pre">app</span></tt></a> to see how they are used.</p>
+<p>Below a brief description for each of them.</p>
+<div class="section" id="used-extensions">
+<h2>Used extensions<a class="headerlink" href="#used-extensions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="debugtoolbar-in-browser-debug-tools">
+<h3>DebugToolbar : in-browser debug tools<a class="headerlink" href="#debugtoolbar-in-browser-debug-tools" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://flask-debugtoolbar.readthedocs.org/en/latest/">Flask-DebugToolbar</a>
+is a port of the <a class="reference external" href="http://django-debug-toolbar.readthedocs.org/en/1.2/">Django debug toolbar</a> to Flask.</p>
+</div>
+<div class="section" id="login-user-authentification-layer">
+<h3>Login: user authentification layer<a class="headerlink" href="#login-user-authentification-layer" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://flask-login.readthedocs.org/en/latest/">Flask-Login</a>
+provides user session management for Flask.
+It handles the common tasks of logging in, logging out,
+and remembering your users’ sessions over extended periods of time.</p>
+<p>It will:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Store the active user’s ID in the session, and let you log them in and out easily.</li>
+<li>Let you restrict views to logged-in (or logged-out) users.</li>
+<li>Handle the normally-tricky “remember me” functionality.</li>
+<li>Help protect your users’ sessions from being stolen by cookie thieves.</li>
+<li>Possibly integrate with <a class="reference external" href="http://pythonhosted.org/Flask-Principal/">Flask-Principal</a>
+or other authorization extensions later on.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="sqlalchemy">
+<h3>SQLAlchemy<a class="headerlink" href="#sqlalchemy" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://pythonhosted.org/Flask-SQLAlchemy/">Flask-SQLAlchemy</a>
+is an extension for Flask that adds support for <a class="reference external" href="http://www.sqlalchemy.org/docs/">SQLAlchemy</a>
+to your application. It aims to simplify using SQLAlchemy
+with Flask by providing useful defaults and extra helpers that make it easier to accomplish common tasks.</p>
+</div>
+<div class="section" id="wtf">
+<h3>WTF<a class="headerlink" href="#wtf" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="https://flask-wtf.readthedocs.org/en/latest/">Flask-WTF</a>
+offers simple integration with <a class="reference external" href="http://wtforms.simplecodes.com/docs/">WTForms</a></p>
+<p>With WTForms, your form field HTML can be generated for you,
+but you can customize it in your templates.
+This allows you to maintain separation of code and presentation,
+and keep those messy parameters out of your python code.</p>
+</div>
+<div class="section" id="testing">
+<h3>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://pythonhosted.org/Flask-Testing/">Flask-Testing</a>
+provides unit testing utilities for Flask.</p>
+</div>
+<div class="section" id="script">
+<h3>Script<a class="headerlink" href="#script" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://flask-script.readthedocs.org/en/latest/">Flask-Script</a>
+provides support for writing external scripts in Flask.
+This includes running a development server, a customised Python shell,
+scripts to set up your database, cronjobs, and other command-line tasks
+that belong outside the web application itself.</p>
+<p>Flask-Script works in a similar way to Flask itself.
+You define and add commands that can be called from the command line to a Manager instance:</p>
+</div>
+<div class="section" id="assets">
+<h3>Assets<a class="headerlink" href="#assets" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://flask-assets.readthedocs.org/en/latest/">Flask-Assets</a>
+integrates the <a class="reference external" href="http://github.com/miracle2k/webassets">webassets library</a> with Flask, adding support for merging, minifying and compiling CSS and Javascript files.</p>
+</div>
+<div class="section" id="gravatar">
+<h3>Gravatar<a class="headerlink" href="#gravatar" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference external" href="http://pythonhosted.org/Flask-Gravatar/">Flask-Gravatar</a>
+is a small extension for Flask to make using <a class="reference external" href="http:gravatar.com">Gravatar</a>
+(&#8220;Globally Recognized Avatar&#8221;) easy.</p>
+<p>Well, maybe not essential.</p>
+<p>Check the <tt class="file docutils literal"><span class="pre">reqs.pip</span></tt> for the actual version numbers .</p>
+</div>
+</div>
+<div class="section" id="flask-kit-modules">
+<h2>Flask Kit modules<a class="headerlink" href="#flask-kit-modules" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="app.html">app module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ext.html">ext module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html">helpers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html">testing module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="settings.html">settings module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manage.html">manage module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="base.html">base package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="info.html">info package</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="admonition-todo admonition">
+<p class="first admonition-title">Todo</p>
+<p class="last">Add assets managements, as described in <tt class="xref py py-data docutils literal"><span class="pre">flask.ext.assets.management-command</span></tt></p>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="manage.html#index-0"><em>original entry</em></a> is located in  /home/mich/Learn/webauth/flask/flask-kit/manage.py:docstring of manage, line 23.)</p>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><em>Index</em></a></li>
+<li><a class="reference internal" href="py-modindex.html"><em>Module Index</em></a></li>
+<li><a class="reference internal" href="search.html"><em>Search Page</em></a></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
       <div class="clearer"></div>
     </div>
     <div class="related">
@@ -146,7 +220,7 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="modules.html" title="&lt;no title&gt;"
+          <a href="modules.html" title="Modules"
              >next</a> |</li>
         <li><a href="#">Flask Kit dev documentation</a> &raquo;</li> 
       </ul>

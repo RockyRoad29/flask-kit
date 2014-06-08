@@ -8,7 +8,7 @@
     
     <title>settings module &mdash; Flask Kit dev documentation</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -24,9 +24,9 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="Flask Kit dev documentation" href="index.html" />
-    <link rel="up" title="&lt;no title&gt;" href="modules.html" />
-    <link rel="next" title="testing module" href="testing.html" />
-    <link rel="prev" title="manage module" href="manage.html" /> 
+    <link rel="up" title="Modules" href="modules.html" />
+    <link rel="next" title="manage module" href="manage.html" />
+    <link rel="prev" title="testing module" href="testing.html" /> 
   </head>
   <body>
     <div class="related">
@@ -39,15 +39,43 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="testing.html" title="testing module"
+          <a href="manage.html" title="manage module"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="manage.html" title="manage module"
+          <a href="testing.html" title="testing module"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">Flask Kit dev documentation</a> &raquo;</li>
-          <li><a href="modules.html" accesskey="U">&lt;no title&gt;</a> &raquo;</li> 
+          <li><a href="modules.html" accesskey="U">Modules</a> &raquo;</li> 
       </ul>
-    </div>  
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="testing.html"
+                        title="previous chapter">testing module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="manage.html"
+                        title="next chapter">manage module</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/settings.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
 
     <div class="document">
       <div class="documentwrapper">
@@ -56,10 +84,21 @@
             
   <div class="section" id="module-settings">
 <span id="settings-module"></span><h1>settings module<a class="headerlink" href="#module-settings" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="settings">
-<h2>settings<a class="headerlink" href="#settings" title="Permalink to this headline">¶</a></h2>
 <p>Global settings for project.</p>
-<table class="docutils field-list" frame="void" rules="none">
+<p>Note some Kit-specific settings.</p>
+<blockquote>
+<div><ul class="simple">
+<li><cite>BLUEPRINTS</cite> is a list of registered blueprints.</li>
+<li><cite>CONTEXT_PROCESSORS</cite> is a list of registered context processors.</li>
+<li><cite>EXTENSIONS</cite> is a list of registered extensions.</li>
+</ul>
+</div></blockquote>
+<p>Flask Kit will automatically register blueprints specified in the <cite>BLUEPRINTS</cite>
+list for you. Behaviour for <cite>CONTEXT_PROCESSORS</cite> and <cite>EXTENSIONS</cite> lists is the same.</p>
+<p>The notation is <cite>package.module.object</cite> or <cite>package.object</cite> if object is in the <cite>__init__.py</cite>.
+Look into the file for examples.</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
@@ -73,19 +112,23 @@
 </tr>
 </tbody>
 </table>
+</div></blockquote>
 <dl class="class">
 <dt id="settings.BaseConfig">
 <em class="property">class </em><tt class="descclassname">settings.</tt><tt class="descname">BaseConfig</tt><a class="reference internal" href="_modules/settings.html#BaseConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#settings.BaseConfig" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>see also: <a class="reference external" href="http://flask.pocoo.org/docs/api/#flask.Flask.default_config" title="(in Flask v0.11-dev)"><tt class="xref py py-attr docutils literal"><span class="pre">flask.Flask.default_config</span></tt></a></p>
 <dl class="attribute">
 <dt id="settings.BaseConfig.BLUEPRINTS">
 <tt class="descname">BLUEPRINTS</tt><em class="property"> = ['base.base', 'info.info']</em><a class="headerlink" href="#settings.BaseConfig.BLUEPRINTS" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>a list of registered blueprints.</p>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="settings.BaseConfig.CONTEXT_PROCESSORS">
 <tt class="descname">CONTEXT_PROCESSORS</tt><em class="property"> = ['base.context_processors.common_context', 'base.context_processors.navigation', 'base.context_processors.common_forms']</em><a class="headerlink" href="#settings.BaseConfig.CONTEXT_PROCESSORS" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>a list of registered context processors</p>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="settings.BaseConfig.CSRF_ENABLED">
@@ -100,7 +143,8 @@
 <dl class="attribute">
 <dt id="settings.BaseConfig.EXTENSIONS">
 <tt class="descname">EXTENSIONS</tt><em class="property"> = ['ext.db', 'ext.assets', 'ext.login_manager', 'ext.gravatar', 'ext.toolbar']</em><a class="headerlink" href="#settings.BaseConfig.EXTENSIONS" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>a list of registered extensions.</p>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="settings.BaseConfig.ROOT_PATH">
@@ -123,6 +167,7 @@
 <dt id="settings.DevelopmentConfig">
 <em class="property">class </em><tt class="descclassname">settings.</tt><tt class="descname">DevelopmentConfig</tt><a class="reference internal" href="_modules/settings.html#DevelopmentConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#settings.DevelopmentConfig" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#settings.BaseConfig" title="settings.BaseConfig"><tt class="xref py py-class docutils literal"><span class="pre">settings.BaseConfig</span></tt></a></p>
+<p>During development, we want to enable debugging and profiling.</p>
 <dl class="attribute">
 <dt id="settings.DevelopmentConfig.DEBUG">
 <tt class="descname">DEBUG</tt><em class="property"> = True</em><a class="headerlink" href="#settings.DevelopmentConfig.DEBUG" title="Permalink to this definition">¶</a></dt>
@@ -144,6 +189,10 @@
 <dt id="settings.TestingConfig">
 <em class="property">class </em><tt class="descclassname">settings.</tt><tt class="descname">TestingConfig</tt><a class="reference internal" href="_modules/settings.html#TestingConfig"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#settings.TestingConfig" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#settings.BaseConfig" title="settings.BaseConfig"><tt class="xref py py-class docutils literal"><span class="pre">settings.BaseConfig</span></tt></a></p>
+<p>Designed for running tests, it uses an in-memory sqlite database.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">app</span> <span class="o">=</span> <span class="n">AppFactory</span><span class="p">(</span><span class="n">TestingConfig</span><span class="p">)</span><span class="o">.</span><span class="n">get_app</span><span class="p">(</span><span class="s">&quot;my-tests&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="attribute">
 <dt id="settings.TestingConfig.SQLALCHEMY_DATABASE_URI">
 <tt class="descname">SQLALCHEMY_DATABASE_URI</tt><em class="property"> = 'sqlite:///:memory:'</em><a class="headerlink" href="#settings.TestingConfig.SQLALCHEMY_DATABASE_URI" title="Permalink to this definition">¶</a></dt>
@@ -157,46 +206,9 @@
 </dd></dl>
 
 </div>
-</div>
 
 
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">settings module</a><ul>
-<li><a class="reference internal" href="#settings">settings</a></li>
-</ul>
-</li>
-</ul>
-
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="manage.html"
-                        title="previous chapter">manage module</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="testing.html"
-                        title="next chapter">testing module</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/settings.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -211,13 +223,13 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="testing.html" title="testing module"
+          <a href="manage.html" title="manage module"
              >next</a> |</li>
         <li class="right" >
-          <a href="manage.html" title="manage module"
+          <a href="testing.html" title="testing module"
              >previous</a> |</li>
         <li><a href="index.html">Flask Kit dev documentation</a> &raquo;</li>
-          <li><a href="modules.html" >&lt;no title&gt;</a> &raquo;</li> 
+          <li><a href="modules.html" >Modules</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

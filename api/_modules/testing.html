@@ -8,7 +8,7 @@
     
     <title>testing &mdash; Flask Kit dev documentation</title>
     
-    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -39,7 +39,24 @@
         <li><a href="../index.html">Flask Kit dev documentation</a> &raquo;</li>
           <li><a href="index.html" accesskey="U">Module code</a> &raquo;</li> 
       </ul>
-    </div>  
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
 
     <div class="document">
       <div class="documentwrapper">
@@ -50,13 +67,21 @@
 <span class="c"># -*- coding: utf-8 -*-</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    testing</span>
-<span class="sd">    ~~~~~~~</span>
-
 <span class="sd">    More useful TestCase for tests.</span>
+
+<span class="sd">    Simple basic TestCase for your tests. Note, that `nose` test runner is used (it&#39;s really good)::</span>
+
+<span class="sd">        (flaskit)MacBook-Pro-Roman:flaskit semirook$ nosetests</span>
+<span class="sd">        ...</span>
+<span class="sd">        ----------------------------------------------------------------------</span>
+<span class="sd">        Ran 3 tests in 0.476s</span>
+
+<span class="sd">        OK</span>
+
 
 <span class="sd">    :copyright: (c) 2012 by Roman Semirook.</span>
 <span class="sd">    :license: BSD, see LICENSE for more details.</span>
+
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">from</span> <span class="nn">flask.ext.testing</span> <span class="kn">import</span> <span class="n">TestCase</span>
@@ -108,23 +133,6 @@
 </pre></div>
 
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar">
-        <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>

@@ -8,7 +8,7 @@
     
     <title>base.models module &mdash; Flask Kit dev documentation</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -45,10 +45,46 @@
           <a href="base.forms.html" title="base.forms module"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">Flask Kit dev documentation</a> &raquo;</li>
-          <li><a href="modules.html" >&lt;no title&gt;</a> &raquo;</li>
+          <li><a href="modules.html" >Modules</a> &raquo;</li>
           <li><a href="base.html" accesskey="U">base package</a> &raquo;</li> 
       </ul>
-    </div>  
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">base.models module</a><ul>
+<li><a class="reference internal" href="#base-models">base.models</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="base.forms.html"
+                        title="previous chapter">base.forms module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="base.tests.html"
+                        title="next chapter">base.tests module</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/base.models.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
 
     <div class="document">
       <div class="documentwrapper">
@@ -115,6 +151,11 @@
 <em class="property">class </em><tt class="descclassname">base.models.</tt><tt class="descname">User</tt><big>(</big><em>username</em>, <em>email</em>, <em>password</em><big>)</big><a class="reference internal" href="_modules/base/models.html#User"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#base.models.User" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">flask_login.UserMixin</span></tt>, <a class="reference internal" href="#base.models.CRUDMixin" title="base.models.CRUDMixin"><tt class="xref py py-class docutils literal"><span class="pre">base.models.CRUDMixin</span></tt></a>, <tt class="xref py py-class docutils literal"><span class="pre">flask_sqlalchemy.Model</span></tt></p>
 <dl class="method">
+<dt id="base.models.User.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>username</em>, <em>email</em>, <em>password</em><big>)</big><a class="reference internal" href="_modules/base/models.html#User.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#base.models.User.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
 <dt id="base.models.User.check_password">
 <tt class="descname">check_password</tt><big>(</big><em>password</em><big>)</big><a class="reference internal" href="_modules/base/models.html#User.check_password"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#base.models.User.check_password" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -153,42 +194,6 @@
           </div>
         </div>
       </div>
-      <div class="sphinxsidebar">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">base.models module</a><ul>
-<li><a class="reference internal" href="#base-models">base.models</a></li>
-</ul>
-</li>
-</ul>
-
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="base.forms.html"
-                        title="previous chapter">base.forms module</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="base.tests.html"
-                        title="next chapter">base.tests module</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/base.models.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
       <div class="clearer"></div>
     </div>
     <div class="related">
@@ -207,7 +212,7 @@
           <a href="base.forms.html" title="base.forms module"
              >previous</a> |</li>
         <li><a href="index.html">Flask Kit dev documentation</a> &raquo;</li>
-          <li><a href="modules.html" >&lt;no title&gt;</a> &raquo;</li>
+          <li><a href="modules.html" >Modules</a> &raquo;</li>
           <li><a href="base.html" >base package</a> &raquo;</li> 
       </ul>
     </div>

@@ -8,7 +8,7 @@
     
     <title>settings &mdash; Flask Kit dev documentation</title>
     
-    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -39,67 +39,7 @@
         <li><a href="../index.html">Flask Kit dev documentation</a> &raquo;</li>
           <li><a href="index.html" accesskey="U">Module code</a> &raquo;</li> 
       </ul>
-    </div>  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body">
-            
-  <h1>Source code for settings</h1><div class="highlight"><pre>
-<span class="c"># -*- coding: utf-8 -*-</span>
-
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    settings</span>
-<span class="sd">    ~~~~~~~~</span>
-
-<span class="sd">    Global settings for project.</span>
-
-<span class="sd">    :copyright: (c) 2012 by Roman Semirook.</span>
-<span class="sd">    :license: BSD, see LICENSE for more details.</span>
-<span class="sd">&quot;&quot;&quot;</span>
-
-<span class="kn">import</span> <span class="nn">os</span>
-
-
-<div class="viewcode-block" id="BaseConfig"><a class="viewcode-back" href="../settings.html#settings.BaseConfig">[docs]</a><span class="k">class</span> <span class="nc">BaseConfig</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="n">DEBUG</span> <span class="o">=</span> <span class="bp">False</span>
-    <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s">&quot;MY_VERY_SECRET_KEY&quot;</span>
-    <span class="n">SQLALCHEMY_DATABASE_URI</span> <span class="o">=</span> <span class="s">&#39;sqlite:////tmp/test.db&#39;</span>
-    <span class="n">CSRF_ENABLED</span> <span class="o">=</span> <span class="bp">True</span>
-    <span class="n">ROOT_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">))</span>
-
-    <span class="n">BLUEPRINTS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;base.base&#39;</span><span class="p">,</span>
-                  <span class="s">&#39;info.info&#39;</span><span class="p">,</span>
-                  <span class="p">]</span>
-
-    <span class="n">EXTENSIONS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;ext.db&#39;</span><span class="p">,</span>
-                  <span class="s">&#39;ext.assets&#39;</span><span class="p">,</span>
-                  <span class="s">&#39;ext.login_manager&#39;</span><span class="p">,</span>
-                  <span class="s">&#39;ext.gravatar&#39;</span><span class="p">,</span>
-                  <span class="s">&#39;ext.toolbar&#39;</span><span class="p">,</span>
-                  <span class="p">]</span>
-
-    <span class="n">CONTEXT_PROCESSORS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;base.context_processors.common_context&#39;</span><span class="p">,</span>
-                          <span class="s">&#39;base.context_processors.navigation&#39;</span><span class="p">,</span>
-                          <span class="s">&#39;base.context_processors.common_forms&#39;</span><span class="p">,</span>
-                          <span class="p">]</span>
-
-</div>
-<div class="viewcode-block" id="DevelopmentConfig"><a class="viewcode-back" href="../settings.html#settings.DevelopmentConfig">[docs]</a><span class="k">class</span> <span class="nc">DevelopmentConfig</span><span class="p">(</span><span class="n">BaseConfig</span><span class="p">):</span>
-    <span class="n">DEBUG</span> <span class="o">=</span> <span class="bp">True</span>
-    <span class="n">DEBUG_TB_PROFILER_ENABLED</span> <span class="o">=</span> <span class="bp">True</span>
-    <span class="n">DEBUG_TB_INTERCEPT_REDIRECTS</span> <span class="o">=</span> <span class="bp">False</span>
-
-</div>
-<div class="viewcode-block" id="TestingConfig"><a class="viewcode-back" href="../settings.html#settings.TestingConfig">[docs]</a><span class="k">class</span> <span class="nc">TestingConfig</span><span class="p">(</span><span class="n">BaseConfig</span><span class="p">):</span>
-    <span class="n">TESTING</span> <span class="o">=</span> <span class="bp">True</span>
-    <span class="n">SQLALCHEMY_DATABASE_URI</span> <span class="o">=</span> <span class="s">&#39;sqlite:///:memory:&#39;</span></div>
-</pre></div>
-
-          </div>
-        </div>
-      </div>
+    </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
 <div id="searchbox" style="display: none">
@@ -115,6 +55,88 @@
     </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for settings</h1><div class="highlight"><pre>
+<span class="c"># -*- coding: utf-8 -*-</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Global settings for project.</span>
+
+<span class="sd">Note some Kit-specific settings.</span>
+
+<span class="sd">  * `BLUEPRINTS` is a list of registered blueprints.</span>
+<span class="sd">  * `CONTEXT_PROCESSORS` is a list of registered context processors.</span>
+<span class="sd">  *     `EXTENSIONS` is a list of registered extensions.</span>
+
+<span class="sd">Flask Kit will automatically register blueprints specified in the `BLUEPRINTS`</span>
+<span class="sd">list for you. Behaviour for `CONTEXT_PROCESSORS` and `EXTENSIONS` lists is the same.</span>
+
+<span class="sd">The notation is `package.module.object` or `package.object` if object is in the `__init__.py`.</span>
+<span class="sd">Look into the file for examples.</span>
+
+<span class="sd">    :copyright: (c) 2012 by Roman Semirook.</span>
+<span class="sd">    :license: BSD, see LICENSE for more details.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+
+
+<div class="viewcode-block" id="BaseConfig"><a class="viewcode-back" href="../settings.html#settings.BaseConfig">[docs]</a><span class="k">class</span> <span class="nc">BaseConfig</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    see also: :py:attr:`flask.Flask.default_config`</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">DEBUG</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s">&quot;MY_VERY_SECRET_KEY&quot;</span>
+    <span class="n">SQLALCHEMY_DATABASE_URI</span> <span class="o">=</span> <span class="s">&#39;sqlite:////tmp/test.db&#39;</span>
+    <span class="n">CSRF_ENABLED</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">ROOT_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">__file__</span><span class="p">))</span>
+
+    <span class="n">BLUEPRINTS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;base.base&#39;</span><span class="p">,</span>
+                  <span class="s">&#39;info.info&#39;</span><span class="p">,</span>
+                  <span class="p">]</span>
+    <span class="s">&quot;a list of registered blueprints.&quot;</span>
+
+    <span class="n">EXTENSIONS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;ext.db&#39;</span><span class="p">,</span>
+                  <span class="s">&#39;ext.assets&#39;</span><span class="p">,</span>
+                  <span class="s">&#39;ext.login_manager&#39;</span><span class="p">,</span>
+                  <span class="s">&#39;ext.gravatar&#39;</span><span class="p">,</span>
+                  <span class="s">&#39;ext.toolbar&#39;</span><span class="p">,</span>
+                  <span class="p">]</span>
+    <span class="s">&quot;a list of registered extensions.&quot;</span>
+
+    <span class="n">CONTEXT_PROCESSORS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;base.context_processors.common_context&#39;</span><span class="p">,</span>
+                          <span class="s">&#39;base.context_processors.navigation&#39;</span><span class="p">,</span>
+                          <span class="s">&#39;base.context_processors.common_forms&#39;</span><span class="p">,</span>
+                          <span class="p">]</span>
+    <span class="s">&quot;a list of registered context processors&quot;</span>
+</div>
+<div class="viewcode-block" id="DevelopmentConfig"><a class="viewcode-back" href="../settings.html#settings.DevelopmentConfig">[docs]</a><span class="k">class</span> <span class="nc">DevelopmentConfig</span><span class="p">(</span><span class="n">BaseConfig</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    During development, we want to enable debugging and profiling.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">DEBUG</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">DEBUG_TB_PROFILER_ENABLED</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">DEBUG_TB_INTERCEPT_REDIRECTS</span> <span class="o">=</span> <span class="bp">False</span>
+
+</div>
+<div class="viewcode-block" id="TestingConfig"><a class="viewcode-back" href="../settings.html#settings.TestingConfig">[docs]</a><span class="k">class</span> <span class="nc">TestingConfig</span><span class="p">(</span><span class="n">BaseConfig</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Designed for running tests, it uses an in-memory sqlite database.</span>
+
+<span class="sd">    &gt;&gt;&gt; app = AppFactory(TestingConfig).get_app(&quot;my-tests&quot;)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">TESTING</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">SQLALCHEMY_DATABASE_URI</span> <span class="o">=</span> <span class="s">&#39;sqlite:///:memory:&#39;</span></div>
+</pre></div>
+
+          </div>
         </div>
       </div>
       <div class="clearer"></div>

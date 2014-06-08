@@ -8,7 +8,7 @@
     
     <title>manage &mdash; Flask Kit dev documentation</title>
     
-    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -39,7 +39,24 @@
         <li><a href="../index.html">Flask Kit dev documentation</a> &raquo;</li>
           <li><a href="index.html" accesskey="U">Module code</a> &raquo;</li> 
       </ul>
-    </div>  
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
 
     <div class="document">
       <div class="documentwrapper">
@@ -51,12 +68,34 @@
 <span class="c"># -*- coding: utf-8 -*-</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    manage</span>
-<span class="sd">    ~~~~~~</span>
+<span class="sd">    Set of some useful management commands,</span>
+<span class="sd">    based on :py:mod:`script extension &lt;flask.ext.script&gt;`</span>
+<span class="sd">    (:py:class:`flask.ext.Manager`)</span>
 
-<span class="sd">    Set of some useful management commands.</span>
+<span class="sd">    A set of scripts, based on :py:mod:`script extension &lt;flask.ext.script&gt;`</span>
+<span class="sd">    that you may find useful.</span>
+
+<span class="sd">    Amount of commands will constantly grow.</span>
+<span class="sd">    By now, there are:</span>
+
+<span class="sd">    +-----------------------+-----------------------------------------------------------------+</span>
+<span class="sd">    | **Command**           | **Result**                                                      |</span>
+<span class="sd">    +=======================+=================================================================+</span>
+<span class="sd">    | runserver             | Runs the Flask development server i.e. app.run()                |</span>
+<span class="sd">    +-----------------------+-----------------------------------------------------------------+</span>
+<span class="sd">    | shell                 | Runs interactive shell, ipython if installed                    |</span>
+<span class="sd">    +-----------------------+-----------------------------------------------------------------+</span>
+<span class="sd">    | init_data             | Creates some demo DB-tables and data                            |</span>
+<span class="sd">    +-----------------------+-----------------------------------------------------------------+</span>
+<span class="sd">    | clean_pyc             | Removes all file:`*.pyc` files from the project folder          |</span>
+<span class="sd">    +-----------------------+-----------------------------------------------------------------+</span>
+
+<span class="sd">    .. todo::</span>
+<span class="sd">       Add assets managements, as described in :data:`flask.ext.assets.management-command`</span>
+
 
 <span class="sd">    :copyright: (c) 2012 by Roman Semirook.</span>
+<span class="sd">    :copyright: (c) 2014 by Michelle Baert.</span>
 <span class="sd">    :license: BSD, see LICENSE for more details.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
@@ -68,11 +107,13 @@
 
 
 <span class="n">manager</span> <span class="o">=</span> <span class="n">Manager</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
-
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">The :py:class:`Manager` object from the :py:mod:`script extension &lt;flask.ext.script&gt;`</span>
+<span class="sd">&quot;&quot;&quot;</span>
 
 <span class="nd">@manager.command</span>
 <div class="viewcode-block" id="clean_pyc"><a class="viewcode-back" href="../manage.html#manage.clean_pyc">[docs]</a><span class="k">def</span> <span class="nf">clean_pyc</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Removes all *.pyc files from the project folder&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Removes all :file:`*.pyc` files from the project folder&quot;&quot;&quot;</span>
     <span class="n">clean_command</span> <span class="o">=</span> <span class="s">&quot;find . -name *.pyc -delete&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
     <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">clean_command</span><span class="p">)</span>
 
@@ -89,29 +130,11 @@
 </div>
 <span class="n">manager</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="s">&#39;shell&#39;</span><span class="p">,</span> <span class="n">Shell</span><span class="p">(</span><span class="n">make_context</span><span class="o">=</span><span class="k">lambda</span><span class="p">:{</span><span class="s">&#39;app&#39;</span><span class="p">:</span> <span class="n">app</span><span class="p">,</span> <span class="s">&#39;db&#39;</span><span class="p">:</span> <span class="n">db</span><span class="p">}))</span>
 
-
 <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">manager</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar">
-        <div class="sphinxsidebarwrapper">
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>

@@ -8,7 +8,7 @@
     
     <title>helpers module &mdash; Flask Kit dev documentation</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -24,8 +24,8 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="Flask Kit dev documentation" href="index.html" />
-    <link rel="up" title="&lt;no title&gt;" href="modules.html" />
-    <link rel="next" title="info package" href="info.html" />
+    <link rel="up" title="Modules" href="modules.html" />
+    <link rel="next" title="testing module" href="testing.html" />
     <link rel="prev" title="ext module" href="ext.html" /> 
   </head>
   <body>
@@ -39,15 +39,43 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="info.html" title="info package"
+          <a href="testing.html" title="testing module"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="ext.html" title="ext module"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">Flask Kit dev documentation</a> &raquo;</li>
-          <li><a href="modules.html" accesskey="U">&lt;no title&gt;</a> &raquo;</li> 
+          <li><a href="modules.html" accesskey="U">Modules</a> &raquo;</li> 
       </ul>
-    </div>  
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="ext.html"
+                        title="previous chapter">ext module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="testing.html"
+                        title="next chapter">testing module</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/helpers.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
 
     <div class="document">
       <div class="documentwrapper">
@@ -56,9 +84,9 @@
             
   <div class="section" id="module-helpers">
 <span id="helpers-module"></span><h1>helpers module<a class="headerlink" href="#module-helpers" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="helpers">
-<h2>helpers<a class="headerlink" href="#helpers" title="Permalink to this headline">¶</a></h2>
 <p>Implements useful helpers.</p>
+<p>There is the application factory and, maybe,
+something else (in the future) to avoid routine.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -77,10 +105,50 @@
 <dt id="helpers.AppFactory">
 <em class="property">class </em><tt class="descclassname">helpers.</tt><tt class="descname">AppFactory</tt><big>(</big><em>config</em>, <em>envvar='PROJECT_SETTINGS'</em>, <em>bind_db_object=True</em><big>)</big><a class="reference internal" href="_modules/helpers.html#AppFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpers.AppFactory" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Flask application factory.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">app</span> <span class="o">=</span> <span class="n">AppFactory</span><span class="p">(</span><span class="n">TestingConfig</span><span class="p">)</span><span class="o">.</span><span class="n">get_app</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="helpers.AppFactory.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>config</em>, <em>envvar='PROJECT_SETTINGS'</em>, <em>bind_db_object=True</em><big>)</big><a class="reference internal" href="_modules/helpers.html#AppFactory.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpers.AppFactory.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines default application settings</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>config</strong> &#8211; an object to load initial configuration from</li>
+<li><strong>envvar</strong> &#8211; The name of an environment variable to update configuration from</li>
+<li><strong>bind_db_object</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 <dl class="method">
 <dt id="helpers.AppFactory.get_app">
 <tt class="descname">get_app</tt><big>(</big><em>app_module_name</em>, <em>**kwargs</em><big>)</big><a class="reference internal" href="_modules/helpers.html#AppFactory.get_app"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#helpers.AppFactory.get_app" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Actually instanciates a Flask application with active settings,
+and taking care of registering extensions and blueprints</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>app_module_name</strong> &#8211; the name of the application package, see <a class="reference external" href="http://flask.pocoo.org/docs/api/#flask.Flask" title="(in Flask v0.11-dev)"><tt class="xref py py-class docutils literal"><span class="pre">Flask</span></tt></a></li>
+<li><strong>kwargs</strong> &#8211; keyword arguments passed to the Flask constructor</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">A new WSGI application object</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 </dd></dl>
 
@@ -103,46 +171,9 @@
 </dd></dl>
 
 </div>
-</div>
 
 
           </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">helpers module</a><ul>
-<li><a class="reference internal" href="#helpers">helpers</a></li>
-</ul>
-</li>
-</ul>
-
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="ext.html"
-                        title="previous chapter">ext module</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="info.html"
-                        title="next chapter">info package</a></p>
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="_sources/helpers.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -157,13 +188,13 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="info.html" title="info package"
+          <a href="testing.html" title="testing module"
              >next</a> |</li>
         <li class="right" >
           <a href="ext.html" title="ext module"
              >previous</a> |</li>
         <li><a href="index.html">Flask Kit dev documentation</a> &raquo;</li>
-          <li><a href="modules.html" >&lt;no title&gt;</a> &raquo;</li> 
+          <li><a href="modules.html" >Modules</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>app &mdash; Flask Kit dev documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     'dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Flask Kit dev documentation" href="../index.html" />
+    <link rel="up" title="Module code" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">Flask Kit dev documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for app</h1><div class="highlight"><pre>
+<span class="c"># -*- coding: utf-8 -*-</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Application initialization</span>
+<span class="sd">and app-specific registrations.</span>
+
+<span class="sd">There is your main app instance, created by `AppFactory`.</span>
+
+<span class="sd">.. note::</span>
+
+<span class="sd">    Note, it&#39;s just a point for blueprints,</span>
+<span class="sd">    context processors and extensions binding.</span>
+
+<span class="sd">    But **don&#39;t bind them explicit**, as usual.</span>
+<span class="sd">    And **don&#39;t bind any views to the main app**.</span>
+
+<span class="sd">    Why?</span>
+
+<span class="sd">    You have at least two apps in your project – one as the basic app and one for testing.</span>
+
+<span class="sd">    Each of them is created at runtime with some individual settings for database, debug level etc.</span>
+
+<span class="sd">    And each of them has to have access to any views or extensions with their individual settings.</span>
+
+<span class="sd">    So dynamical application binding is much more flexible solution.</span>
+
+<span class="sd">:copyright: (c) 2012 by Roman Semirook.</span>
+<span class="sd">:license: BSD, see LICENSE for more details.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">flask.ext.assets</span> <span class="kn">import</span> <span class="n">Bundle</span>
+<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="n">AppFactory</span>
+<span class="kn">from</span> <span class="nn">settings</span> <span class="kn">import</span> <span class="n">DevelopmentConfig</span>
+<span class="kn">from</span> <span class="nn">ext</span> <span class="kn">import</span> <span class="n">assets</span>
+
+
+<span class="c">#: The :class:`Flask` application object</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">AppFactory</span><span class="p">(</span><span class="n">DevelopmentConfig</span><span class="p">)</span><span class="o">.</span><span class="n">get_app</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="c"># Assets zone</span>
+
+<span class="n">css_base_bundle</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;css/reset.css&#39;</span><span class="p">,</span> <span class="s">&#39;css/typo.css&#39;</span><span class="p">,</span> <span class="s">&#39;css/style.css&#39;</span><span class="p">,</span>
+                   <span class="s">&#39;css/page.css&#39;</span><span class="p">,</span> <span class="s">&#39;css/forms.css&#39;</span><span class="p">]</span>
+
+<span class="c">#:Stylesheet assets bundle</span>
+<span class="n">css_base</span> <span class="o">=</span> <span class="n">Bundle</span><span class="p">(</span><span class="o">*</span><span class="n">css_base_bundle</span><span class="p">,</span> <span class="n">filters</span><span class="o">=</span><span class="s">&#39;cssmin&#39;</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="s">&#39;gen/base.css&#39;</span><span class="p">)</span>
+<span class="n">assets</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s">&#39;css_base&#39;</span><span class="p">,</span> <span class="n">css_base</span><span class="p">)</span>
+
+<span class="n">js_base_bundle</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;js/libs/json2.js&#39;</span><span class="p">,</span> <span class="s">&#39;js/libs/jquery-1.8.2-min.js&#39;</span><span class="p">,</span>
+                  <span class="s">&#39;js/libs/underscore-1.4.2-min.js&#39;</span><span class="p">,</span> <span class="s">&#39;js/libs/backbone-0.9.2-min.js&#39;</span><span class="p">]</span>
+
+<span class="c">#:Javascript assets bundle</span>
+<span class="n">js_base</span> <span class="o">=</span> <span class="n">Bundle</span><span class="p">(</span><span class="o">*</span><span class="n">js_base_bundle</span><span class="p">,</span> <span class="n">filters</span><span class="o">=</span><span class="s">&#39;jsmin&#39;</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="s">&#39;gen/base.js&#39;</span><span class="p">)</span>
+<span class="n">assets</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s">&#39;js_base&#39;</span><span class="p">,</span> <span class="n">js_base</span><span class="p">)</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">Flask Kit dev documentation</a> &raquo;</li>
+          <li><a href="index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, rockyroad.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

@@ -8,7 +8,7 @@
     
     <title>ext &mdash; Flask Kit dev documentation</title>
     
-    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -39,49 +39,7 @@
         <li><a href="../index.html">Flask Kit dev documentation</a> &raquo;</li>
           <li><a href="index.html" accesskey="U">Module code</a> &raquo;</li> 
       </ul>
-    </div>  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body">
-            
-  <h1>Source code for ext</h1><div class="highlight"><pre>
-<span class="c"># -*- coding: utf-8 -*-</span>
-
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    ext</span>
-<span class="sd">    ~~~</span>
-
-<span class="sd">    Good place for pluggable extensions.</span>
-
-<span class="sd">    :copyright: (c) 2012 by Roman Semirook.</span>
-<span class="sd">    :license: BSD, see LICENSE for more details.</span>
-<span class="sd">&quot;&quot;&quot;</span>
-
-<span class="kn">from</span> <span class="nn">flask.ext.debugtoolbar</span> <span class="kn">import</span> <span class="n">DebugToolbarExtension</span>
-<span class="kn">from</span> <span class="nn">flask.ext.gravatar</span> <span class="kn">import</span> <span class="n">Gravatar</span>
-<span class="kn">from</span> <span class="nn">flask.ext.login</span> <span class="kn">import</span> <span class="n">LoginManager</span>
-<span class="kn">from</span> <span class="nn">flask.ext.sqlalchemy</span> <span class="kn">import</span> <span class="n">SQLAlchemy</span>
-<span class="kn">from</span> <span class="nn">flask.ext.assets</span> <span class="kn">import</span> <span class="n">Environment</span>
-
-
-<span class="n">db</span> <span class="o">=</span> <span class="n">SQLAlchemy</span><span class="p">()</span>
-<span class="n">assets</span> <span class="o">=</span> <span class="n">Environment</span><span class="p">()</span>
-<span class="n">login_manager</span> <span class="o">=</span> <span class="n">LoginManager</span><span class="p">()</span>
-
-
-<span class="c"># Almost any modern Flask extension has special init_app()</span>
-<span class="c"># method for deferred app binding. But there are a couple of</span>
-<span class="c"># popular extensions that no nothing about such use case.</span>
-
-<span class="n">gravatar</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">app</span><span class="p">:</span> <span class="n">Gravatar</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>  <span class="c"># has no init_app()</span>
-<span class="n">toolbar</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">app</span><span class="p">:</span> <span class="n">DebugToolbarExtension</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>  <span class="c"># has no init_app()</span>
-</pre></div>
-
-          </div>
-        </div>
-      </div>
+    </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
 <div id="searchbox" style="display: none">
@@ -97,6 +55,60 @@
     </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for ext</h1><div class="highlight"><pre>
+<span class="c"># -*- coding: utf-8 -*-</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Good place for pluggable extensions.</span>
+
+<span class="sd">    I&#39;ve found it neat to define all extensions separately and bind them</span>
+<span class="sd">    to the application at runtime.</span>
+
+<span class="sd">    Unfortunately, it&#39;s possible if extension provides `init_app()` method only.</span>
+<span class="sd">    But for some not-so-smart extensions there is some workaround.</span>
+
+<span class="sd">    Look into the file for examples.</span>
+
+
+<span class="sd">    :copyright: (c) 2012 by Roman Semirook.</span>
+<span class="sd">    :license: BSD, see LICENSE for more details.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">flask.ext.debugtoolbar</span> <span class="kn">import</span> <span class="n">DebugToolbarExtension</span>
+<span class="kn">from</span> <span class="nn">flask.ext.gravatar</span> <span class="kn">import</span> <span class="n">Gravatar</span>
+<span class="kn">from</span> <span class="nn">flask.ext.login</span> <span class="kn">import</span> <span class="n">LoginManager</span>
+<span class="kn">from</span> <span class="nn">flask.ext.sqlalchemy</span> <span class="kn">import</span> <span class="n">SQLAlchemy</span>
+<span class="kn">from</span> <span class="nn">flask.ext.assets</span> <span class="kn">import</span> <span class="n">Environment</span>
+
+
+<span class="c">#: Our `Flask-SQLAlchemy &lt;http://pythonhosted.org/Flask-SQLAlchemy/&gt;`_ database object</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">SQLAlchemy</span><span class="p">()</span>
+
+<span class="c">#: The `Flask-Assets &lt;http://flask-assets.readthedocs.org/en/latest/&gt;`_ :class:`~flask.ext.assets.Environment` to be later registered.</span>
+<span class="n">assets</span> <span class="o">=</span> <span class="n">Environment</span><span class="p">()</span>
+
+<span class="s">&quot;&quot;</span> \
+<span class="c">#: `Flask-Login &lt;https://flask-login.readthedocs.org/en/latest/&gt;`_ manager object</span>
+<span class="n">login_manager</span> <span class="o">=</span> <span class="n">LoginManager</span><span class="p">()</span>
+
+<span class="c"># Almost any modern Flask extension has special init_app()</span>
+<span class="c"># method for deferred app binding. But there are a couple of</span>
+<span class="c"># popular extensions that no nothing about such use case.</span>
+
+<span class="n">gravatar</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">app</span><span class="p">:</span> <span class="n">Gravatar</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>  <span class="c"># has no init_app()</span>
+<span class="n">toolbar</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">app</span><span class="p">:</span> <span class="n">DebugToolbarExtension</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>  <span class="c"># has no init_app()</span>
+</pre></div>
+
+          </div>
         </div>
       </div>
       <div class="clearer"></div>

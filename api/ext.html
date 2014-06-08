@@ -8,7 +8,7 @@
     
     <title>ext module &mdash; Flask Kit dev documentation</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -24,9 +24,9 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="Flask Kit dev documentation" href="index.html" />
-    <link rel="up" title="&lt;no title&gt;" href="modules.html" />
+    <link rel="up" title="Modules" href="modules.html" />
     <link rel="next" title="helpers module" href="helpers.html" />
-    <link rel="prev" title="base.views module" href="base.views.html" /> 
+    <link rel="prev" title="app module" href="app.html" /> 
   </head>
   <body>
     <div class="related">
@@ -42,67 +42,17 @@
           <a href="helpers.html" title="helpers module"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="base.views.html" title="base.views module"
+          <a href="app.html" title="app module"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">Flask Kit dev documentation</a> &raquo;</li>
-          <li><a href="modules.html" accesskey="U">&lt;no title&gt;</a> &raquo;</li> 
+          <li><a href="modules.html" accesskey="U">Modules</a> &raquo;</li> 
       </ul>
-    </div>  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body">
-            
-  <div class="section" id="module-ext">
-<span id="ext-module"></span><h1>ext module<a class="headerlink" href="#module-ext" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="ext">
-<h2>ext<a class="headerlink" href="#ext" title="Permalink to this headline">¶</a></h2>
-<p>Good place for pluggable extensions.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">copyright:</th><td class="field-body"><ol class="first loweralpha simple" start="3">
-<li>2012 by Roman Semirook.</li>
-</ol>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">license:</th><td class="field-body"><p class="first last">BSD, see LICENSE for more details.</p>
-</td>
-</tr>
-</tbody>
-</table>
-<dl class="function">
-<dt id="ext.gravatar">
-<tt class="descclassname">ext.</tt><tt class="descname">gravatar</tt><big>(</big><em>app</em><big>)</big><a class="headerlink" href="#ext.gravatar" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="ext.toolbar">
-<tt class="descclassname">ext.</tt><tt class="descname">toolbar</tt><big>(</big><em>app</em><big>)</big><a class="headerlink" href="#ext.toolbar" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</div>
-</div>
-
-
-          </div>
-        </div>
-      </div>
+    </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">ext module</a><ul>
-<li><a class="reference internal" href="#ext">ext</a></li>
-</ul>
-</li>
-</ul>
-
   <h4>Previous topic</h4>
-  <p class="topless"><a href="base.views.html"
-                        title="previous chapter">base.views module</a></p>
+  <p class="topless"><a href="app.html"
+                        title="previous chapter">app module</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="helpers.html"
                         title="next chapter">helpers module</a></p>
@@ -126,6 +76,62 @@
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-ext">
+<span id="ext-module"></span><h1>ext module<a class="headerlink" href="#module-ext" title="Permalink to this headline">¶</a></h1>
+<p>Good place for pluggable extensions.</p>
+<p>I&#8217;ve found it neat to define all extensions separately and bind them
+to the application at runtime.</p>
+<p>Unfortunately, it&#8217;s possible if extension provides <cite>init_app()</cite> method only.
+But for some not-so-smart extensions there is some workaround.</p>
+<p>Look into the file for examples.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">copyright:</th><td class="field-body"><ol class="first loweralpha simple" start="3">
+<li>2012 by Roman Semirook.</li>
+</ol>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">license:</th><td class="field-body"><p class="first last">BSD, see LICENSE for more details.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="data">
+<dt id="ext.assets">
+<tt class="descclassname">ext.</tt><tt class="descname">assets</tt><em class="property"> = &lt;flask_assets.Environment object at 0x5764e50&gt;</em><a class="headerlink" href="#ext.assets" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference external" href="http://flask-assets.readthedocs.org/en/latest/">Flask-Assets</a> <tt class="xref py py-class docutils literal"><span class="pre">Environment</span></tt> to be later registered.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="ext.db">
+<tt class="descclassname">ext.</tt><tt class="descname">db</tt><em class="property"> = &lt;SQLAlchemy engine=None&gt;</em><a class="headerlink" href="#ext.db" title="Permalink to this definition">¶</a></dt>
+<dd><p>Our <a class="reference external" href="http://pythonhosted.org/Flask-SQLAlchemy/">Flask-SQLAlchemy</a> database object</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="ext.gravatar">
+<tt class="descclassname">ext.</tt><tt class="descname">gravatar</tt><big>(</big><em>app</em><big>)</big><a class="headerlink" href="#ext.gravatar" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="ext.toolbar">
+<tt class="descclassname">ext.</tt><tt class="descname">toolbar</tt><big>(</big><em>app</em><big>)</big><a class="headerlink" href="#ext.toolbar" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
       <div class="clearer"></div>
     </div>
     <div class="related">
@@ -141,10 +147,10 @@
           <a href="helpers.html" title="helpers module"
              >next</a> |</li>
         <li class="right" >
-          <a href="base.views.html" title="base.views module"
+          <a href="app.html" title="app module"
              >previous</a> |</li>
         <li><a href="index.html">Flask Kit dev documentation</a> &raquo;</li>
-          <li><a href="modules.html" >&lt;no title&gt;</a> &raquo;</li> 
+          <li><a href="modules.html" >Modules</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
