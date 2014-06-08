@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 
 """
-    info.views
-    ~~~~~~~~~~
-
     Example additional blueprint.
 
     :copyright: (c) 2012 by Roman Semirook.
@@ -16,7 +13,7 @@ from info import info
 
 
 class HelpPageView(MethodView):
-
+    "An example view for your own Blueprint"
     def get(self):
         return render_template('info/info_page.html')
 

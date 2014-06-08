@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 
 """
-    base.forms
-    ~~~~~~~~~~
-
     The most common forms for the whole project.
 
     :copyright: (c) 2012 by Roman Semirook.
@@ -16,5 +13,6 @@ from wtforms.validators import DataRequired, Email
 
 
 class LoginForm(Form):
+    "A simple login form with email and password"
     email = StringField('Login', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])

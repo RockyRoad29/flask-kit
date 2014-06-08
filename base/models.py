@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
 
 """
-    base.models
-    ~~~~~~~~~~~
-
     The most common models for the whole project.
+
+    .. rubrique: about "Mixin" classes
+        * http://stackoverflow.com/questions/533631/what-is-a-mixin-and-why-are-they-useful
+        * http://en.wikipedia.org/wiki/Mixin
 
     :copyright: (c) 2012 by Roman Semirook.
     :license: BSD, see LICENSE for more details.
+
 """
 
 from flask.ext.login import UserMixin
@@ -51,6 +53,12 @@ class CRUDMixin(object):
 
 
 class User(UserMixin, CRUDMixin, db.Model):
+    """
+    A basic user model, sufficient for authorization support.
+
+    Note that email is defined as *unique*, so we'll be able to
+    find a specific user given her email (:meth:`get_by_email`).
+    """
     __tablename__ = 'users'
 
     username = db.Column(db.String(32))
@@ -66,8 +74,22 @@ class User(UserMixin, CRUDMixin, db.Model):
         return u'<User %r>' % self.username
 
     def check_password(self, password):
+        """
+        Checks a password against a given salted and hashed password value,
+        using :mod:`werkzeug.security` tools
+
+        :param password:
+        :return:
+        """
         return check_password_hash(self.password, password)
 
     @classmethod
     def get_by_email(cls, email):
+        """
+        Retrieves a user from her email.
+
+        :param cls:
+        :param email:
+        :return:
+        """
         return cls.query.filter_by(email=email).first()

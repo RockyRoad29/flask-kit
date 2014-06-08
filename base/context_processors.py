@@ -1,11 +1,17 @@
 # -*- coding: utf-8 -*-
 
 """
-    base.context_processors
-    ~~~~~~~~~~~~~~~~~~~~~~~
-
     The most common context processors
     for the whole project.
+
+    Context processors inject new variables automatically into the context of a template.
+
+    A context processor is a function that returns a dictionary.
+    The keys and values of this dictionary are then merged with the template context,
+    for all templates in the app.
+
+    See [Context Processors](http://flask.pocoo.org/docs/templating/?highlight=context_processor#context-processors)
+    from Flask templates documentation.
 
     :copyright: (c) 2012 by Roman Semirook.
     :license: BSD, see LICENSE for more details.
@@ -23,6 +29,11 @@ def common_context():
 
 
 def navigation():
+    """
+    Site navigation entries.
+
+    :return:
+    """
     main_page = {'name': 'Main',
                  'url': url_for('base.front_page'),
                  }
@@ -34,4 +45,8 @@ def navigation():
 
 
 def common_forms():
+    """
+    Globally accessibles forms.
+    :return:
+    """
     return {'login_form': LoginForm()}
