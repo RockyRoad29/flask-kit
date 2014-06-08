@@ -24,7 +24,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <link rel="top" title="Flask Kit dev documentation" href="../../index.html" />
-    <link rel="up" title="Module code" href="../index.html" /> 
+    <link rel="up" title="base" href="../base.html" /> 
   </head>
   <body>
     <div class="related">
@@ -37,7 +37,8 @@
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li><a href="../../index.html">Flask Kit dev documentation</a> &raquo;</li>
-          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+          <li><a href="../index.html" >Module code</a> &raquo;</li>
+          <li><a href="../base.html" accesskey="U">base</a> &raquo;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar">
@@ -67,13 +68,15 @@
 <span class="c"># -*- coding: utf-8 -*-</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    base.models</span>
-<span class="sd">    ~~~~~~~~~~~</span>
-
 <span class="sd">    The most common models for the whole project.</span>
+
+<span class="sd">    .. rubrique: about &quot;Mixin&quot; classes</span>
+<span class="sd">        * http://stackoverflow.com/questions/533631/what-is-a-mixin-and-why-are-they-useful</span>
+<span class="sd">        * http://en.wikipedia.org/wiki/Mixin</span>
 
 <span class="sd">    :copyright: (c) 2012 by Roman Semirook.</span>
 <span class="sd">    :license: BSD, see LICENSE for more details.</span>
+
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">from</span> <span class="nn">flask.ext.login</span> <span class="kn">import</span> <span class="n">UserMixin</span>
@@ -117,6 +120,12 @@
 
 </div></div>
 <div class="viewcode-block" id="User"><a class="viewcode-back" href="../../base.models.html#base.models.User">[docs]</a><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="n">UserMixin</span><span class="p">,</span> <span class="n">CRUDMixin</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A basic user model, sufficient for authorization support.</span>
+
+<span class="sd">    Note that email is defined as *unique*, so we&#39;ll be able to</span>
+<span class="sd">    find a specific user given her email (:meth:`get_by_email`).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">__tablename__</span> <span class="o">=</span> <span class="s">&#39;users&#39;</span>
 
     <span class="n">username</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">String</span><span class="p">(</span><span class="mi">32</span><span class="p">))</span>
@@ -128,14 +137,28 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">email</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="n">generate_password_hash</span><span class="p">(</span><span class="n">password</span><span class="p">)</span>
 </div>
-<div class="viewcode-block" id="User.__repr__"><a class="viewcode-back" href="../../base.models.html#base.models.User.__repr__">[docs]</a>    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s">u&#39;&lt;User </span><span class="si">%r</span><span class="s">&gt;&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">username</span>
-</div>
+
 <div class="viewcode-block" id="User.check_password"><a class="viewcode-back" href="../../base.models.html#base.models.User.check_password">[docs]</a>    <span class="k">def</span> <span class="nf">check_password</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Checks a password against a given salted and hashed password value,</span>
+<span class="sd">        using :mod:`werkzeug.security` tools</span>
+
+<span class="sd">        :param password:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">check_password_hash</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
 </div>
     <span class="nd">@classmethod</span>
 <div class="viewcode-block" id="User.get_by_email"><a class="viewcode-back" href="../../base.models.html#base.models.User.get_by_email">[docs]</a>    <span class="k">def</span> <span class="nf">get_by_email</span><span class="p">(</span><span class="n">cls</span><span class="p">,</span> <span class="n">email</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieves a user from her email.</span>
+
+<span class="sd">        :param cls:</span>
+<span class="sd">        :param email:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">cls</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">email</span><span class="o">=</span><span class="n">email</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span></div></div>
 </pre></div>
 
@@ -154,7 +177,8 @@
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li><a href="../../index.html">Flask Kit dev documentation</a> &raquo;</li>
-          <li><a href="../index.html" >Module code</a> &raquo;</li> 
+          <li><a href="../index.html" >Module code</a> &raquo;</li>
+          <li><a href="../base.html" >base</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

@@ -51,14 +51,6 @@
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">base.models module</a><ul>
-<li><a class="reference internal" href="#base-models">base.models</a></li>
-</ul>
-</li>
-</ul>
-
   <h4>Previous topic</h4>
   <p class="topless"><a href="base.forms.html"
                         title="previous chapter">base.forms module</a></p>
@@ -93,8 +85,6 @@
             
   <div class="section" id="module-base.models">
 <span id="base-models-module"></span><h1>base.models module<a class="headerlink" href="#module-base.models" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="base-models">
-<h2>base.models<a class="headerlink" href="#base-models" title="Permalink to this headline">¶</a></h2>
 <p>The most common models for the whole project.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -150,6 +140,9 @@
 <dt id="base.models.User">
 <em class="property">class </em><tt class="descclassname">base.models.</tt><tt class="descname">User</tt><big>(</big><em>username</em>, <em>email</em>, <em>password</em><big>)</big><a class="reference internal" href="_modules/base/models.html#User"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#base.models.User" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">flask_login.UserMixin</span></tt>, <a class="reference internal" href="#base.models.CRUDMixin" title="base.models.CRUDMixin"><tt class="xref py py-class docutils literal"><span class="pre">base.models.CRUDMixin</span></tt></a>, <tt class="xref py py-class docutils literal"><span class="pre">flask_sqlalchemy.Model</span></tt></p>
+<p>A basic user model, sufficient for authorization support.</p>
+<p>Note that email is defined as <em>unique</em>, so we&#8217;ll be able to
+find a specific user given her email (<a class="reference internal" href="#base.models.User.get_by_email" title="base.models.User.get_by_email"><tt class="xref py py-meth docutils literal"><span class="pre">get_by_email()</span></tt></a>).</p>
 <dl class="method">
 <dt id="base.models.User.__init__">
 <tt class="descname">__init__</tt><big>(</big><em>username</em>, <em>email</em>, <em>password</em><big>)</big><a class="reference internal" href="_modules/base/models.html#User.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#base.models.User.__init__" title="Permalink to this definition">¶</a></dt>
@@ -158,7 +151,19 @@
 <dl class="method">
 <dt id="base.models.User.check_password">
 <tt class="descname">check_password</tt><big>(</big><em>password</em><big>)</big><a class="reference internal" href="_modules/base/models.html#User.check_password"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#base.models.User.check_password" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Checks a password against a given salted and hashed password value,
+using <a class="reference external" href="http://werkzeug.pocoo.org/docs/utils/#module-werkzeug.security" title="(in Werkzeug v0.10)"><tt class="xref py py-mod docutils literal"><span class="pre">werkzeug.security</span></tt></a> tools</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>password</strong> &#8211; </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="base.models.User.email">
@@ -168,7 +173,23 @@
 <dl class="classmethod">
 <dt id="base.models.User.get_by_email">
 <em class="property">classmethod </em><tt class="descname">get_by_email</tt><big>(</big><em>email</em><big>)</big><a class="reference internal" href="_modules/base/models.html#User.get_by_email"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#base.models.User.get_by_email" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Retrieves a user from her email.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>cls</strong> &#8211; </li>
+<li><strong>email</strong> &#8211; </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="base.models.User.id">
@@ -187,7 +208,6 @@
 
 </dd></dl>
 
-</div>
 </div>
 
 

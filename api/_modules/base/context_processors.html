@@ -24,7 +24,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <link rel="top" title="Flask Kit dev documentation" href="../../index.html" />
-    <link rel="up" title="Module code" href="../index.html" /> 
+    <link rel="up" title="base" href="../base.html" /> 
   </head>
   <body>
     <div class="related">
@@ -37,7 +37,8 @@
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li><a href="../../index.html">Flask Kit dev documentation</a> &raquo;</li>
-          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+          <li><a href="../index.html" >Module code</a> &raquo;</li>
+          <li><a href="../base.html" accesskey="U">base</a> &raquo;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar">
@@ -67,11 +68,17 @@
 <span class="c"># -*- coding: utf-8 -*-</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    base.context_processors</span>
-<span class="sd">    ~~~~~~~~~~~~~~~~~~~~~~~</span>
-
 <span class="sd">    The most common context processors</span>
 <span class="sd">    for the whole project.</span>
+
+<span class="sd">    Context processors inject new variables automatically into the context of a template.</span>
+
+<span class="sd">    A context processor is a function that returns a dictionary.</span>
+<span class="sd">    The keys and values of this dictionary are then merged with the template context,</span>
+<span class="sd">    for all templates in the app.</span>
+
+<span class="sd">    See [Context Processors](http://flask.pocoo.org/docs/templating/?highlight=context_processor#context-processors)</span>
+<span class="sd">    from Flask templates documentation.</span>
 
 <span class="sd">    :copyright: (c) 2012 by Roman Semirook.</span>
 <span class="sd">    :license: BSD, see LICENSE for more details.</span>
@@ -89,6 +96,11 @@
 
 </div>
 <div class="viewcode-block" id="navigation"><a class="viewcode-back" href="../../base.context_processors.html#base.context_processors.navigation">[docs]</a><span class="k">def</span> <span class="nf">navigation</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Site navigation entries.</span>
+
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">main_page</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="s">&#39;Main&#39;</span><span class="p">,</span>
                  <span class="s">&#39;url&#39;</span><span class="p">:</span> <span class="n">url_for</span><span class="p">(</span><span class="s">&#39;base.front_page&#39;</span><span class="p">),</span>
                  <span class="p">}</span>
@@ -100,6 +112,10 @@
 
 </div>
 <div class="viewcode-block" id="common_forms"><a class="viewcode-back" href="../../base.context_processors.html#base.context_processors.common_forms">[docs]</a><span class="k">def</span> <span class="nf">common_forms</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Globally accessibles forms.</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="p">{</span><span class="s">&#39;login_form&#39;</span><span class="p">:</span> <span class="n">LoginForm</span><span class="p">()}</span></div>
 </pre></div>
 
@@ -118,7 +134,8 @@
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li><a href="../../index.html">Flask Kit dev documentation</a> &raquo;</li>
-          <li><a href="../index.html" >Module code</a> &raquo;</li> 
+          <li><a href="../index.html" >Module code</a> &raquo;</li>
+          <li><a href="../base.html" >base</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

@@ -24,7 +24,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <link rel="top" title="Flask Kit dev documentation" href="../../index.html" />
-    <link rel="up" title="Module code" href="../index.html" /> 
+    <link rel="up" title="base" href="../base.html" /> 
   </head>
   <body>
     <div class="related">
@@ -37,7 +37,8 @@
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li><a href="../../index.html">Flask Kit dev documentation</a> &raquo;</li>
-          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+          <li><a href="../index.html" >Module code</a> &raquo;</li>
+          <li><a href="../base.html" accesskey="U">base</a> &raquo;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar">
@@ -67,9 +68,6 @@
 <span class="c"># -*- coding: utf-8 -*-</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    base.tests</span>
-<span class="sd">    ~~~~~~~~~~</span>
-
 <span class="sd">    Example tests.</span>
 
 <span class="sd">    :copyright: (c) 2012 by Roman Semirook.</span>
@@ -83,14 +81,28 @@
 <div class="viewcode-block" id="TestFrontBlueprint"><a class="viewcode-back" href="../../base.tests.html#base.tests.TestFrontBlueprint">[docs]</a><span class="k">class</span> <span class="nc">TestFrontBlueprint</span><span class="p">(</span><span class="n">KitTestCase</span><span class="p">):</span>
 
 <div class="viewcode-block" id="TestFrontBlueprint.test_front"><a class="viewcode-back" href="../../base.tests.html#base.tests.TestFrontBlueprint.test_front">[docs]</a>    <span class="k">def</span> <span class="nf">test_front</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Tests the front page success code.</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s">&#39;base.front_page&#39;</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assert200</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </div>
 <div class="viewcode-block" id="TestFrontBlueprint.test_front_for_anonymous"><a class="viewcode-back" href="../../base.tests.html#base.tests.TestFrontBlueprint.test_front_for_anonymous">[docs]</a>    <span class="k">def</span> <span class="nf">test_front_for_anonymous</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        An anonymous visitor should see a &quot;Log in&quot; mention on the front page.</span>
+
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s">&#39;base.front_page&#39;</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertContains</span><span class="p">(</span><span class="n">response</span><span class="p">,</span> <span class="s">&#39;Log in&#39;</span><span class="p">)</span>
 </div>
 <div class="viewcode-block" id="TestFrontBlueprint.test_login"><a class="viewcode-back" href="../../base.tests.html#base.tests.TestFrontBlueprint.test_login">[docs]</a>    <span class="k">def</span> <span class="nf">test_login</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The login page should load successfully.</span>
+
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s">&#39;base.login&#39;</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assert200</span><span class="p">(</span><span class="n">response</span><span class="p">)</span></div></div>
 </pre></div>
@@ -110,7 +122,8 @@
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li><a href="../../index.html">Flask Kit dev documentation</a> &raquo;</li>
-          <li><a href="../index.html" >Module code</a> &raquo;</li> 
+          <li><a href="../index.html" >Module code</a> &raquo;</li>
+          <li><a href="../base.html" >base</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
