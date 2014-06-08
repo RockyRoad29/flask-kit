@@ -42,16 +42,17 @@ It will:
    * Possibly integrate with `Flask-Principal <http://pythonhosted.org/Flask-Principal/>`_
      or other authorization extensions later on.
 
-SQLAlchemy
-~~~~~~~~~~
+SQLAlchemy : the ORM layer
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 `Flask-SQLAlchemy <http://pythonhosted.org/Flask-SQLAlchemy/>`_
 is an extension for Flask that adds support for `SQLAlchemy <http://www.sqlalchemy.org/docs/>`_
 to your application. It aims to simplify using SQLAlchemy
 with Flask by providing useful defaults and extra helpers that make it easier to accomplish common tasks.
 
-WTF
-~~~
+WTF : Better forms
+~~~~~~~~~~~~~~~~~~
+
 `Flask-WTF <https://flask-wtf.readthedocs.org/en/latest/>`_
 offers simple integration with `WTForms <http://wtforms.simplecodes.com/docs/>`_
 
@@ -60,13 +61,15 @@ but you can customize it in your templates.
 This allows you to maintain separation of code and presentation,
 and keep those messy parameters out of your python code.
 
-Testing
-~~~~~~~
+Testing : Unit testing for agile development
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 `Flask-Testing <http://pythonhosted.org/Flask-Testing/>`_
 provides unit testing utilities for Flask.
 
-Script
-~~~~~~
+Script - Command-line tools
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 `Flask-Script <http://flask-script.readthedocs.org/en/latest/>`_
 provides support for writing external scripts in Flask.
 This includes running a development server, a customised Python shell,
@@ -76,13 +79,17 @@ that belong outside the web application itself.
 Flask-Script works in a similar way to Flask itself.
 You define and add commands that can be called from the command line to a Manager instance:
 
-Assets
-~~~~~~
+Assets - static files optimization
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 `Flask-Assets <http://flask-assets.readthedocs.org/en/latest/>`_
 integrates the `webassets library <http://github.com/miracle2k/webassets>`_ with Flask, adding support for merging, minifying and compiling CSS and Javascript files.
 
-Gravatar
-~~~~~~~~
+Asset management application for Python web development - use it to merge and compress your JavaScript and CSS files.
+
+Gravatar - User avatar on the cloud
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 `Flask-Gravatar <http://pythonhosted.org/Flask-Gravatar/>`_
 is a small extension for Flask to make using `Gravatar <http:gravatar.com>`_
 ("Globally Recognized Avatar") easy.
