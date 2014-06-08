@@ -1,13 +1,21 @@
 # -*- coding: utf-8 -*-
 
 """
-    testing
-    ~~~~~~~
-
     More useful TestCase for tests.
+
+    Simple basic TestCase for your tests. Note, that `nose` test runner is used (it's really good)::
+
+        (flaskit)MacBook-Pro-Roman:flaskit semirook$ nosetests
+        ...
+        ----------------------------------------------------------------------
+        Ran 3 tests in 0.476s
+
+        OK
+
 
     :copyright: (c) 2012 by Roman Semirook.
     :license: BSD, see LICENSE for more details.
+
 """
 
 from flask.ext.testing import TestCase

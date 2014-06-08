@@ -33,6 +33,7 @@ extensions = [
     'sphinx.ext.doctest',
     'sphinx.ext.intersphinx',
     'sphinx.ext.viewcode',
+    'sphinx.ext.todo'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -103,7 +104,7 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'default'
+html_theme = 'sphinxdoc'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -264,4 +265,35 @@ texinfo_documents = [
 
 
 # Example configuration for intersphinx: refer to the Python standard library.
-intersphinx_mapping = {'http://docs.python.org/': None}
+intersphinx_mapping = {
+    'https://docs.python.org/dev': None,
+    'http://werkzeug.pocoo.org/docs/': None,
+    'http://flask.pocoo.org/docs/': None,
+    'http://www.sqlalchemy.org/docs/': None,
+    'http://wtforms.simplecodes.com/docs/0.5/': None,
+    'http://discorporate.us/projects/Blinker/docs/1.1/': None,
+    'http://pythonhosted.org/Flask-Gravatar/': None,
+    'http://flask-admin.readthedocs.org/en/latest/': None,
+    'http://flask-assets.readthedocs.org/en/latest/': None,
+    'http://flask-script.readthedocs.org/en/latest/': None,
+    'https://flask-wtf.readthedocs.org/en/latest/' : None,
+    'http://pythonhosted.org/Flask-Testing' :None,
+    'http://pythonhosted.org/Flask-Gravatar': None,
+    'https://flask-login.readthedocs.org/en/latest/' : None,
+    'http://flask-debugtoolbar.readthedocs.org/en/latest/': None,
+    'http://django-debug-toolbar.readthedocs.org/en/1.2/': None,
+    'http://pythonhosted.org/Flask-SQLAlchemy': None,
+}
+
+# Autodoc settings
+autodoc_default_flags = ['members', 'undoc-members']
+
+def skip(app, what, name, obj, skip, options):
+    if name == "__init__":
+        return False
+    return skip
+
+def setup(app):
+    app.connect("autodoc-skip-member", skip)
+
+todo_include_todos = True

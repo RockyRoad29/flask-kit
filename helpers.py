@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 
 """
-    helpers
-    ~~~~~~~
-
     Implements useful helpers.
+
+    There is the application factory and, maybe,
+    something else (in the future) to avoid routine.
 
     :copyright: (c) 2012 by Roman Semirook.
     :license: BSD, see LICENSE for more details.
+
 """
 
 import os
@@ -28,13 +29,34 @@ class NoExtensionException(Exception):
 
 
 class AppFactory(object):
+    """
+    Flask application factory.
 
+    >>> app = AppFactory(TestingConfig).get_app(__name__)
+
+    """
     def __init__(self, config, envvar='PROJECT_SETTINGS', bind_db_object=True):
+        """
+        Defines default application settings
+
+        :param config: an object to load initial configuration from
+        :param envvar: The name of an environment variable to update configuration from
+        :param bind_db_object:
+        """
         self.app_config = config
         self.app_envvar = os.environ.get(envvar, False)
         self.bind_db_object = bind_db_object
 
     def get_app(self, app_module_name, **kwargs):
+        """
+        Actually instanciates a Flask application with active settings,
+        and taking care of registering extensions and blueprints
+
+        :param app_module_name: the name of the application package, see :py:class:`~flask.Flask`
+
+        :param kwargs: keyword arguments passed to the Flask constructor
+        :return: A new WSGI application object
+        """
         self.app = Flask(app_module_name, **kwargs)
         self.app.config.from_object(self.app_config)
         self.app.config.from_envvar(self.app_envvar, silent=True)

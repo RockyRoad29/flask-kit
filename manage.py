@@ -2,12 +2,34 @@
 # -*- coding: utf-8 -*-
 
 """
-    manage
-    ~~~~~~
+    Set of some useful management commands,
+    based on :py:mod:`script extension <flask.ext.script>`
+    (:py:class:`flask.ext.Manager`)
 
-    Set of some useful management commands.
+    A set of scripts, based on :py:mod:`script extension <flask.ext.script>`
+    that you may find useful.
+
+    Amount of commands will constantly grow.
+    By now, there are:
+
+    +-----------------------+-----------------------------------------------------------------+
+    | **Command**           | **Result**                                                      |
+    +=======================+=================================================================+
+    | runserver             | Runs the Flask development server i.e. app.run()                |
+    +-----------------------+-----------------------------------------------------------------+
+    | shell                 | Runs interactive shell, ipython if installed                    |
+    +-----------------------+-----------------------------------------------------------------+
+    | init_data             | Creates some demo DB-tables and data                            |
+    +-----------------------+-----------------------------------------------------------------+
+    | clean_pyc             | Removes all file:`*.pyc` files from the project folder          |
+    +-----------------------+-----------------------------------------------------------------+
+
+    .. todo::
+       Add assets managements, as described in :data:`flask.ext.assets.management-command`
+
 
     :copyright: (c) 2012 by Roman Semirook.
+    :copyright: (c) 2014 by Michelle Baert.
     :license: BSD, see LICENSE for more details.
 """
 
@@ -19,11 +41,13 @@ from ext import db
 
 
 manager = Manager(app)
-
+"""
+The :py:class:`Manager` object from the :py:mod:`script extension <flask.ext.script>`
+"""
 
 @manager.command
 def clean_pyc():
-    """Removes all *.pyc files from the project folder"""
+    """Removes all :file:`*.pyc` files from the project folder"""
     clean_command = "find . -name *.pyc -delete".split()
     subprocess.call(clean_command)
 
@@ -39,7 +63,6 @@ def init_data():
 
 
 manager.add_command('shell', Shell(make_context=lambda:{'app': app, 'db': db}))
-
 
 if __name__ == '__main__':
     manager.run()
