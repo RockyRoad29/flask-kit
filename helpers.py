@@ -6,7 +6,7 @@
     There is the application factory and, maybe,
     something else (in the future) to avoid routine.
 
-    :copyright: (c) 2012 by Roman Semirook.
+    :copyright: \(c) 2012 by Roman Semirook.
     :license: BSD, see LICENSE for more details.
 
 """

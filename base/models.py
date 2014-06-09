@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 
 """
-    The most common models for the whole project.
+    the most common models for the whole project.
 
-    .. rubrique: about "Mixin" classes
+    .. rubrique: about "mixin" classes
         * http://stackoverflow.com/questions/533631/what-is-a-mixin-and-why-are-they-useful
-        * http://en.wikipedia.org/wiki/Mixin
+        * http://en.wikipedia.org/wiki/mixin
 
-    :copyright: (c) 2012 by Roman Semirook.
-    :license: BSD, see LICENSE for more details.
+    :copyright: \(c) 2012 by roman semirook.
+    :license: bsd, see license for more details.
 
 """
 
@@ -58,6 +58,10 @@ class User(UserMixin, CRUDMixin, db.Model):
 
     Note that email is defined as *unique*, so we'll be able to
     find a specific user given her email (:meth:`get_by_email`).
+
+    The primary key is inherited from :class:`CRUDMixin`
+    (:attr::`CRUDMixin.id`)
+
     """
     __tablename__ = 'users'
 

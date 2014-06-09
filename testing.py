@@ -13,7 +13,7 @@
         OK
 
 
-    :copyright: (c) 2012 by Roman Semirook.
+    :copyright: \(c) 2012 by Roman Semirook.
     :license: BSD, see LICENSE for more details.
 
 """

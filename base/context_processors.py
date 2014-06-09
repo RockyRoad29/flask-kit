@@ -13,7 +13,7 @@
     See [Context Processors](http://flask.pocoo.org/docs/templating/?highlight=context_processor#context-processors)
     from Flask templates documentation.
 
-    :copyright: (c) 2012 by Roman Semirook.
+    :copyright: \(c) 2012 by Roman Semirook.
     :license: BSD, see LICENSE for more details.
 """
 

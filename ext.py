@@ -12,7 +12,7 @@
     Look into the file for examples.
 
 
-    :copyright: (c) 2012 by Roman Semirook.
+    :copyright: \(c) 2012 by Roman Semirook.
     :license: BSD, see LICENSE for more details.
 
 """
@@ -30,7 +30,6 @@ db = SQLAlchemy()
 #: The `Flask-Assets <http://flask-assets.readthedocs.org/en/latest/>`_ :class:`~flask.ext.assets.Environment` to be later registered.
 assets = Environment()
 
-"" \
 #: `Flask-Login <https://flask-login.readthedocs.org/en/latest/>`_ manager object
 login_manager = LoginManager()
 

@@ -28,8 +28,8 @@
        Add assets managements, as described in :data:`flask.ext.assets.management-command`
 
 
-    :copyright: (c) 2012 by Roman Semirook.
-    :copyright: (c) 2014 by Michelle Baert.
+    :copyright: \(c) 2012 by Roman Semirook.
+    :copyright: \(c) 2014 by Michelle Baert.
     :license: BSD, see LICENSE for more details.
 """
 

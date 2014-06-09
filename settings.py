@@ -15,7 +15,7 @@ list for you. Behaviour for `CONTEXT_PROCESSORS` and `EXTENSIONS` lists is the s
 The notation is `package.module.object` or `package.object` if object is in the `__init__.py`.
 Look into the file for examples.
 
-    :copyright: (c) 2012 by Roman Semirook.
+    :copyright: \(c) 2012 by Roman Semirook.
     :license: BSD, see LICENSE for more details.
 """
 

@@ -24,7 +24,7 @@ There is your main app instance, created by `AppFactory`.
 
     So dynamical application binding is much more flexible solution.
 
-:copyright: (c) 2012 by Roman Semirook.
+:copyright: \(c) 2012 by Roman Semirook.
 :license: BSD, see LICENSE for more details.
 """
 

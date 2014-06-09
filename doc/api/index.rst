@@ -42,6 +42,11 @@ It will:
    * Possibly integrate with `Flask-Principal <http://pythonhosted.org/Flask-Principal/>`_
      or other authorization extensions later on.
 
+.. toctree::
+   :maxdepth: 2
+
+   integrate-login
+
 SQLAlchemy : the ORM layer
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -49,6 +54,11 @@ SQLAlchemy : the ORM layer
 is an extension for Flask that adds support for `SQLAlchemy <http://www.sqlalchemy.org/docs/>`_
 to your application. It aims to simplify using SQLAlchemy
 with Flask by providing useful defaults and extra helpers that make it easier to accomplish common tasks.
+
+.. toctree::
+   :maxdepth: 2
+
+   integrate-sqlalchemy
 
 WTF : Better forms
 ~~~~~~~~~~~~~~~~~~
@@ -91,7 +101,7 @@ Gravatar - User avatar on the cloud
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 `Flask-Gravatar <http://pythonhosted.org/Flask-Gravatar/>`_
-is a small extension for Flask to make using `Gravatar <http:gravatar.com>`_
+is a small extension for Flask to make using `Gravatar <http://gravatar.com>`_
 ("Globally Recognized Avatar") easy.
 
 Well, maybe not essential.

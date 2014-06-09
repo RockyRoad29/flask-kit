@@ -20,6 +20,8 @@ import os
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 sys.path.insert(0, os.path.abspath('../..'))
 
+print "Our syspath is now: %r" % (sys.path)
+
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
@@ -282,9 +284,10 @@ intersphinx_mapping = {
     'https://flask-login.readthedocs.org/en/latest/' : None,
     'http://flask-debugtoolbar.readthedocs.org/en/latest/': None,
     'http://django-debug-toolbar.readthedocs.org/en/1.2/': None,
-    'http://pythonhosted.org/Flask-SQLAlchemy': None,
+    'http://pythonhosted.org/Flask-SQLAlchemy': 'Flask-SQLAlchemy.inv',
 }
-
+# Note: You might need to rebuild doctree when using/updating intersphinx labels
+#       ... they don't seem to be popular anyway, I gave up the 'new format'
 # Autodoc settings
 autodoc_default_flags = ['members', 'undoc-members']
 
