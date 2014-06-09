@@ -85,18 +85,14 @@
             
   <div class="section" id="module-base.models">
 <span id="base-models-module"></span><h1>base.models module<a class="headerlink" href="#module-base.models" title="Permalink to this headline">¶</a></h1>
-<p>The most common models for the whole project.</p>
+<p>the most common models for the whole project.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">copyright:</th><td class="field-body"><ol class="first loweralpha simple" start="3">
-<li>2012 by Roman Semirook.</li>
-</ol>
-</td>
+<tr class="field-odd field"><th class="field-name">copyright:</th><td class="field-body">(c) 2012 by roman semirook.</td>
 </tr>
-<tr class="field-even field"><th class="field-name">license:</th><td class="field-body"><p class="first last">BSD, see LICENSE for more details.</p>
-</td>
+<tr class="field-even field"><th class="field-name">license:</th><td class="field-body">bsd, see license for more details.</td>
 </tr>
 </tbody>
 </table>
@@ -143,6 +139,8 @@
 <p>A basic user model, sufficient for authorization support.</p>
 <p>Note that email is defined as <em>unique</em>, so we&#8217;ll be able to
 find a specific user given her email (<a class="reference internal" href="#base.models.User.get_by_email" title="base.models.User.get_by_email"><tt class="xref py py-meth docutils literal"><span class="pre">get_by_email()</span></tt></a>).</p>
+<p>The primary key is inherited from <a class="reference internal" href="#base.models.CRUDMixin" title="base.models.CRUDMixin"><tt class="xref py py-class docutils literal"><span class="pre">CRUDMixin</span></tt></a>
+(:attr::<cite>CRUDMixin.id</cite>)</p>
 <dl class="method">
 <dt id="base.models.User.__init__">
 <tt class="descname">__init__</tt><big>(</big><em>username</em>, <em>email</em>, <em>password</em><big>)</big><a class="reference internal" href="_modules/base/models.html#User.__init__"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#base.models.User.__init__" title="Permalink to this definition">¶</a></dt>

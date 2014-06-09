@@ -24,7 +24,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="top" title="Flask Kit dev documentation" href="#" />
-    <link rel="next" title="Modules" href="modules.html" /> 
+    <link rel="next" title="Flask-Login Integration" href="integrate-login.html" /> 
   </head>
   <body>
     <div class="related">
@@ -37,7 +37,7 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="modules.html" title="Modules"
+          <a href="integrate-login.html" title="Flask-Login Integration"
              accesskey="N">next</a> |</li>
         <li><a href="#">Flask Kit dev documentation</a> &raquo;</li> 
       </ul>
@@ -50,12 +50,12 @@
 <li><a class="reference internal" href="#used-extensions">Used extensions</a><ul>
 <li><a class="reference internal" href="#debugtoolbar-in-browser-debug-tools">DebugToolbar : in-browser debug tools</a></li>
 <li><a class="reference internal" href="#login-user-authentification-layer">Login: user authentification layer</a></li>
-<li><a class="reference internal" href="#sqlalchemy">SQLAlchemy</a></li>
-<li><a class="reference internal" href="#wtf">WTF</a></li>
-<li><a class="reference internal" href="#testing">Testing</a></li>
-<li><a class="reference internal" href="#script">Script</a></li>
-<li><a class="reference internal" href="#assets">Assets</a></li>
-<li><a class="reference internal" href="#gravatar">Gravatar</a></li>
+<li><a class="reference internal" href="#sqlalchemy-the-orm-layer">SQLAlchemy : the ORM layer</a></li>
+<li><a class="reference internal" href="#wtf-better-forms">WTF : Better forms</a></li>
+<li><a class="reference internal" href="#testing-unit-testing-for-agile-development">Testing : Unit testing for agile development</a></li>
+<li><a class="reference internal" href="#script-command-line-tools">Script - Command-line tools</a></li>
+<li><a class="reference internal" href="#assets-static-files-optimization">Assets - static files optimization</a></li>
+<li><a class="reference internal" href="#gravatar-user-avatar-on-the-cloud">Gravatar - User avatar on the cloud</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#flask-kit-modules">Flask Kit modules</a></li>
@@ -65,8 +65,8 @@
 </ul>
 
   <h4>Next topic</h4>
-  <p class="topless"><a href="modules.html"
-                        title="next chapter">Modules</a></p>
+  <p class="topless"><a href="integrate-login.html"
+                        title="next chapter">Flask-Login Integration</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/index.txt"
@@ -125,16 +125,42 @@ and remembering your users’ sessions over extended periods of time.</p>
 or other authorization extensions later on.</li>
 </ul>
 </div></blockquote>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="integrate-login.html">Flask-Login Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="integrate-login.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integrate-login.html#how-it-works">How it Works</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integrate-login.html#your-user-class">Your User Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integrate-login.html#customizing-the-login-process">Customizing the Login Process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integrate-login.html#custom-login-using-request-loader">Custom Login using Request Loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integrate-login.html#anonymous-users">Anonymous Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integrate-login.html#remember-me">Remember Me</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integrate-login.html#session-protection">Session Protection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integrate-login.html#localization">Localization</a></li>
+</ul>
+</li>
+</ul>
 </div>
-<div class="section" id="sqlalchemy">
-<h3>SQLAlchemy<a class="headerlink" href="#sqlalchemy" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="sqlalchemy-the-orm-layer">
+<h3>SQLAlchemy : the ORM layer<a class="headerlink" href="#sqlalchemy-the-orm-layer" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="http://pythonhosted.org/Flask-SQLAlchemy/">Flask-SQLAlchemy</a>
 is an extension for Flask that adds support for <a class="reference external" href="http://www.sqlalchemy.org/docs/">SQLAlchemy</a>
 to your application. It aims to simplify using SQLAlchemy
 with Flask by providing useful defaults and extra helpers that make it easier to accomplish common tasks.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="integrate-sqlalchemy.html">Flask-SQLAlchemy Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="integrate-sqlalchemy.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integrate-sqlalchemy.html#declaring-models">Declaring Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integrate-sqlalchemy.html#select-insert-delete">Select, Insert, Delete</a></li>
+</ul>
+</li>
+</ul>
 </div>
-<div class="section" id="wtf">
-<h3>WTF<a class="headerlink" href="#wtf" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="wtf-better-forms">
+<h3>WTF : Better forms<a class="headerlink" href="#wtf-better-forms" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://flask-wtf.readthedocs.org/en/latest/">Flask-WTF</a>
 offers simple integration with <a class="reference external" href="http://wtforms.simplecodes.com/docs/">WTForms</a></p>
 <p>With WTForms, your form field HTML can be generated for you,
@@ -142,13 +168,13 @@ but you can customize it in your templates.
 This allows you to maintain separation of code and presentation,
 and keep those messy parameters out of your python code.</p>
 </div>
-<div class="section" id="testing">
-<h3>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="testing-unit-testing-for-agile-development">
+<h3>Testing : Unit testing for agile development<a class="headerlink" href="#testing-unit-testing-for-agile-development" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="http://pythonhosted.org/Flask-Testing/">Flask-Testing</a>
 provides unit testing utilities for Flask.</p>
 </div>
-<div class="section" id="script">
-<h3>Script<a class="headerlink" href="#script" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="script-command-line-tools">
+<h3>Script - Command-line tools<a class="headerlink" href="#script-command-line-tools" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="http://flask-script.readthedocs.org/en/latest/">Flask-Script</a>
 provides support for writing external scripts in Flask.
 This includes running a development server, a customised Python shell,
@@ -157,15 +183,16 @@ that belong outside the web application itself.</p>
 <p>Flask-Script works in a similar way to Flask itself.
 You define and add commands that can be called from the command line to a Manager instance:</p>
 </div>
-<div class="section" id="assets">
-<h3>Assets<a class="headerlink" href="#assets" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="assets-static-files-optimization">
+<h3>Assets - static files optimization<a class="headerlink" href="#assets-static-files-optimization" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="http://flask-assets.readthedocs.org/en/latest/">Flask-Assets</a>
 integrates the <a class="reference external" href="http://github.com/miracle2k/webassets">webassets library</a> with Flask, adding support for merging, minifying and compiling CSS and Javascript files.</p>
+<p>Asset management application for Python web development - use it to merge and compress your JavaScript and CSS files.</p>
 </div>
-<div class="section" id="gravatar">
-<h3>Gravatar<a class="headerlink" href="#gravatar" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="gravatar-user-avatar-on-the-cloud">
+<h3>Gravatar - User avatar on the cloud<a class="headerlink" href="#gravatar-user-avatar-on-the-cloud" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="http://pythonhosted.org/Flask-Gravatar/">Flask-Gravatar</a>
-is a small extension for Flask to make using <a class="reference external" href="http:gravatar.com">Gravatar</a>
+is a small extension for Flask to make using <a class="reference external" href="http://gravatar.com">Gravatar</a>
 (&#8220;Globally Recognized Avatar&#8221;) easy.</p>
 <p>Well, maybe not essential.</p>
 <p>Check the <tt class="file docutils literal"><span class="pre">reqs.pip</span></tt> for the actual version numbers .</p>
@@ -188,6 +215,13 @@ is a small extension for Flask to make using <a class="reference external" href=
 </li>
 </ul>
 </div>
+<div class="admonition-todo admonition">
+<p class="first admonition-title">Todo</p>
+<p>In <em>Flask-kit</em>, the <a class="reference internal" href="base.models.html#base.models.User" title="base.models.User"><tt class="xref py py-class docutils literal"><span class="pre">base.models.User</span></tt></a> inherits from <a class="reference external" href="https://flask-login.readthedocs.org/en/latest/index.html#flask.ext.login.UserMixin" title="(in Flask-Login v0.2.11)"><tt class="xref py py-class docutils literal"><span class="pre">flask.ext.login.UserMixin</span></tt></a>
+so the needed methods are not implemented properly.</p>
+<p class="last">Write a few tests first and then implement as needed.</p>
+</div>
+<p class="todo-source">(The <a class="reference internal" href="integrate-login.html#index-0"><em>original entry</em></a> is located in  /home/mich/Learn/webauth/flask/flask-kit/doc/api/integrate-login.rst, line 116.)</p>
 <div class="admonition-todo admonition">
 <p class="first admonition-title">Todo</p>
 <p class="last">Add assets managements, as described in <tt class="xref py py-data docutils literal"><span class="pre">flask.ext.assets.management-command</span></tt></p>
@@ -220,7 +254,7 @@ is a small extension for Flask to make using <a class="reference external" href=
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="modules.html" title="Modules"
+          <a href="integrate-login.html" title="Flask-Login Integration"
              >next</a> |</li>
         <li><a href="#">Flask Kit dev documentation</a> &raquo;</li> 
       </ul>

@@ -72,7 +72,7 @@
 
 <span class="sd">    This makes use of flask&#39;s [pluggable views](http://flask.pocoo.org/docs/views/)</span>
 
-<span class="sd">    :copyright: (c) 2012 by Roman Semirook.</span>
+<span class="sd">    :copyright: \(c) 2012 by Roman Semirook.</span>
 <span class="sd">    :license: BSD, see LICENSE for more details.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
@@ -120,9 +120,9 @@
 <span class="sd">        emits a flash message of success and redirects the request to</span>
 <span class="sd">        the `next` parameter or the home page if not specified.</span>
 
-<span class="sd">        Otherwise, emits errors as flash messages and redirects to the login page again.</span>
+<span class="sd">        Otherwise, emits errors as flash messages and renders the login page again.</span>
 
-<span class="sd">        :return: redirects to login page on error, value of `next` or home page on success.</span>
+<span class="sd">        :return: On error, renders the login page, but redirects to value of `next` or home page on success.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">form</span> <span class="o">=</span> <span class="n">LoginForm</span><span class="p">()</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">form</span><span class="o">.</span><span class="n">validate_on_submit</span><span class="p">():</span>
@@ -149,11 +149,17 @@
 <span class="nd">@login_manager.user_loader</span>
 <div class="viewcode-block" id="load_user"><a class="viewcode-back" href="../../base.views.html#base.views.load_user">[docs]</a><span class="k">def</span> <span class="nf">load_user</span><span class="p">(</span><span class="n">user_id</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Implements :meth:`flask.ext.login.LoginManager.user_loader`</span>
-<span class="sd">    by calling :meth:`~base.models.User.get_by_id`)</span>
+<span class="sd">    We need to provide a :meth:`~flask.ext.login.LoginManager.user_loader` callback to the login manager.</span>
+<span class="sd">    This callback is used to reload the user object from the user ID stored in the session.</span>
+
+<span class="sd">    It should return `None` (**not raise an exception**) if the ID is not valid.</span>
+<span class="sd">    (In that case, the ID will manually be removed from the session and processing</span>
+<span class="sd">    will continue.)</span>
+
+<span class="sd">    This is done by calling :meth:`~base.models.User.get_by_id`)</span>
 <span class="sd">    ,</span>
-<span class="sd">    :param user_id:</span>
-<span class="sd">    :return:</span>
+<span class="sd">    :param user_id: the unicode ID of a user</span>
+<span class="sd">    :return:the corresponding user object</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">User</span><span class="o">.</span><span class="n">get_by_id</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
 
@@ -161,7 +167,7 @@
 <span class="nd">@login_required</span>
 <div class="viewcode-block" id="logout"><a class="viewcode-back" href="../../base.views.html#base.views.logout">[docs]</a><span class="k">def</span> <span class="nf">logout</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    calls func:`flask.ext.login.login_user`, and redirects to home page.</span>
+<span class="sd">    calls func:`flask.ext.login.logout_user`, and redirects to home page.</span>
 
 <span class="sd">    :return: redirects to home page</span>
 <span class="sd">    &quot;&quot;&quot;</span>

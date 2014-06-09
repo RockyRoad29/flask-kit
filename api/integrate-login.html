@@ -1,0 +1,320 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Flask-Login Integration &mdash; Flask Kit dev documentation</title>
+    
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     'dev',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Flask Kit dev documentation" href="index.html" />
+    <link rel="next" title="Flask-SQLAlchemy Integration" href="integrate-sqlalchemy.html" />
+    <link rel="prev" title="Welcome to Flask Kit’s documentation!" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="integrate-sqlalchemy.html" title="Flask-SQLAlchemy Integration"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to Flask Kit’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Flask Kit dev documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Flask-Login Integration</a><ul>
+<li><a class="reference internal" href="#configuration">Configuration</a></li>
+<li><a class="reference internal" href="#how-it-works">How it Works</a></li>
+<li><a class="reference internal" href="#your-user-class">Your User Class</a></li>
+<li><a class="reference internal" href="#customizing-the-login-process">Customizing the Login Process</a></li>
+<li><a class="reference internal" href="#custom-login-using-request-loader">Custom Login using Request Loader</a></li>
+<li><a class="reference internal" href="#anonymous-users">Anonymous Users</a></li>
+<li><a class="reference internal" href="#remember-me">Remember Me</a></li>
+<li><a class="reference internal" href="#session-protection">Session Protection</a></li>
+<li><a class="reference internal" href="#localization">Localization</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to Flask Kit&#8217;s documentation!</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="integrate-sqlalchemy.html"
+                        title="next chapter">Flask-SQLAlchemy Integration</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/integrate-login.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="flask-login-integration">
+<h1>Flask-Login Integration<a class="headerlink" href="#flask-login-integration" title="Permalink to this headline">¶</a></h1>
+<p>Here we&#8217;ll go through the <a class="reference external" href="https://flask-login.readthedocs.org/en/latest/">extension&#8217;s official documentation</a>
+(as of version 0.2.11)
+and correlate items with flask-kit code.</p>
+<p>Not only it should help us to master the application architecture,
+but it will also help us to add features add upgrade to future
+versions of the extension.</p>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>The heart to the extension:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">login_manager</span> <span class="o">=</span> <span class="n">LoginManager</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>is instanciated in the <a class="reference internal" href="ext.html#module-ext" title="ext"><tt class="xref py py-mod docutils literal"><span class="pre">ext</span></tt></a> module: <a class="reference internal" href="ext.html#ext.login_manager" title="ext.login_manager"><tt class="xref py py-data docutils literal"><span class="pre">ext.login_manager</span></tt></a></p>
+<p>Then we should call:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">login_manager</span><span class="o">.</span><span class="n">init_app</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <cite>init_app()</cite> method is called by the <em>private</em> method
+<tt class="xref py py-meth docutils literal"><span class="pre">helpers.AppFactory._bind_extensions()</span></tt>
+for all extensions registered
+in <a class="reference internal" href="settings.html#settings.BaseConfig.EXTENSIONS" title="settings.BaseConfig.EXTENSIONS"><tt class="xref py py-attr docutils literal"><span class="pre">settings.BaseConfig.EXTENSIONS</span></tt></a>.</p>
+</div>
+<div class="section" id="how-it-works">
+<h2>How it Works<a class="headerlink" href="#how-it-works" title="Permalink to this headline">¶</a></h2>
+<p><strong>Providing a user_loader callback</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@login_manager.user_loader</span>
+<span class="k">def</span> <span class="nf">load_user</span><span class="p">(</span><span class="n">userid</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">User</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">userid</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This is done in the base blueprint <cite>views</cite> module: <a class="reference internal" href="base.views.html#base.views.load_user" title="base.views.load_user"><tt class="xref py py-func docutils literal"><span class="pre">base.views.load_user()</span></tt></a> .</p>
+<p>Once a user has authenticated, you log them in with the <cite>login_user</cite>
+function. For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/login&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;GET&quot;</span><span class="p">,</span> <span class="s">&quot;POST&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">login</span><span class="p">():</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="n">LoginForm</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">validate_on_submit</span><span class="p">():</span>
+        <span class="c"># login and validate the user...</span>
+        <span class="n">login_user</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+        <span class="n">flash</span><span class="p">(</span><span class="s">&quot;Logged in successfully.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;next&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">url_for</span><span class="p">(</span><span class="s">&quot;index&quot;</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s">&quot;login.html&quot;</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="n">form</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In <em>Flask-kit</em>, instead of decorated functions, we&#8217;re using [<em>pluggable views</em>](<a class="reference external" href="http://flask.pocoo.org/docs/views/">http://flask.pocoo.org/docs/views/</a>)
+based on <a class="reference external" href="http://flask.pocoo.org/docs/api/#flask.views.MethodView" title="(in Flask v0.11-dev)"><tt class="xref py py-class docutils literal"><span class="pre">flask.views.MethodView</span></tt></a>.</p>
+<p>So the corresponding is in <a class="reference internal" href="base.views.html#base.views.LoginView" title="base.views.LoginView"><tt class="xref py py-class docutils literal"><span class="pre">base.views.LoginView</span></tt></a> in methods
+<a class="reference internal" href="base.views.html#base.views.LoginView.get" title="base.views.LoginView.get"><tt class="xref py py-meth docutils literal"><span class="pre">get()</span></tt></a> and <a class="reference internal" href="base.views.html#base.views.LoginView.post" title="base.views.LoginView.post"><tt class="xref py py-meth docutils literal"><span class="pre">post()</span></tt></a> .</p>
+<p>You can then access the logged-in user with the
+<cite>current_user</cite> proxy.</p>
+<p>This occurs in <tt class="file docutils literal"><span class="pre">base/templates/blocks</span></tt> templates
+<tt class="file docutils literal"><span class="pre">login_form.html</span></tt> and <tt class="file docutils literal"><span class="pre">auth_header.html</span></tt>.</p>
+<p>Views that require your users to be logged in can be
+decorated with the <cite>login_required</cite> decorator:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/settings&quot;</span><span class="p">)</span>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">settings</span><span class="p">():</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>For example, <a class="reference internal" href="base.views.html#base.views.logout" title="base.views.logout"><tt class="xref py py-func docutils literal"><span class="pre">base.views.logout()</span></tt></a> , which is following the
+the given example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@app.route</span><span class="p">(</span><span class="s">&quot;/logout&quot;</span><span class="p">)</span>
+<span class="nd">@login_required</span>
+<span class="k">def</span> <span class="nf">logout</span><span class="p">():</span>
+    <span class="n">logout_user</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">somewhere</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>They will be logged out, and any cookies for their session will be cleaned up.</p>
+</div>
+<div class="section" id="your-user-class">
+<h2>Your User Class<a class="headerlink" href="#your-user-class" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>The class that you use to represent users needs to implement these methods:</p>
+<dl class="docutils">
+<dt><cite>is_authenticated()</cite></dt>
+<dd>Returns <cite>True</cite> if the user is authenticated, i.e. they have provided
+valid credentials. (Only authenticated users will fulfill the criteria
+of <cite>login_required</cite>.)</dd>
+<dt><cite>is_active()</cite></dt>
+<dd>Returns <cite>True</cite> if this is an active user - in addition to being
+authenticated, they also have activated their account, not been suspended,
+or any condition your application has for rejecting an account. Inactive
+accounts may not log in (without being forced of course).</dd>
+<dt><cite>is_anonymous()</cite></dt>
+<dd>Returns <cite>True</cite> if this is an anonymous user. (Actual users should return
+<cite>False</cite> instead.)</dd>
+<dt><cite>get_id()</cite></dt>
+<dd>Returns a <cite>unicode</cite> that uniquely identifies this user, and can be used
+to load the user from the <cite>~LoginManager.user_loader</cite> callback. Note
+that this <strong>must</strong> be a <cite>unicode</cite> - if the ID is natively an <cite>int</cite> or
+other type, you will need to convert it to <cite>unicode</cite>.</dd>
+</dl>
+<p>To make implementing a user class easier, you can inherit from <cite>UserMixin</cite>,
+which provides default implementations for all of these methods. (It&#8217;s not
+required, though.)</p>
+</div></blockquote>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p>In <em>Flask-kit</em>, the <a class="reference internal" href="base.models.html#base.models.User" title="base.models.User"><tt class="xref py py-class docutils literal"><span class="pre">base.models.User</span></tt></a> inherits from <a class="reference external" href="https://flask-login.readthedocs.org/en/latest/index.html#flask.ext.login.UserMixin" title="(in Flask-Login v0.2.11)"><tt class="xref py py-class docutils literal"><span class="pre">flask.ext.login.UserMixin</span></tt></a>
+so the needed methods are not implemented properly.</p>
+<p class="last">Write a few tests first and then implement as needed.</p>
+</div>
+</div>
+<div class="section" id="customizing-the-login-process">
+<h2>Customizing the Login Process<a class="headerlink" href="#customizing-the-login-process" title="Permalink to this headline">¶</a></h2>
+<p>This is done in our <a class="reference internal" href="base.views.html#module-base.views" title="base.views"><tt class="xref py py-mod docutils literal"><span class="pre">base.views</span></tt></a> module.</p>
+<blockquote>
+<div><p>By default, when a user attempts to access a <cite>login_required</cite> view without
+being logged in, Flask-Login will flash a message and redirect them to the
+log in view. (If the login view is not set, it will abort with a 401 error.)</p>
+<p>The name of the log in view can be set as <cite>LoginManager.login_view</cite>.
+For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">login_manager</span><span class="o">.</span><span class="n">login_view</span> <span class="o">=</span> <span class="s">&quot;users.login&quot;</span>
+</pre></div>
+</div>
+<p>The default message flashed is <tt class="docutils literal"><span class="pre">Please</span> <span class="pre">log</span> <span class="pre">in</span> <span class="pre">to</span> <span class="pre">access</span> <span class="pre">this</span> <span class="pre">page.</span></tt> To
+customize the message, set <cite>LoginManager.login_message</cite>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">login_manager</span><span class="o">.</span><span class="n">login_message</span> <span class="o">=</span> <span class="s">u&quot;Bonvolu ensaluti por uzi tio paĝo.&quot;</span>
+</pre></div>
+</div>
+<p>To customize the message category, set <cite>LoginManager.login_message_category</cite>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">login_manager</span><span class="o">.</span><span class="n">login_message_category</span> <span class="o">=</span> <span class="s">&quot;info&quot;</span>
+</pre></div>
+</div>
+<p>When the log in view is redirected to, it will have a <tt class="docutils literal"><span class="pre">next</span></tt> variable in the
+query string, which is the page that the user was trying to access.</p>
+<p>If you would like to customize the process further, decorate a function with
+<cite>LoginManager.unauthorized_handler</cite>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@login_manager.unauthorized_handler</span>
+<span class="k">def</span> <span class="nf">unauthorized</span><span class="p">():</span>
+    <span class="c"># do stuff</span>
+    <span class="k">return</span> <span class="n">a_response</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="custom-login-using-request-loader">
+<h2>Custom Login using Request Loader<a class="headerlink" href="#custom-login-using-request-loader" title="Permalink to this headline">¶</a></h2>
+<p>Not used in this version of <em>flask-kit</em>.</p>
+</div>
+<div class="section" id="anonymous-users">
+<h2>Anonymous Users<a class="headerlink" href="#anonymous-users" title="Permalink to this headline">¶</a></h2>
+<p>Not used in this version of <em>flask-kit</em>.</p>
+<blockquote>
+<div><p>By default, when a user is not actually logged in, <cite>current_user</cite> is set to
+an <cite>AnonymousUserMixin</cite> object. It has the following properties:</p>
+<ul class="simple">
+<li><cite>is_active</cite> and <cite>is_authenticated</cite> return <cite>False</cite></li>
+<li><cite>is_anonymous</cite> returns <cite>True</cite></li>
+<li><cite>get_id</cite> returns <cite>None</cite></li>
+</ul>
+<p>If you have custom requirements for anonymous users (for example, they need
+to have a permissions field), you can provide a callable (either a class or
+factory function) that creates anonymous users to the <cite>LoginManager</cite> with:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">login_manager</span><span class="o">.</span><span class="n">anonymous_user</span> <span class="o">=</span> <span class="n">MyAnonymousUser</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="remember-me">
+<h2>Remember Me<a class="headerlink" href="#remember-me" title="Permalink to this headline">¶</a></h2>
+<p>Not used in this version of <em>flask-kit</em>.</p>
+</div>
+<div class="section" id="session-protection">
+<h2>Session Protection<a class="headerlink" href="#session-protection" title="Permalink to this headline">¶</a></h2>
+<p>Not used in this version of <em>flask-kit</em>.</p>
+</div>
+<div class="section" id="localization">
+<h2>Localization<a class="headerlink" href="#localization" title="Permalink to this headline">¶</a></h2>
+<p>Not used in this version of <em>flask-kit</em>.</p>
+<blockquote>
+<div>By default, the <cite>LoginManager</cite> uses <tt class="docutils literal"><span class="pre">flash</span></tt> to display messages when a user
+is required to log in. These messages are in English. If you require
+localization, set the <cite>localize_callback</cite> attribute of <cite>LoginManager</cite> to a
+function to be called with these messages before they&#8217;re sent to <tt class="docutils literal"><span class="pre">flash</span></tt>,
+e.g. <tt class="docutils literal"><span class="pre">gettext</span></tt>. This function will be called with the message and its return
+value will be sent to <tt class="docutils literal"><span class="pre">flash</span></tt> instead.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">copyright:</th><td class="field-body">(c) 2014 by Michelle Baert.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="integrate-sqlalchemy.html" title="Flask-SQLAlchemy Integration"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to Flask Kit’s documentation!"
+             >previous</a> |</li>
+        <li><a href="index.html">Flask Kit dev documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, rockyroad.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>
