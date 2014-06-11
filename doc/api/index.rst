@@ -15,6 +15,7 @@ It makes use of some useful extensions from
 Have a look in :mod:`ext` and :mod:`app` to see how they are used.
 
 Below a brief description for each of them.
+Check the :file:`reqs.pip` for the actual version numbers .
 
 Used extensions
 ---------------
@@ -106,17 +107,16 @@ is a small extension for Flask to make using `Gravatar <http://gravatar.com>`_
 
 Well, maybe not essential.
 
-Check the :file:`reqs.pip` for the actual version numbers .
 
-Flask Kit modules
------------------
+Flask Kit documentation
+-----------------------
 
 .. toctree::
    :maxdepth: 2
 
    modules
+   todo
 
-.. todolist::
 
 Indices and tables
 ==================

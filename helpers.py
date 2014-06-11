@@ -68,12 +68,31 @@ class AppFactory(object):
         return self.app
 
     def _get_imported_stuff_by_path(self, path):
+        """
+        Splits a python object's path into `(module, object_name)`,
+        and imports the module.
+
+        For example, if `path='base.context_processors.navigation'`,
+        then the whole `base.context_processors` module is imported,
+        and the method returns the tuple `
+        `(base.context_processors, 'navigation')
+
+        :param path: basestring the full path of object
+        :return: a tuple of
+            * the imported parent module
+            * the object name
+        """
         module_name, object_name = path.rsplit('.', 1)
         module = import_string(module_name)
 
         return module, object_name
 
     def _bind_extensions(self):
+        """
+
+
+        :raise:
+        """
         for ext_path in self.app.config.get('EXTENSIONS', []):
             module, e_name = self._get_imported_stuff_by_path(ext_path)
             if not hasattr(module, e_name):
@@ -85,6 +104,13 @@ class AppFactory(object):
                 ext(self.app)
 
     def _register_context_processors(self):
+        """
+        Calls :meth:`flask.Flask.context_processor` for all entries
+        in the `CONTEXT_PROCESSORS` configuration value, for which defaults
+        are set in :mod;`settings`.
+
+        :return:
+        """
         for processor_path in self.app.config.get('CONTEXT_PROCESSORS', []):
             module, p_name = self._get_imported_stuff_by_path(processor_path)
             if hasattr(module, p_name):
@@ -93,6 +119,17 @@ class AppFactory(object):
                 raise NoContextProcessorException('No {cp_name} context processor found'.format(cp_name=p_name))
 
     def _register_blueprints(self):
+        """
+        Calls :meth:`flask.Flask.register_blueprint` for all entries
+        in the `BLUEPRINTS` configuration value, for which defaults
+        are set in :mod;`settings`.
+
+        .. todo::
+           It is not possible for now to specify settings for the blueprint,
+           e.g. `url_prefix`.
+
+        :return:
+        """
         for blueprint_path in self.app.config.get('BLUEPRINTS', []):
             module, b_name = self._get_imported_stuff_by_path(blueprint_path)
             if hasattr(module, b_name):

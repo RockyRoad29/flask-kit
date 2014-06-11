@@ -115,6 +115,7 @@ Your User Class
 
 .. todo::
    In *Flask-kit*, the :class:`base.models.User` inherits from :class:`flask.ext.login.UserMixin`
+   without overriding them
    so the needed methods are not implemented properly.
 
    Write a few tests first and then implement as needed.

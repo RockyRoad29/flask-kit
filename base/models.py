@@ -18,12 +18,41 @@ from ext import db
 
 
 class CRUDMixin(object):
+    """
+    Base class for all model objects, providing ORM layer,
+    as proposed in :mod:`flask.ext.sqlalchemy` documentation.
+
+    Note that it is not based on :class:`flask.ext.sqlalchemy.Model`,
+    but assumes the actual instance is, using
+    its :attr:`flask.ext.sqlalchemy.Model.query` property
+    ( a :class:`flask.ext.sqlalchemy.BaseQuery` instance ).
+
+    .. seealso::
+       You may want to read more about *python Mixin pattern*, or
+       *dynamic inheritance* or `metaclasses <https://www.python.org/doc/essays/metaclasses/>`_.
+
+    .. todo:: Add a query_all() class method
+
+    """
     __table_args__ = {'extend_existing': True}
 
     id = db.Column(db.Integer, primary_key=True)
 
     @classmethod
     def get_by_id(cls, id):
+        """
+        Retrieves a record by primary key.
+
+        See :meth:`flask.ext.sqlalchemy.SQLAlchemy.Model.get`
+
+        :param id:
+        :return:
+
+        .. todo::
+           `CRUDMixin.get_by_id` silently fails if the parameter is not
+           convertible to an integer, but it should probable raise a runtime exception
+           (design error).
+        """
         if any(
             (isinstance(id, basestring) and id.isdigit(),
              isinstance(id, (int, float))),
@@ -33,21 +62,52 @@ class CRUDMixin(object):
 
     @classmethod
     def create(cls, **kwargs):
+        """
+        Creates a new model instance, with the given keyword parameters,
+        and immediately persists it to the database, hence assigning
+        a value to its :attr:`id' attribute (primary key).
+
+        :param kwargs:
+        """
         instance = cls(**kwargs)
         return instance.save()
 
     def update(self, commit=True, **kwargs):
+        """
+        Modifies instance attributes as specified in keyword arguments,
+        and immediately save it two the active database session.
+
+        :param commit: set this to False to avoid committing database changes.
+        :param kwargs: whatever fields you need to update
+
+        :return: self
+        """
         for attr, value in kwargs.iteritems():
             setattr(self, attr, value)
         return commit and self.save() or self
 
     def save(self, commit=True):
+        """
+        Adds the instance to the database and optionnally
+        commit the session.
+        :param commit:
+        :return:
+        """
         db.session.add(self)
         if commit:
             db.session.commit()
         return self
 
     def delete(self, commit=True):
+        """
+        Removes the instance to the database and optionnally
+        commit the session.
+
+        .. todo:: Maybe clear the id attribute to mark the object invalid.
+
+        :param commit:
+        :return:
+        """
         db.session.delete(self)
         return commit and db.session.commit()
 
@@ -60,7 +120,7 @@ class User(UserMixin, CRUDMixin, db.Model):
     find a specific user given her email (:meth:`get_by_email`).
 
     The primary key is inherited from :class:`CRUDMixin`
-    (:attr::`CRUDMixin.id`)
+    (:attr:`CRUDMixin.id`)
 
     """
     __tablename__ = 'users'
@@ -70,6 +130,15 @@ class User(UserMixin, CRUDMixin, db.Model):
     password = db.Column(db.String(32))
 
     def __init__(self, username, email, password):
+        """
+        Object constructor.
+        Password is stored encrypted through
+        :meth:`werzeug.security.generate_password_hash`
+        
+        :param username:
+        :param email:
+        :param password:
+        """
         self.username = username
         self.email = email
         self.password = generate_password_hash(password)
