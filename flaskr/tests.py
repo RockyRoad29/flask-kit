@@ -70,3 +70,17 @@ class TestFlaskrBlueprint(KitTestCase):
         entry = Entry.query.one()
         self.assertIsNotNone(entry)
         self.assertEquals("Volatile test post", entry.title)
+
+
+
+    def test_post_entries_reserved(self):
+        """
+        An anonymous user cannot post entry data
+        """
+        response = self.client.post(url_for('flaskr.show_entries'),
+                                    data={'title': "Illegal", 'text': "This post should not be accepted"},
+                                    follow_redirects=False)
+        #print response.data
+        self.assertEquals(302, response.status_code)
+        redir = 'You should be redirected automatically to target URL: <a href="/flaskr/entries/">/flaskr/entries/</a>.'
+        self.assertTrue(redir in response.data)
