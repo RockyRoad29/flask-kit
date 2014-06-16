@@ -17,7 +17,6 @@
     :license: BSD, see LICENSE for more details.
 
 """
-
 from flask.ext.testing import TestCase
 from base import User
 from helpers import AppFactory
@@ -27,12 +26,18 @@ from ext import db
 
 class KitTestCase(TestCase):
 
+    username = 'John Doe'
+    email = 'john@doe.com'
+    password = 'test'
+    login_url = '/login'
+    logout_url = '/logout'
+
     def create_app(self):
         return AppFactory(TestingConfig).get_app(__name__)
 
     def setUp(self):
         db.create_all()
-        self.user = User(username='John Doe', email='john@doe.com', password='test')
+        self.user = User(username=self.username, email=self.email, password=self.password)
         self.user.save()
 
     def tearDown(self):
@@ -64,3 +69,30 @@ class KitTestCase(TestCase):
         else:
             self.assertTrue(real_count != 0,
                 msg_prefix + "Couldn't find '%s' in response" % text)
+
+    def login(self):
+        return self.client.post(self.login_url, data=dict(
+            email=self.email,
+            password=self.password
+        ), follow_redirects=True)
+
+    def logout(self):
+        return self.client.post(self.logout_url, follow_redirects=True)
+
+    def flash_messages(self,response):
+        from StringIO import StringIO
+        stri = StringIO(response.data)
+        div = None
+        while True:
+            nl = stri.readline()
+            if nl == '': return None
+            if '<div class="l-75-c flash-messages">' in nl:
+                div = nl
+                break
+        while True:
+            nl = stri.readline()
+            if nl == '': return None
+            div += nl
+            if '</div>' in nl: break
+        return div
+

@@ -33,7 +33,7 @@ base.add_url_rule('', view_func=FrontView.as_view('front_page'))
 class LoginView(MethodView):
     _messages = {'success': 'You are the boss!',
                  'invalid_auth': 'Who are you?',
-                 'invalid_form': 'Invalid form.',
+                 'invalid_data': 'Invalid data.',
                  }
 
     def get(self):
@@ -59,7 +59,7 @@ class LoginView(MethodView):
         """
         form = LoginForm()
         if not form.validate_on_submit():
-            flash(self._messages['invalid_form'])
+            flash(self._messages['invalid_data'])
             return render_template('login.html', form=form)
 
         user = User.get_by_email(form.email.data)
