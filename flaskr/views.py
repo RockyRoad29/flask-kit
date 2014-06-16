@@ -24,12 +24,14 @@ def index():
 def show_entries():
     if current_user.is_authenticated():
         entry = Entry()
-        form = EntryForm(obj=entry,csrf_enabled=True)
+        form = EntryForm(obj=entry)
         if form.validate_on_submit():
             form.populate_obj(entry)
             entry.save()
             flash("Added entry")
             return redirect(url_for('.show_entries'))
+        elif form.is_submitted():
+            flash("Invalid data")
     else:
         form = None
 
