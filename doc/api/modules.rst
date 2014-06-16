@@ -12,3 +12,4 @@ Modules
    manage
    base
    info
+   flaskr
