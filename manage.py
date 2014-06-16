@@ -58,8 +58,8 @@ def init_data():
     db.drop_all()
     db.create_all()
 
-    user = User(username='John Doe', email='john@doe.com', password='test')
-    user.save()
+    admin = User(username=app.config['ADMIN_USERNAME'], email=app.config['ADMIN_EMAIL'], password=app.config['ADMIN_PASSWORD'])
+    admin.save()
 
 
 manager.add_command('shell', Shell(make_context=lambda:{'app': app, 'db': db}))

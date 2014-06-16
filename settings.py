@@ -32,11 +32,15 @@ class BaseConfig(object):
     DEBUG = False
     SECRET_KEY = "MY_VERY_SECRET_KEY"
     SQLALCHEMY_DATABASE_URI = 'sqlite:////tmp/test.db'
+    ADMIN_USERNAME='admin'
+    ADMIN_PASSWORD='default'
+    ADMIN_EMAIL='admin@example.com'
     CSRF_ENABLED = True
     ROOT_PATH = os.path.abspath(os.path.dirname(__file__))
 
     BLUEPRINTS = ['base.base',
                   'info.info',
+                  'flaskr.flaskr'
                   ]
     "a list of registered blueprints."
 
@@ -67,6 +71,7 @@ class TestingConfig(BaseConfig):
     """
     Designed for running tests, it uses an in-memory sqlite database.
 
+    >>> from helpers import AppFactory
     >>> app = AppFactory(TestingConfig).get_app("my-tests")
     """
     TESTING = True

@@ -32,6 +32,7 @@ class AppFactory(object):
     """
     Flask application factory.
 
+    >>> from settings import TestingConfig
     >>> app = AppFactory(TestingConfig).get_app(__name__)
 
     """

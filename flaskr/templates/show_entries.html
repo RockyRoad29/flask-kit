@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% from "macros/form_helpers.html" import common_form_field %}
+
+{% block content %}
+    <article class="page l-75-c">
+        <header class="page__header">
+            <h1 class="page__title">Current list of entries</h1>
+        </header>
+        <div class="page__content">
+            <ul class=entries>
+                {% for entry in entries %}
+                    <li><h2>{{ entry.title }}</h2>{{ entry.text|safe }}
+                        {% else %}
+                    <li><em>Unbelievable. No entries here so far</em>
+                {% endfor %}
+            </ul>
+
+            {% if current_user.is_authenticated() and add_form %}
+                <section class="add-entry">
+                    <h2>Add a new entry</h2>
+
+                    <form action="{{ url_for('.show_entries') }}" method="POST" class="common-form">
+                        {{ add_form.hidden_tag() }}
+                        {{ common_form_field(add_form.title, class_='input common-form__input') }}
+                        {{ common_form_field(add_form.text, class_='input common-form__input') }}
+                        <input type="submit" class="button common-form__submit" value="Add">
+                    </form>
+                </section>
+            {% endif %}
+        </div>
+    </article>
+{% endblock %}

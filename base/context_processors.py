@@ -14,6 +14,7 @@
     from Flask templates documentation.
 
     :copyright: \(c) 2012 by Roman Semirook.
+    :copyright: \(c) 2014 by Michelle Baert.
     :license: BSD, see LICENSE for more details.
 """
 
@@ -24,7 +25,11 @@ from ext import gravatar
 
 def common_context():
     return {'gravatar': gravatar,
-            'my_email': 'semirook@gmail.com'
+            'email_roman': 'semirook@gmail.com',
+            'email_rockyroad': 'rocky.road@rocky-shore.net',
+            'flask_home':'http://flask.pocoo.org',
+            'flaskkit_main': 'https://github.com/semirook/flask-kit',
+            'flaskkit_fork': 'https://github.com/RockyRoad29/flask-kit',
             }
 
 
@@ -37,11 +42,14 @@ def navigation():
     main_page = {'name': 'Main',
                  'url': url_for('base.front_page'),
                  }
-    projects_page = {'name': 'Help',
+    info_page = {'name': 'Help',
                      'url': url_for('info.help'),
                      }
+    flaskr_page = {'name': 'Blog',
+                     'url': url_for('flaskr.index'),
+                     }
 
-    return {'navigation': (main_page, projects_page)}
+    return {'navigation': (main_page, flaskr_page, info_page)}
 
 
 def common_forms():

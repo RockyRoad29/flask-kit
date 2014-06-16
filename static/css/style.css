@@ -145,3 +145,13 @@ Site footer
 .footer__author-description a {
     color: #ffffff;
 }
+
+.footer .credits {
+    font-size: 12px;
+}
+.footer .credits strong {
+    color: #fcf8aa;
+}
+.footer a {
+    color: #acc9db;
+}
