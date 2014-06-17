@@ -31,7 +31,7 @@ class BaseConfig(object):
     """
     DEBUG = False
     SECRET_KEY = "MY_VERY_SECRET_KEY"
-    SQLALCHEMY_DATABASE_URI = 'sqlite:////tmp/test.db'
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///prod.db'
     ADMIN_USERNAME='admin'
     ADMIN_PASSWORD='default'
     ADMIN_EMAIL='admin@example.com'
@@ -69,6 +69,7 @@ class DevelopmentConfig(BaseConfig):
     DEBUG = True
     DEBUG_TB_PROFILER_ENABLED = True
     DEBUG_TB_INTERCEPT_REDIRECTS = False
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///dev.db'
 
 
 class TestingConfig(BaseConfig):
