@@ -24,6 +24,18 @@ More Technologies
 
 DB Migration
 ~~~~~~~~~~~~
+Miguel Grinberg presents **Flask-Migrate** in
+`post <http://blog.miguelgrinberg.com/post/flask-migrate-alembic-database-migration-wrapper-for-flask>`_
+the source is on
+`github <https://github.com/miguelgrinberg/Flask-Migrate>`_ from Miguel Grinberg
+and a rich `doc here <http://flask-migrate.readthedocs.org/en/latest/>`_ .
+
+See also `flask-alembic <https://github.com/tobiasandtobias/flask-alembic>`_ (stalled since Feb 2013).
+
+Note that **sqlalchemy-migrate**, originally `on google code <https://code.google.com/p/sqlalchemy-migrate/>`_ ,
+is now maintained on `https://github.com/stackforge/sqlalchemy-migrate>`_ and still active.
+
+`here <http://pythonthusiast.pythonblogs.com/230_pythonthusiast/archive/1324_flask_biography_tutorial_part_xi__managing_database_migration_in_production_environment_using_alembic.html>`_ is a tutorial not using any extension.
 
 File Uploads
 ~~~~~~~~~~~~
@@ -67,6 +79,8 @@ These are actually use cases where the RESTful API and the web interface applica
 architectures would significantly differ.
 
 `post <http://stackoverflow.com/questions/18290142/multiple-form-in-a-single-page-using-flask-and-wtforms>`_
+
+`in openshift tutorial <http://pythonthusiast.pythonblogs.com/230_pythonthusiast/archive/1365_flask_biography_tutorial_part_xii-implementing_profile_page_using_inline_editing.html>`_
 
 Mail
 ~~~~

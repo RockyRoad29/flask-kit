@@ -10,6 +10,7 @@ Flask-SQLAlchemy==1.0
 Flask-Script==2.0.5
 Flask-Testing==0.4.1
 Flask-WTF==0.9.5
+Flask-Migrate==1.2.0
 
 # Must have Python batteries
 ipython==2.1.0

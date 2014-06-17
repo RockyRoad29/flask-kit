@@ -22,10 +22,14 @@ from flask.ext.gravatar import Gravatar
 from flask.ext.login import LoginManager
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.assets import Environment
+from flask.ext.migrate import Migrate, MigrateCommand
 
 
 #: Our `Flask-SQLAlchemy <http://pythonhosted.org/Flask-SQLAlchemy/>`_ database object
 db = SQLAlchemy()
+
+#: The `Flask-Migrate <http://flask-migrate.readthedocs.org/en/latest/>`_ database migrations engine
+migrate = Migrate()
 
 #: The `Flask-Assets <http://flask-assets.readthedocs.org/en/latest/>`_ :class:`~flask.ext.assets.Environment` to be later registered.
 assets = Environment()

@@ -23,6 +23,8 @@
     +-----------------------+-----------------------------------------------------------------+
     | clean_pyc             | Removes all file:`*.pyc` files from the project folder          |
     +-----------------------+-----------------------------------------------------------------+
+    | schema                | Perform database migrations (alembic)                           |
+    +-----------------------+-----------------------------------------------------------------+
 
     .. todo::
        Add assets managements, as described in :data:`flask.ext.assets.management-command`
@@ -34,6 +36,7 @@
 """
 
 import subprocess
+from flask.ext.migrate import MigrateCommand
 from flask.ext.script import Shell, Manager
 from app import app
 from base import User
@@ -54,13 +57,19 @@ def clean_pyc():
 
 @manager.command
 def init_data():
-    """Fish data for project"""
+    """
+    Fish data for project.
+
+    ..todo:: delegate this to alembic (Flask-Migrate)
+    """
     db.drop_all()
     db.create_all()
 
     admin = User(username=app.config['ADMIN_USERNAME'], email=app.config['ADMIN_EMAIL'], password=app.config['ADMIN_PASSWORD'])
     admin.save()
 
+#: The `Flask-Migrate <http://flask-migrate.readthedocs.org/en/latest/>`_ database migrations command set
+manager.add_command('schema', MigrateCommand)
 
 manager.add_command('shell', Shell(make_context=lambda:{'app': app, 'db': db}))
 
