@@ -38,19 +38,23 @@ class BaseConfig(object):
     CSRF_ENABLED = True
     ROOT_PATH = os.path.abspath(os.path.dirname(__file__))
 
+    #: a list of registered blueprints.
     BLUEPRINTS = ['base.base',
                   'info.info',
                   'flaskr.flaskr'
                   ]
-    "a list of registered blueprints."
 
+    #: a list of registered extensions.
+    #: Each should be an instance of the extension engine,
+    #: and normally has an `init_app(self,app)` method,
+    #: to comply with the application factory pattern,
     EXTENSIONS = ['ext.db',
                   'ext.assets',
                   'ext.login_manager',
                   'ext.gravatar',
                   'ext.toolbar',
+                  'ext.migrate',
                   ]
-    "a list of registered extensions."
 
     CONTEXT_PROCESSORS = ['base.context_processors.common_context',
                           'base.context_processors.navigation',

@@ -22,7 +22,7 @@ from flask.ext.gravatar import Gravatar
 from flask.ext.login import LoginManager
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.assets import Environment
-from flask.ext.migrate import Migrate, MigrateCommand
+from flask.ext.migrate import Migrate
 
 
 #: Our `Flask-SQLAlchemy <http://pythonhosted.org/Flask-SQLAlchemy/>`_ database object

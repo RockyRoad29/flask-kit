@@ -1,0 +1,44 @@
+--- /usr/local/src/Flask-Migrate/flask_migrate/__init__.py	2014-06-17 21:00:10.000000000 
++++ /home/mich/Learn/webauth/flask/flask-kit/.venv/local/lib/python2.7/site-packages/flask_migrate/__init__.py	2014-06-17 22:19:53.000000000 
+@@ -13,20 +13,34 @@
+     def metadata(self):
+         """Backwards compatibility, in old releases app.extensions['migrate']
+         was set to db, and env.py accessed app.extensions['migrate'].metadata"""
+         return self.db.metadata
+ 
+ class Migrate(object):
+-    def __init__(self, app = None, db = None, directory = 'migrations'):
+-        if app is not None and db is not None:
+-            self.init_app(app, db, directory)
++    def __init__(self, app = None):
++        if app is not None:
++            self.init_app(app)
+ 
+-    def init_app(self, app, db, directory = 'migrations'):
+-        if not hasattr(app, 'extensions'):
+-            app.extensions = {}
+-        app.extensions['migrate'] = _MigrateConfig(db, directory)
++    def init_app(self, app):
++        """
++        This method should comply with Application Factory pattern,
++        i.e. accept a single argument, `app`, and takes other
++        settings from `app.config`.
++
++        This extension being dependent on Flask-SQLAlchemy, it must be initialized after,
++        so that the database object is already initialized and known to the app.
++
++        The migration directory is read from app.config['MIGRATE_DIRECTORY']
++        and defaults to 'migrations'.
++        
++        :param app: Flask application object
++        """
++        if not hasattr(app, 'extensions') or ('sqlalchemy' not in app.extensions):
++            raise Exception("Flask-SQLAlchemy should be initialized before Flask-Migrate")
++        directory = app.config.setdefault('MIGRATE_DIRECTORY', 'migrations')
++        app.extensions['migrate'] = _MigrateConfig(app.extensions['sqlalchemy'].db, directory)
+ 
+ class Config(AlembicConfig):
+     def get_template_directory(self):
+         package_dir = os.path.abspath(os.path.dirname(__file__))
+         return os.path.join(package_dir, 'templates')
+ 
