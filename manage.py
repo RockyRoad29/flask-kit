@@ -3,7 +3,7 @@
 
 """
     Set of some useful management commands,
-    based on :py:mod:`script extension <flask.ext.script>`
+    based on :py:mod:`script extension <flask_script>`
     (:py:class:`flask.ext.Manager`)
 
     A set of scripts, based on :py:mod:`script extension <flask.ext.script>`
@@ -19,7 +19,7 @@
     +-----------------------+-----------------------------------------------------------------+
     | shell                 | Runs interactive shell, ipython if installed                    |
     +-----------------------+-----------------------------------------------------------------+
-    | init_data             | Creates some demo DB-tables and data                            |
+    | init_data             | Resets the database schema and data.                            |
     +-----------------------+-----------------------------------------------------------------+
     | clean_pyc             | Removes all file:`*.pyc` files from the project folder          |
     +-----------------------+-----------------------------------------------------------------+
@@ -27,9 +27,8 @@
     +-----------------------+-----------------------------------------------------------------+
 
     .. todo::
-       Add assets managements, as described in :data:`flask.ext.assets.management-command`
-
-
+       Add assets managements, as described in `doc <http://flask-assets.readthedocs.org/en/latest/#management-command>`_
+       
     :copyright: \(c) 2012 by Roman Semirook.
     :copyright: \(c) 2014 by Michelle Baert.
     :license: BSD, see LICENSE for more details.
@@ -45,7 +44,7 @@ from ext import db
 
 manager = Manager(app)
 """
-The :py:class:`Manager` object from the :py:mod:`script extension <flask.ext.script>`
+The `~flask_script.Manager` object from the `Flask-Script` extension.
 """
 
 @manager.command
@@ -58,9 +57,11 @@ def clean_pyc():
 @manager.command
 def init_data():
     """
-    Fish data for project.
+    Resets the database schema and data.
 
-    ..todo:: delegate this to alembic (Flask-Migrate)
+    You need to call this to create your admin user,
+
+    :seealso: `~manage.schema`
     """
     db.drop_all()
     db.create_all()

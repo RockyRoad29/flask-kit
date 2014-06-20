@@ -23,10 +23,20 @@ I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
 
 # [Customized Section
 PROJECT_BASE  = ../..
+APIDOC_TEMP   = /tmp/apidoc/
+# SOURCES       = $(PROJECT_BASE) $(PROJECT_BASE)/migrations $(PROJECT_BASE)/migrations/versions
+SUBPROJECTS   = migrations migrations/versions
+
 apidoc:
 	@echo \    Sphinx apidoc would regenerate rst files\; here\'s a dry-run:
 	sphinx-apidoc -fe -n -o . $(PROJECT_BASE)
+	@echo "\n"    Run "make apidoc-temp" to generate files in $(APIDOC_TEMP).
 	@echo "\n"    Run "make apidoc-force" to perform the changes.
+
+apidoc-temp:
+	for src in . $(SUBPROJECTS) ; do \
+	    sphinx-apidoc -fe -o $(APIDOC_TEMP)/$$src $(PROJECT_BASE)/$$src ;\
+	done
 
 apidoc-force:
 	sphinx-apidoc -fe -o . $(PROJECT_BASE)

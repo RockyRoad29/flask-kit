@@ -31,6 +31,7 @@ Flask Kit documentation
    :maxdepth: 2
 
    modules
+   migrations/modules
    todo
    roadmap
 
