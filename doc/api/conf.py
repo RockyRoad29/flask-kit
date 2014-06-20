@@ -23,7 +23,7 @@ sys.path.insert(0, PROJ_ROOT)
 sys.path.insert(0, PROJ_ROOT + '/migrations')
 sys.path.insert(0, PROJ_ROOT + '/migrations/versions')
 
-print "Our syspath is now: %r" % (sys.path)
+#print "Our syspath is now: %r" % (sys.path)
 
 # -- General configuration ------------------------------------------------
 
@@ -287,8 +287,10 @@ intersphinx_mapping = {
     'https://flask-login.readthedocs.org/en/latest/' : None,
     'http://flask-debugtoolbar.readthedocs.org/en/latest/': None,
     'http://django-debug-toolbar.readthedocs.org/en/1.2/': None,
-    'http://pythonhosted.org/Flask-SQLAlchemy': 'Flask-SQLAlchemy.inv',
-}
+    'http://pythonhosted.org/Flask-SQLAlchemy': None,
+    'http://flask-migrate.readthedocs.org/en/latest/': None,
+    'http://alembic.readthedocs.org/en/latest/' : None,
+    }
 # Note: You might need to rebuild doctree when using/updating intersphinx labels
 #       ... they don't seem to be popular anyway, I gave up the 'new format'
 # Autodoc settings
