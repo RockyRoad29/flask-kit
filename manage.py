@@ -80,6 +80,7 @@
 """
 
 import subprocess
+from flask import url_for
 from flask.ext.assets import ManageAssets
 from flask.ext.migrate import MigrateCommand
 from flask.ext.script import Shell, Manager
@@ -92,6 +93,15 @@ manager = Manager(app)
 """
 The `~flask_script.Manager` object from the `Flask-Script` extension.
 """
+
+manager.add_command('shell', Shell(make_context=lambda:{'app': app, 'db': db}))
+
+#: The `Flask-Migrate <http://flask-migrate.readthedocs.org/en/latest/>`_ database migrations command set
+manager.add_command('schema', MigrateCommand)
+
+# Add assets managements, as described in `doc <http://flask-assets.readthedocs.org/en/latest/#management-command>`_
+manager.add_command("assets", ManageAssets())  # assets_env={'app': app}
+
 
 @manager.command
 def clean_pyc():
@@ -115,14 +125,48 @@ def init_data():
     admin = User(username=app.config['ADMIN_USERNAME'], email=app.config['ADMIN_EMAIL'], password=app.config['ADMIN_PASSWORD'])
     admin.save()
 
+@manager.command
+def list_routes():
+    """
+    Thanks to Jonathan on http://stackoverflow.com/a/19116758/2219061
 
-manager.add_command('shell', Shell(make_context=lambda:{'app': app, 'db': db}))
+    :return:
+    """
+    import urllib
+    output = []
+    for rule in app.url_map.iter_rules():
 
-#: The `Flask-Migrate <http://flask-migrate.readthedocs.org/en/latest/>`_ database migrations command set
-manager.add_command('schema', MigrateCommand)
+        options = {}
+        for arg in rule.arguments:
+            options[arg] = "[{0}]".format(arg)
 
-# Add assets managements, as described in `doc <http://flask-assets.readthedocs.org/en/latest/#management-command>`_
-manager.add_command("assets", ManageAssets())  # assets_env={'app': app}
+        methods = ','.join(rule.methods)
+        url = url_for(rule.endpoint, **options)
+        line = urllib.unquote("{:50s} {:20s} {}".format(rule.endpoint, methods, url))
+        # for python3 use: urllib.parse.unquote()
+        output.append(line)
 
+    for line in sorted(output):
+        print(line)
+
+@manager.command
+def list_routes2():
+    """
+    Thanks to jjia6395 on http://stackoverflow.com/a/22651263/2219061
+
+    This version shows full rule instead of using url_for which would
+    break if your arguments are not string e.g. float.
+    :return:
+    """
+    import urllib
+
+    output = []
+    for rule in app.url_map.iter_rules():
+        methods = ','.join(rule.methods)
+        line = urllib.unquote("{:50s} {:20s} {}".format(rule.endpoint, methods, rule))
+        output.append(line)
+
+    for line in sorted(output):
+        print(line)
 if __name__ == '__main__':
     manager.run()

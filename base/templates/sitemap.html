@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+
+{% block login_header %}{% endblock %}
+
+
+{% block content %}
+    <article class="page l-75-c">
+        <header class="page__header">
+            <h1 class="page__title">Site Map</h1>
+        </header>
+    <ul class="sitemap">
+        {% for url, endpoint in links %}
+            <li><a href="{{ url }}">{{ endpoint }}</a></li>
+        {% endfor %}
+    </ul>
+    </article>
+{% endblock %}

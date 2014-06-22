@@ -12,6 +12,7 @@
 """
 
 import os
+import logging
 from flask import Flask
 from werkzeug.utils import import_string
 
@@ -62,6 +63,7 @@ class AppFactory(object):
         self.app.config.from_object(self.app_config)
         self.app.config.from_envvar(self.app_envvar, silent=True)
 
+        self._setup_logging()
         self._bind_extensions()
         self._register_blueprints()
         self._register_context_processors()
@@ -137,3 +139,8 @@ class AppFactory(object):
                 self.app.register_blueprint(getattr(module, b_name))
             else:
                 raise NoBlueprintException('No {bp_name} blueprint found'.format(bp_name=b_name))
+
+    def _setup_logging(self):
+        self.app.logger.setLevel(self.app.config.get('LOGGING_LEVEL', logging.INFO))
+        for handler in self.app.config.get('LOGGING_HANDLERS', []):
+            self.app.logger.addHandler(handler)

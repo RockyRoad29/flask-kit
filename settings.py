@@ -21,6 +21,7 @@ Look into the file for examples.
     :copyright: \(c) 2014 by Michelle Baert.
     :license: BSD, see LICENSE for more details.
 """
+import logging
 
 import os
 
@@ -62,6 +63,14 @@ class BaseConfig(object):
                           ]
     "a list of registered context processors"
 
+    # Logging
+    # see http://flask.pocoo.org/docs/errorhandling/
+    #: Logging level
+    LOGGING_LEVEL = logging.INFO
+
+    #: A list of configured logging handlers
+    LOGGING_HANDLERS = [
+    ]
 class DevelopmentConfig(BaseConfig):
     """
     During development, we want to enable debugging and profiling.

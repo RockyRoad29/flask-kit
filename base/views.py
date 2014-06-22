@@ -11,7 +11,7 @@
 
 from flask.templating import render_template
 from flask.views import MethodView
-from flask import flash, redirect, request, url_for
+from flask import flash, redirect, request, url_for, current_app
 from flask.ext.login import login_user, login_required, logout_user
 from ext import login_manager
 from base import base
@@ -108,3 +108,17 @@ def logout():
     return redirect(url_for('base.front_page'))
 
 base.add_url_rule('logout', view_func=logout, methods=['POST'])
+
+@base.route("site-map")
+def site_map():
+    links = []
+    for rule in current_app.url_map.iter_rules():
+        # Filter out rules we can't navigate to in a browser
+        # and rules that require parameters
+        if "GET" in rule.methods:
+            if rule.arguments and (not rule.defaults or len(rule.defaults) < len(rule.arguments)):
+                continue
+            url = url_for(rule.endpoint)
+            links.append((url, rule.endpoint))
+    # links is now a list of url, endpoint tuples
+    return render_template('sitemap.html', links=sorted(links, key=lambda x: x[1]))
