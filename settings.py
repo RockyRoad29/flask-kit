@@ -42,7 +42,8 @@ class BaseConfig(object):
     #: a list of registered blueprints.
     BLUEPRINTS = ['base.base',
                   'info.info',
-                  'flaskr.flaskr'
+                  'flaskr.flaskr',
+                  'sa_blog.sa_blog',
                   ]
 
     #: a list of registered extensions.
