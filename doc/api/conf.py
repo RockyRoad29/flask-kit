@@ -20,7 +20,7 @@ import os
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 sys.path.insert(0, os.path.abspath('../..'))
 
-print "Our syspath is now: %r" % (sys.path)
+#print "Our syspath is now: %r" % (sys.path)
 
 # -- General configuration ------------------------------------------------
 
@@ -79,7 +79,7 @@ exclude_patterns = ['_build']
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
-#default_role = None
+default_role = 'py:obj'
 
 # If true, '()' will be appended to :func: etc. cross-reference text.
 #add_function_parentheses = True
@@ -284,7 +284,9 @@ intersphinx_mapping = {
     'https://flask-login.readthedocs.org/en/latest/' : None,
     'http://flask-debugtoolbar.readthedocs.org/en/latest/': None,
     'http://django-debug-toolbar.readthedocs.org/en/1.2/': None,
-    'http://pythonhosted.org/Flask-SQLAlchemy': 'Flask-SQLAlchemy.inv',
+    'http://pythonhosted.org/Flask-SQLAlchemy': None,
+    'http://flask-migrate.readthedocs.org/en/latest/': None,
+    'http://alembic.readthedocs.org/en/latest/' : None,
 }
 # Note: You might need to rebuild doctree when using/updating intersphinx labels
 #       ... they don't seem to be popular anyway, I gave up the 'new format'
