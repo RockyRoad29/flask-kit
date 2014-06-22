@@ -1,8 +1,9 @@
 from datetime import datetime
+from base.models import CRUDMixin
 from ext import db
 
 
-class Post(db.Model):
+class Post(CRUDMixin, db.Model):
     """
     """
     id = db.Column(db.Integer, primary_key=True)
@@ -26,7 +27,7 @@ class Post(db.Model):
         return '<Post %r>' % self.title
 
 
-class Category(db.Model):
+class Category(CRUDMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50))
 
