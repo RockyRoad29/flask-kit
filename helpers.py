@@ -144,3 +144,41 @@ class AppFactory(object):
         self.app.logger.setLevel(self.app.config.get('LOGGING_LEVEL', logging.INFO))
         for handler in self.app.config.get('LOGGING_HANDLERS', []):
             self.app.logger.addHandler(handler)
+
+class MethodDecoratorDescriptor(object):
+    def __init__(self, func, decorator):
+        self.func = func
+        self.decorator = decorator
+
+    def __get__(self, obj, type=None):
+        # simple version:
+        return self.decorator(self.func.__get__(obj, type))
+
+    def __get_cached__(self, obj, type=None):
+        # simple version:
+        # return self.decorator(self.func.__get__(obj, type))
+        # cached instance-only
+        if obj is None:
+            return self
+        rv = obj.__dict__.get(self.func.__name__)
+        if rv is None:
+            rv = self.decorator(self.func.__get__(obj, type))
+            obj.__dict__[self.func.__name__] = rv
+        return rv
+
+def method_decorator(decorator):
+    """
+    Example usage:
+        from flask.ext.login import login_required
+
+        class MyClassBasedView(View):
+            @method_decorator(login_required)
+            def get(self):
+                ...
+
+    :param decorator:
+    :return:
+    """
+    def decorate(f):
+        return MethodDecoratorDescriptor(f, decorator)
+    return decorate

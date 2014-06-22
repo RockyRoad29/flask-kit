@@ -4,6 +4,7 @@
     Example tests.
 
     :copyright: \(c) 2012 by Roman Semirook.
+    :copyright: \(c) 2014 by Michelle Baert.
     :license: BSD, see LICENSE for more details.
 """
 
@@ -13,6 +14,12 @@ from testing import KitTestCase
 
 
 class TestFlaskrBlueprint(KitTestCase):
+
+    def setUp(self):
+        super(TestFlaskrBlueprint, self).setUp()
+        if self.app.login_manager._login_disabled:
+            self.app.logger.warning('Login manager currently disabled. Re-enabling it to test views protection')
+            self.app.login_manager._login_disabled = False
 
     def test_index(self):
         """
@@ -80,7 +87,7 @@ class TestFlaskrBlueprint(KitTestCase):
         response = self.client.post(url_for('flaskr.show_entries'),
                                     data={'title': "Illegal", 'text': "This post should not be accepted"},
                                     follow_redirects=False)
-        #print response.data
+        print repr(response.headers)
+        print response.data
         self.assertEquals(302, response.status_code)
-        redir = 'You should be redirected automatically to target URL: <a href="/flaskr/entries/">/flaskr/entries/</a>.'
-        self.assertTrue(redir in response.data)
+        self.assertTrue(response.headers['Location'].endswith('/login?next=%2Fflaskr%2Fentries%2F'))

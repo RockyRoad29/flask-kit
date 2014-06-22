@@ -11,10 +11,12 @@
     :license: bsd, see license for more details.
 
 """
+from flask import current_app
 
 from flask.ext.login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from ext import db
+from wtforms.ext.sqlalchemy.orm import model_fields
 
 
 class CRUDMixin(object):
@@ -110,6 +112,10 @@ class CRUDMixin(object):
         """
         db.session.delete(self)
         return commit and db.session.commit()
+
+    def get_fields(self):
+        current_app.logger.warning('Generating field list by schema introspection, order is random')
+        return [ k for k in model_fields(self) if k != 'id']
 
 
 class User(UserMixin, CRUDMixin, db.Model):

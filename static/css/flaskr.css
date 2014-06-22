@@ -21,3 +21,7 @@ h2              { font-size: 1.2em; }
 .page {
     width: 120em;
 }
+table.datalist td.text {
+    font-style: italic;
+    font-size: 80%;
+}

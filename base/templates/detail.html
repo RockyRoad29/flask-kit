@@ -1,0 +1,23 @@
+{# Generic detail entity view #}
+
+{% extends "layout.html" %}
+
+{% block content %}
+    <article class="page l-75-c">
+        <header class="page__header">
+        {% block header %}
+            <h1 class="page__title">Detail View</h1>
+        {% endblock %}
+        </header>
+        <div class="page__content">
+            <dl class="data">
+            {% block data %}
+                {% for key in data.get_fields() %}
+                   <dt class="field">{{ key }}</dt>
+                   <dd class="field">{{ data[key] }}</dd>
+                {% endfor %}
+            {% endblock %}
+            </dl>
+        </div>
+    </article>
+{% endblock %}

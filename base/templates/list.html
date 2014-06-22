@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+{# Context:
+:param list_fields: optional. list of names of the fields to list in the table
+:param add_form: optional. A wtf form for adding a new entry
+:param form_fields: optional. list of names of fields to include in form.
+                    defaults to list_fields.
+                    You can generate it from form in python with
+                        [fld for fld in add_form if not fld.name in add_form.data]
+                    (not that easy to do in template).
+ #}
+{% from "macros/form_helpers.html" import common_form_field %}
+    {% block content %}
+    <article class="page l-75-c">
+    <header class="page__header">
+        <h1 class="page__title">Data</h1>
+    </header>
+    <div class="page__content">
+{% if data %}
+    {% if not list_fields %}
+        {# get it from model #}
+        {% set list_fields = data[0].get_fields() %}
+    {% endif %}
+    <table class="datalist">
+        <thead>
+        <tr>
+        {% if detail_view %}
+        <th>&nbsp;</th>
+        {% endif %}
+
+            {% for field in list_fields %}
+                <th class={{ field }}>{{ field }}</th>
+            {% endfor %}
+        </tr>
+        </thead>
+        <tbody>
+        {% for row in data %}
+            <tr>
+            {% if detail_view %}
+            <td class="detail_link"><a href="{{ url_for(detail_view, id=row['id']) }}">details</a></td>
+            {% endif %}
+                {% for field in list_fields %}
+                    <td class="{{ field }}">{{ row[field] }}</td>
+                {% endfor %}
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% else %}
+    <p class="nodata"><em>Unbelievable. No entries here so far</em></p>
+{% endif %}
+{% if add_form %}
+    {% if not form_fields %}
+        {% set form_fields = list_fields %}
+    {% endif %}
+    <section class="add-row">
+        <h2>Add a new entry</h2>
+
+        <form action="{{ url_for('.list') }}" method="POST" class="common-form">
+            {{ add_form.hidden_tag() }}
+            {% for field_name in form_fields %}
+                {{ common_form_field(add_form[field_name], class_='input common-form__input') }}
+            {% endfor %}
+            <input type="submit" class="button common-form__submit" value="Save">
+        </form>
+    </section>
+{% endif %}
+</div>
+</article>
+{% endblock %}

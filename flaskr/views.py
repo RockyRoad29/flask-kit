@@ -6,7 +6,8 @@
     :copyright: \(c) 2014 by Michelle Baert.
     :license: BSD, see LICENSE for more details.
 """
-from flask import url_for, flash, request
+from base.generic_views import DetailView, ListView, ModelViewMixin
+from flask import url_for, flash
 from flask.ext.login import current_user, login_required
 from flask.views import MethodView
 from werkzeug.utils import redirect
@@ -18,7 +19,7 @@ from flaskr.forms import EntryForm
 
 @flaskr.route('/', methods=['GET', 'POST'])
 def index():
-    return redirect(url_for('.show_entries'))
+    return redirect(url_for('.list'))
 
 class EntriesView(MethodView):
     @flaskr.route('/entries')
@@ -54,3 +55,26 @@ class EntriesView(MethodView):
         return render_template('show_entries.html', entries=entries, add_form=form)
 
 flaskr.add_url_rule('/entries/', view_func=EntriesView.as_view('show_entries'))
+
+
+class EntryBaseView(ModelViewMixin):
+    def __init__(self):
+        self.model = Entry
+        self.form = EntryForm
+
+
+class EntryDetailView(EntryBaseView, DetailView):
+    template = 'entry_detail.html'
+    # Note: template 'base.detail.html' would override 'flaskr.detail.html'
+    #       so we prefix filename to keep it in this blueprint.
+    pass
+flaskr.add_url_rule('/entry/<id>', view_func = EntryDetailView.as_view('entry'))
+
+
+class EntryListView(EntryBaseView, ListView):
+    #template = 'entry_list.html'
+    list_fields = ['title', 'text']
+    detail_view = '.entry' # endpoint for EntryDetailView
+    pass
+
+flaskr.add_url_rule('/entry_list', view_func = EntryListView.as_view('list'))
