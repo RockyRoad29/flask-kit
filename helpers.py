@@ -13,7 +13,7 @@
 
 import os
 import logging
-from flask import Flask
+from flask import Flask, current_app
 from werkzeug.utils import import_string
 
 
@@ -182,3 +182,7 @@ def method_decorator(decorator):
     def decorate(f):
         return MethodDecoratorDescriptor(f, decorator)
     return decorate
+
+def breakpoint(enable=True):
+    assert current_app.debug == (not enable), "Don't panic! You're here by request of debug()"
+

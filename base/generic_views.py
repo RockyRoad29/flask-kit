@@ -6,12 +6,15 @@ from flask.ext.login import current_user, login_required
 from flask.ext.sqlalchemy import Model
 from flask.views import MethodView
 #from wtforms.ext.appengine.db import model_form
-from helpers import method_decorator
+from helpers import method_decorator, breakpoint
 from flask.ext.wtf import Form
+from scripts.form_generator import form_from_meta
 import wtforms
 from wtforms.ext.sqlalchemy.orm import model_form, model_fields
 
 __author__ = 'rockyroad'
+
+
 
 
 class ModelViewMixin(object):
@@ -63,6 +66,8 @@ class ModelViewMixin(object):
             assert(issubclass(Form, wtforms.Form)) # requirement of model_form
             self.form = model_form(self.model, db_session=db, base_class=Form)
             current_app.logger.info('built automatic wtf form for %s: %s', self.model.__name__, self.form)
+            print form_from_meta(self.form)
+            breakpoint(enable=True)
         else:
             current_app.logger.info('using custom form for %s: %s', self.model.__name__, self.form)
         assert(issubclass(self.form, flask.ext.wtf.Form)) # otherwise might miss hidden_tag

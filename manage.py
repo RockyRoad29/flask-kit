@@ -102,7 +102,6 @@ manager.add_command('schema', MigrateCommand)
 # Add assets managements, as described in `doc <http://flask-assets.readthedocs.org/en/latest/#management-command>`_
 manager.add_command("assets", ManageAssets())  # assets_env={'app': app}
 
-
 @manager.command
 def clean_pyc():
     """Removes all :file:`*.pyc` files from the project folder"""
@@ -168,5 +167,25 @@ def list_routes2():
 
     for line in sorted(output):
         print(line)
+
+@manager.option('-m', '--module', dest='modulename', default='base.models',
+                help="Give the module name, usually 'your_bp.models'")
+@manager.option('-e', '--entity', dest='modelname', default='User',
+                help="The name of your entity model")
+@manager.command
+def gen_form(modulename, modelname):
+    """
+    Generates a form from a model using SQLAlchemy, then
+    inspects the result to output suitable python form definition.
+    """
+    from importlib import import_module
+    print "importing from module: ", modulename
+    module = import_module(modulename)
+    model = vars(module)[modelname]
+    #print model
+    from scripts.form_generator import form_from_model
+    print form_from_model(model)
+
+
 if __name__ == '__main__':
     manager.run()
