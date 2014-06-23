@@ -45,11 +45,14 @@ def navigation():
     info_page = {'name': 'Help',
                      'url': url_for('info.help'),
                      }
-    flaskr_page = {'name': 'Blog',
+    flaskr_page = {'name': 'Flaskr',
                      'url': url_for('flaskr.index'),
                      }
+    sa_blog_page = {'name': 'SA Blog',
+                     'url': url_for('sa_blog.index'),
+                     }
 
-    return {'navigation': (main_page, flaskr_page, info_page)}
+    return {'navigation': (main_page, flaskr_page, sa_blog_page, info_page)}
 
 
 def common_forms():
