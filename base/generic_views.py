@@ -1,11 +1,14 @@
 from base.models import CRUDMixin
+from ext import db
 from flask import render_template, request, flash, current_app
+import flask
 from flask.ext.login import current_user, login_required
 from flask.ext.sqlalchemy import Model
 from flask.views import MethodView
 #from wtforms.ext.appengine.db import model_form
 from helpers import method_decorator
-from wtforms import Form
+from flask.ext.wtf import Form
+import wtforms
 from wtforms.ext.sqlalchemy.orm import model_form, model_fields
 
 __author__ = 'rockyroad'
@@ -14,7 +17,9 @@ __author__ = 'rockyroad'
 class ModelViewMixin(object):
     #: Your `models.CRUDMixin` model class
     model = None
+    form = None
     list_fields = None
+    form_fields = None
 
     def check_model(self):
         if self.model is None:
@@ -55,8 +60,12 @@ class ModelViewMixin(object):
         :See also: Automatically create a WTForms Form from model `<http://flask.pocoo.org/snippets/60/>`_
         """
         if not self.form:
-            current_app.logger.info('building automatic wtf form for %s', self.model.__name__)
-            self.form = model_form(self.model, Form)
+            assert(issubclass(Form, wtforms.Form)) # requirement of model_form
+            self.form = model_form(self.model, db_session=db, base_class=Form)
+            current_app.logger.info('built automatic wtf form for %s: %s', self.model.__name__, self.form)
+        else:
+            current_app.logger.info('using custom form for %s: %s', self.model.__name__, self.form)
+        assert(issubclass(self.form, flask.ext.wtf.Form)) # otherwise might miss hidden_tag
         return self.form
 
     def new_form(self, obj=None):
@@ -126,6 +135,7 @@ class ListView(MethodView, ModelViewMixin):
         return {
             'data':self.get_all(),
             'list_fields': self.get_list_fields(),
+            'form_fields': self.form_fields,
             'detail_view':self.detail_view
         }
     def get(self):
