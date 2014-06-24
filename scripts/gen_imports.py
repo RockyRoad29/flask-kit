@@ -9,8 +9,6 @@ __author__ = 'rockyroad'
 class ImportsGenerator():
     """
     Collects used classes and generates needed import lines.
-
-    .. todo:: generate forms for several or all model in a given module.
     """
     imports = {}
     names = []

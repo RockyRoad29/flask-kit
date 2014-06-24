@@ -87,6 +87,7 @@ from flask.ext.script import Shell, Manager
 from app import app
 from base import User
 from ext import db
+from scripts.form_generator import forms4package
 
 
 manager = Manager(app)
@@ -168,23 +169,22 @@ def list_routes2():
     for line in sorted(output):
         print(line)
 
-@manager.option('-m', '--module', dest='modulename', default='base.models',
-                help="Give the module name, usually 'your_bp.models'")
-@manager.option('-e', '--entity', dest='modelname', default='User',
-                help="The name of your entity model")
+@manager.option('-n', '--blueprint', dest='blueprint', default='base',
+                help="Give the package name for the blueprint'")
 @manager.command
-def gen_form(modulename, modelname):
+def gen_forms(blueprint):
     """
-    Generates a form from a model using SQLAlchemy, then
-    inspects the result to output suitable python form definition.
+    Generates forms from models using SQLAlchemy, then
+    inspects the result to output suitable python form definition,
+    ready to customize.
+
+    The :file:`forms.py` is not changed (nor any file)
+    unless you redirect standard output like this::
+
+    ./manage.py gen_forms your_blueprint > your_blueprint/forms.py
     """
-    from importlib import import_module
-    print "importing from module: ", modulename
-    module = import_module(modulename)
-    model = vars(module)[modelname]
-    #print model
-    from scripts.form_generator import form_from_model
-    print form_from_model(model)
+    print forms4package(blueprint)
+
 
 
 if __name__ == '__main__':
