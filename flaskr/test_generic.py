@@ -115,3 +115,22 @@ class TestFlaskrDetailViews(FlaskrTestCase):
         self.assertEquals(302, response.status_code)
 
         self.assertTrue(response.headers['Location'].endswith('/login?' + url_encode(dict(next=self.url))))
+
+    def test_add_entry(self):
+        self.login()
+        response = self.client.post(self.url,
+                                    data={'title': "", 'text': "This post will live as long as the test"},
+                                    follow_redirects=False)
+        self.assertContains(response,'This field is required.',1)
+        response = self.client.post(self.url,
+                                    data={'title': "Volatile test post", 'text': "This post will live as long as the test"},
+                                    follow_redirects=True)
+        self.assertContains(response,'form-errors.',0)
+
+        # check entry has been added
+        messages = self.flash_messages(response)
+        print messages
+        self.assertTrue(SUCCESS in messages)
+        entry = Entry.query.one()
+        self.assertIsNotNone(entry)
+        self.assertEquals("Volatile test post", entry.title)

@@ -66,8 +66,6 @@ class ModelViewMixin(object):
             assert(issubclass(Form, wtforms.Form)) # requirement of model_form
             self.form = model_form(self.model, db_session=db, base_class=Form)
             current_app.logger.info('built automatic wtf form for %s: %s', self.model.__name__, self.form)
-            print form_from_meta(self.form)
-            breakpoint(enable=True)
         else:
             current_app.logger.info('using custom form for %s: %s', self.model.__name__, self.form)
         assert(issubclass(self.form, flask.ext.wtf.Form)) # otherwise might miss hidden_tag
