@@ -39,6 +39,9 @@ class Post(CRUDMixin, db.Model):
     def __repr__(self):
         return '<Post %r>' % self.title
 
+    def __str__(self):
+        return 'Post: %s' % self.title
+
     def update(self, form, commit=True, **kwargs):
         current_app.logger.debug('Updating post #%d', self.id)
         self.pub_date = datetime.utcnow()
@@ -52,8 +55,8 @@ class Category(CRUDMixin, db.Model):
     def __init__(self, name=None):
         self.name = name
 
-    # def __repr__(self):
-    #     return '<Category %r>' % self.name
+    def __repr__(self):
+        return '<Category %r>' % self.name
 
     #: Override `__str__` for friendly display in pages.
     def __str__(self):

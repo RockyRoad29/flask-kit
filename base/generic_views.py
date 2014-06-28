@@ -6,7 +6,7 @@ from flask.ext.login import current_user, login_required
 from flask.ext.sqlalchemy import Model
 from flask.views import MethodView
 #from wtforms.ext.appengine.db import model_form
-from helpers import method_decorator
+from helpers import method_decorator, breakpoint
 from flask.ext.wtf import Form
 import wtforms
 from wtforms.ext.sqlalchemy.orm import model_form

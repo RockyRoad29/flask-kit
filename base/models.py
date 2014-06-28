@@ -133,7 +133,6 @@ class CRUDMixin(object):
         current_app.logger.warning('Generating field list by schema introspection, order is random')
         return [ k for k in model_fields(cls, db_session=db) if k != 'id']
 
-
 class User(UserMixin, CRUDMixin, db.Model):
     """
     A basic user model, sufficient for authorization support.

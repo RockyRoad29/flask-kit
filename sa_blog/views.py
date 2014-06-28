@@ -39,13 +39,16 @@ PostListView.map_to_url(sa_blog, '/list', 'list')
 
 class CategoryBaseView(ModelViewMixin):
     model = Category
-    #list_fields = ['name']
+    #: leaving posts in the displayed fields would show sql query in page.
+    list_fields = ['name']
+    form_fields = ['name', 'posts']
     form = CategoryForm
     pass
 
 
 class CategoryDetailView(CategoryBaseView, DetailView):
     #template = 'category_detail.html'
+    list_view = '.cat_list'
     pass
 #sa_blog.add_url_rule('/cat/show/<id>', view_func = CategoryDetailView.as_view('cat_detail'))
 CategoryDetailView.map_to_url(sa_blog, '/cat/show/<int:id>', 'cat_detail')
