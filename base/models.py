@@ -17,6 +17,7 @@ from flask.ext.login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from ext import db
 from wtforms.ext.sqlalchemy.orm import model_fields
+from wtforms.form import BaseForm
 
 
 class CRUDMixin(object):
@@ -95,6 +96,20 @@ class CRUDMixin(object):
         :param commit:
         :return:
         """
+        db.session.add(self)
+        if commit:
+            db.session.commit()
+        return self
+
+    def update(self, form, commit=True):
+        """
+        Updates the instance to the database and optionnally
+        commit the session.
+        :param commit:
+        :return:
+        """
+        assert(isinstance(form, BaseForm))
+        form.populate_obj(self)
         db.session.add(self)
         if commit:
             db.session.commit()

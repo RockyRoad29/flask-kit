@@ -1,6 +1,7 @@
 from datetime import datetime
 from base.models import CRUDMixin
 from ext import db
+from flask import current_app
 
 
 class Post(CRUDMixin, db.Model):
@@ -37,6 +38,11 @@ class Post(CRUDMixin, db.Model):
 
     def __repr__(self):
         return '<Post %r>' % self.title
+
+    def update(self, form, commit=True, **kwargs):
+        current_app.logger.debug('Updating post #%d', self.id)
+        self.pub_date = datetime.utcnow()
+        return super(Post, self).update(form, commit, **kwargs)
 
 
 class Category(CRUDMixin, db.Model):

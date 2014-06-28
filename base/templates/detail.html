@@ -18,6 +18,16 @@
                 {% endfor %}
             {% endblock %}
             </dl>
+            {% if form %}
+                {% from "macros/form_helpers.html" import common_form %}
+                <section class="add-row">
+                    <h2>Edit entry</h2>
+                    {{ common_form(form, action) }}
+                </section>
+           {% endif %}
+        <section class="link">
+            <p><a href="{{ url_for(list_view) }}">Back to list</a></p>
+        </section>
         </div>
     </article>
 {% endblock %}

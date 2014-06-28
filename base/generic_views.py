@@ -6,11 +6,10 @@ from flask.ext.login import current_user, login_required
 from flask.ext.sqlalchemy import Model
 from flask.views import MethodView
 #from wtforms.ext.appengine.db import model_form
-from helpers import method_decorator, breakpoint
+from helpers import method_decorator
 from flask.ext.wtf import Form
-from scripts.form_generator import form_from_meta
 import wtforms
-from wtforms.ext.sqlalchemy.orm import model_form, model_fields
+from wtforms.ext.sqlalchemy.orm import model_form
 
 __author__ = 'rockyroad'
 
@@ -88,7 +87,7 @@ class ModelViewMixin(object):
 
     def get_by_id(self, id):
         self.check_model()
-        current_app.logger.info('retrieving %s from %s', id, self.model.__name__)
+        current_app.logger.info('retrieving %s #%s', self.model.__name__, id)
         return self.model.query.get_or_404(id)
 
     def get_list_fields(self):
@@ -97,27 +96,66 @@ class ModelViewMixin(object):
             current_app.logger.info('built list_fields from model %s : %r', self.model.__name__, self.list_fields)
         return self.list_fields
 
+    @classmethod
+    def map_to_url(cls, blueprint, rule, name, **kwargs):
+        blueprint.add_url_rule(rule, view_func = cls.as_view(name, **kwargs))
+        #cls.rule = blueprint.url_prefix + rule
+        cls.endpoint = blueprint.name + '.' + name
+
+    def build_context(self, **extra):
+        """
+        The template context will be similar for get and post renderings.
+
+        Let's be DRY and put common items here.
+        :return:
+        """
+        ctx = dict(
+            #action=url_for(self.endpoint, **kwargs),
+            action=request.url,
+        )
+        ctx.update(extra)
+        return ctx
+
 
 class DetailView(MethodView, ModelViewMixin):
     template = 'detail.html'
+    list_view = None
+
+    def build_context(self, **extra):
+        # extra.update(list_view=self.list_view)
+        # ^No. We want to let caller override data:
+        ctx = dict(list_view=self.list_view)
+        ctx.update(extra)
+        return super(DetailView, self).build_context(**ctx)
 
     def get(self, id):
-        form = self.new_form() if self.authorized() else None
-        return render_template(self.template, data=self.get_by_id(id), form=form)
+        current_app.logger.info("Processing GET request for %s with id=%s", self, id)
+        obj = self.get_by_id(id)# if id else None
+        assert(obj)
+        ctx = self.build_context(data=obj)
+        if self.authorized():
+            ctx['form'] = self.new_form(obj)
+        #breakpoint(True)
+        return render_template(self.template, **ctx)
 
     @method_decorator(login_required)
-    def post(self):
+    def post(self, id):
+        """
+        If valid, updates the entity.
+        Then renders the template accordingly.
+        """
         form = self.new_form(request.form)
-        obj = None
+        obj = self.get_by_id(id)# if id else self.new_entity()
+        assert(obj)
         if form.validate():
-            obj = self.new_entity()
-            form.populate_obj(obj)
-            obj.save()
-            flash('Successfully added')
+            obj.update(form=form)
+            flash('Successfully updated')
         else:
             flash('Validation failed. Please correct you data.')
         current_app.logger.info('POST form processed')
-        return render_template(self.template, data=obj, form=form )
+        ctx = self.build_context(form=form, data=obj)
+        #breakpoint(True)
+        return render_template(self.template, **ctx)
 
 
 class ListView(MethodView, ModelViewMixin):
@@ -138,16 +176,20 @@ class ListView(MethodView, ModelViewMixin):
         return {
             'data':self.get_all(),
             'list_fields': self.get_list_fields(),
-            'form_fields': self.form_fields,
-            'detail_view':self.detail_view
-        }
+            'form_fields': self.form_fields,# TODO: will be removed, fields are in the form
+            'detail_view':self.detail_view,
+            #'action': url_for(self.endpoint),
+            'action': request.url
+            }
+
     def get(self):
         current_app.logger.info('ListView.get for %s %s', id, self.__class__.__name__)
 
         ctx = self.build_context()
         form = self.new_form() if self.authorized('Create') else None
-        ctx['add_form'] = form
-        return render_template(self.template, **ctx)
+        #ctx['add_form'] = form
+        #breakpoint(True)
+        return render_template(self.template, add_form=form, **ctx)
 
     @method_decorator(login_required)
     def post(self):
@@ -166,6 +208,7 @@ class ListView(MethodView, ModelViewMixin):
         #return render_template(self.template, data=self.get_all(), list_fields=self.get_list_fields(), add_form=form)
         ctx = self.build_context()
         ctx['add_form'] = form
+        #breakpoint(True)
         return render_template(self.template, **ctx)
 
 

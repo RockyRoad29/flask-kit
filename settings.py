@@ -67,7 +67,7 @@ class BaseConfig(object):
     # Logging
     # see http://flask.pocoo.org/docs/errorhandling/
     #: Logging level
-    LOGGING_LEVEL = logging.INFO
+    LOGGING_LEVEL = logging.DEBUG
 
     #: A list of configured logging handlers
     LOGGING_HANDLERS = [

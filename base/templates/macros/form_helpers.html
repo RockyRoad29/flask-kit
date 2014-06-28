@@ -25,3 +25,18 @@
         {{ field(**kwargs) }}
     </div>
 {% endmacro %}
+
+{% macro common_form (form, action) %}
+    <div class="common-form-wrapper">
+    <form method="POST" action="{{ action }}">
+    {{ form.hidden_tag() }}
+    <ul>
+
+    {% for field in form if field.widget.input_type != 'hidden' %}
+          {{ common_form_field(field, class_='input common-form__input') }}
+    {% endfor %}
+    </ul>
+    <input type="submit" class="button common-form__submit" value="Save">
+    </form>
+    </div>
+{% endmacro %}
