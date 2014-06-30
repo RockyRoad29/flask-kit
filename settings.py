@@ -44,6 +44,7 @@ class BaseConfig(object):
                   'info.info',
                   'flaskr.flaskr',
                   'sa_blog.sa_blog',
+                  'contacts.contacts',
                   ]
 
     #: a list of registered extensions.
