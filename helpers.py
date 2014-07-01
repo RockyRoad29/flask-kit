@@ -59,6 +59,7 @@ class AppFactory(object):
         :param kwargs: keyword arguments passed to the Flask constructor
         :return: A new WSGI application object
         """
+        print "Creating Flask Application %r  %r" % (app_module_name, kwargs)
         self.app = Flask(app_module_name, **kwargs)
         self.app.config.from_object(self.app_config)
         self.app.config.from_envvar(self.app_envvar, silent=True)
@@ -101,11 +102,12 @@ class AppFactory(object):
             if not hasattr(module, e_name):
                 raise NoExtensionException('No {e_name} extension found'.format(e_name=e_name))
             ext = getattr(module, e_name)
-            if getattr(ext, 'init_app', False):
+            if callable(ext):
+                ext(self.app)
+            elif getattr(ext, 'init_app', False):
                 ext.init_app(self.app)
             else:
-                ext(self.app)
-
+                raise NoExtensionException('{e_name} extension has no init_app. Can\'t initialize'.format(e_name=e_name))
     def _register_context_processors(self):
         """
         Calls :meth:`flask.Flask.context_processor` for all entries

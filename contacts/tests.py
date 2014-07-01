@@ -14,12 +14,15 @@ class ContactsTestCase(KitTestCase):
     #     entity.save()
     #     return entity
 
-class TestYourBluePrintPages(ContactsTestCase):
+
+class TestContactsPages(ContactsTestCase):
 
     def test_index(self):
         """
         Tests the contacts index page success code.
         :return:
         """
+        print self.client
         response = self.client.get(url_for('contacts.index'))
         self.assert200(response)
+

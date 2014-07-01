@@ -45,6 +45,7 @@ class BaseConfig(object):
                   'flaskr.flaskr',
                   'sa_blog.sa_blog',
                   'contacts.contacts',
+                  'contacts.api_contact',
                   ]
 
     #: a list of registered extensions.
@@ -57,6 +58,7 @@ class BaseConfig(object):
                   'ext.gravatar',
                   'ext.toolbar',
                   'ext.migrate',
+                  'ext.init_api_manager',
                   ]
 
     CONTEXT_PROCESSORS = ['base.context_processors.common_context',

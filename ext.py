@@ -16,10 +16,12 @@
     :license: BSD, see LICENSE for more details.
 
 """
+import flask
 
 from flask.ext.debugtoolbar import DebugToolbarExtension
 from flask.ext.gravatar import Gravatar
 from flask.ext.login import LoginManager
+from flask.ext.restless import APIManager
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.assets import Environment
 from flask.ext.migrate import Migrate
@@ -43,3 +45,23 @@ login_manager = LoginManager()
 
 gravatar = lambda app: Gravatar(app, size=50)  # has no init_app()
 toolbar = lambda app: DebugToolbarExtension(app)  # has no init_app()
+
+
+api_manager = APIManager()
+#init_api_manager = lambda app: api_manager.init_app(app, flask_sqlalchemy_db=db) # needs db as init_app argument
+def init_api_manager(app):
+    """
+
+
+    :type app: flask.Flask
+    :param app:
+    """
+    assert(isinstance(app, flask.Flask))
+    print "Initializing API for %r" % (app,)
+    import contacts
+
+    api_manager.init_app(app, flask_sqlalchemy_db=db) # needs db as init_app argument
+    contacts.api_contact = api_manager.create_api_blueprint(contacts.models.Contact,
+                                                            methods=['GET', 'POST', 'PATCH', 'DELETE'],
+                                                            url_prefix='/api/v0')
+    # the url for listing contacts will be: $HOST:$PORT/api/v0/contact
