@@ -47,6 +47,35 @@ for example :file:`static/css/your_blueprint.css`
 - :file:`your_blueprint/forms.py`
 - :file:`your_blueprint/tests.py`
 
+.. rubric:: Tests first
+
+:file:`your_blueprint/tests.py`::
+
+    from testing import KitTestCase
+    from flask import url_for
+
+    class YourBlueprintTestCase(KitTestCase):
+        """
+        Put here utilities, not tests.
+
+        """
+
+        # def db_addEntity(self, name="Sample", description="This is a sample for testing"):
+        #     "Adds a record directly to model and database"
+        #     entity = Entity(name, description)
+        #     entity.save()
+        #     return entity
+
+    class TestYourBluePrintPages(YourBlueprintTestCase):
+
+        def test_index(self):
+            """
+            Tests the your_blueprint index page success code.
+            :return:
+            """
+            response = self.client.get(url_for('your_blueprint.index'))
+            self.assert200(response)
+
 .. rubric:: Useful shell commands (linux)
 
 It may be handy to define a shell variable for your blueprint name, e.g.::
