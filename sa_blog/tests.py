@@ -120,7 +120,7 @@ class ViewsTests(SaBlogTestCase):
         post.pub_date = d1
         post.save()
 
-        post = Post.get_by_id(1)
+        post = Post.query.get(1)
         self.assertEquals(d1,post.pub_date)
 
         self.login()
@@ -134,7 +134,7 @@ class ViewsTests(SaBlogTestCase):
         self.assertContains(response,'form-errors.',0)
 
         # Retrieve it again from db
-        post = Post.get_by_id(1)
+        post = Post.query.get(1)
         self.assertEquals(post_title, post.title)
         print "Post date is now: %r" % post.pub_date
         self.assertTrue(post.pub_date > d1)

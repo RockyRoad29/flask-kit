@@ -94,7 +94,7 @@ def load_user(user_id):
     :param user_id: the unicode ID of a user
     :return:the corresponding user object
     """
-    return User.get_by_id(user_id)
+    return User.query.get(user_id)
 
 
 @login_required

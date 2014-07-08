@@ -44,7 +44,7 @@ class TestFrontBlueprint(KitTestCase):
         """
         The configured user should be kept in model
         """
-        user1 = User.get_by_id(1)
+        user1 = User.query.get(1)
         self.assertIsNotNone(user1)
         self.assertEquals(self.username, user1.username)
 

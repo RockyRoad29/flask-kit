@@ -150,6 +150,19 @@ def list_routes():
         print(line)
 
 @manager.command
+@manager.option('-b', '--bind', help='SA bind name')
+def show_schema(bind=None):
+    from sqlalchemy.schema import CreateTable
+    from s2m import models, models2013
+    print "Schema for bind %r" % (bind,)
+    #engine = db.get_engine(app,'s2m_2013')
+    #binds = db.get_binds()
+    #print repr(binds)
+    tables = db.get_tables_for_bind(bind)
+    for tbl in tables:
+        print CreateTable(tbl)
+
+@manager.command
 def list_routes2():
     """
     Thanks to jjia6395 on http://stackoverflow.com/a/22651263/2219061

@@ -44,24 +44,11 @@ class CRUDMixin(object):
     @classmethod
     def get_by_id(cls, id):
         """
-        Retrieves a record by primary key.
-
-        See :meth:`flask.ext.sqlalchemy.SQLAlchemy.Model.get`
-
-        :param id:
-        :return:
-
-        .. todo::
-           `CRUDMixin.get_by_id` silently fails if the parameter is not
-           convertible to an integer, but it should probable raise a runtime exception
-           (design error).
+        Retrieved a record by primary key.
+        @deprecated Removed: the integer pk and name restriction seems pointless.
+        :param id: a pk integer compatible value
         """
-        if any(
-            (isinstance(id, basestring) and id.isdigit(),
-             isinstance(id, (int, float))),
-        ):
-            return cls.query.get(int(id))
-        return None
+        raise NotImplementedError("This method has been removed. use `model.query.get()` instead.")
 
     @classmethod
     def create(cls, **kwargs):
@@ -130,7 +117,10 @@ class CRUDMixin(object):
 
     @classmethod
     def get_fields(cls):
-        current_app.logger.warning('Generating field list by schema introspection, order is random')
+        """
+        @deprecated form iterator does this better.
+        """
+        current_app.logger.warning('@DEPRECATED Generating field list by schema introspection, order is random')
         return [ k for k in model_fields(cls, db_session=db) if k != 'id']
 
 class User(UserMixin, CRUDMixin, db.Model):
@@ -146,6 +136,7 @@ class User(UserMixin, CRUDMixin, db.Model):
     """
     __tablename__ = 'users'
 
+    id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(32))
     email = db.Column(db.String(32), unique=True)
     password = db.Column(db.String(32))
