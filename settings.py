@@ -96,5 +96,5 @@ class TestingConfig(BaseConfig):
     SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
     WTF_CSRF_ENABLED = False
     LOGGING_HANDLERS = [
-        logging.FileHandler('testing.log', mode='w',encoding='utf-8')
+        logging.FileHandler('testing.log', mode='w', encoding='utf-8')
     ]

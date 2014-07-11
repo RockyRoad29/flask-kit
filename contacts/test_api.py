@@ -31,6 +31,9 @@ class TestContactsAPI(KitTestCase):
     def api_call(self, method, data, path=''):
         #assert isinstance(self.client, flask.testing.FlaskClient)
         response = self.client.open(self.url + path, method=method, headers=self.headers, data=json.dumps(data))
+        if response.status_code != 200:
+            print response.status # code and title
+            print response.data
         return response
 
     def testInitialListIsEmpty(self):
@@ -44,6 +47,7 @@ class TestContactsAPI(KitTestCase):
     def testCRUD(self):
         # Make a POST request to create an object in the database.
         data = dict(first_name='John', last_name="Doe", email='john.doe@example.com')
+        # FIXME 400 BAD REQUEST "Model does not have field 'email'"
         response = self.api_call('POST', data)
         self.assertEquals(201, response.status_code)
 

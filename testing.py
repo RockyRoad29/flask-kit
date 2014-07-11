@@ -36,13 +36,15 @@ class KitTestCase(TestCase):
         return AppFactory(TestingConfig).get_app(__name__)
 
     def setUp(self):
-        db.create_all()
+        # Create main database, leaving binds alone.
+        db.create_all(bind=None)
         self.user = User(username=self.username, email=self.email, password=self.password)
         self.user.save()
 
     def tearDown(self):
         db.session.remove()
-        db.drop_all()
+        # Clean main database, leaving binds alone.
+        db.drop_all(bind=None)
 
     def assertContains(self, response, text, count=None,
                        status_code=200, msg_prefix=''):
