@@ -46,8 +46,8 @@ class TestContactsAPI(KitTestCase):
 
     def testCRUD(self):
         # Make a POST request to create an object in the database.
-        data = dict(first_name='John', last_name="Doe", email='john.doe@example.com')
-        # FIXME 400 BAD REQUEST "Model does not have field 'email'"
+        user_email = 'john.doe@example.com'
+        data = dict(first_name='John', last_name="Doe", emails=[dict(email=user_email)])
         response = self.api_call('POST', data)
         self.assertEquals(201, response.status_code)
 
@@ -55,20 +55,21 @@ class TestContactsAPI(KitTestCase):
         response = self.api_call('GET', None)
         self.assertEquals(200, response.status_code)
         self.assertEquals(1, response.json['num_results'])
-        self.assertEquals(data['email'], response.json['objects'][0]['email'])
+        print response.json['objects'][0]['emails'][0]['email']
+        self.assertEquals(user_email, response.json['objects'][0]['emails'][0]['email'])
 
         # The new record should be retrieved by id
         response = self.api_call('GET', None, path='/1')
         self.assertEquals(200, response.status_code)
         print "retrieved_contact =", response.data
-        self.assertEquals(data['email'], response.json['email'])
+        self.assertEquals(user_email, response.json['emails'][0]['email'])
 
         # update record
         new_email = 'john@doe.com'
-        response = self.api_call('PATCH', dict(email=new_email), path='/1')
+        response = self.api_call('PATCH', dict(emails=[{'email': new_email}]), path='/1')
         self.assertEquals(200, response.status_code)
         print "updated_contact = ", response.data
-        self.assertEquals(new_email, response.json['email'])
+        self.assertEquals(new_email, response.json['emails'][0]['email'])
 
         # delete record
         response = self.api_call('DELETE', None, path='/1')
