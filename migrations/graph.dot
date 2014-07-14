@@ -1,0 +1,29 @@
+// This file is *not* auto-generated.
+// It is hand-written based on the results of alembic history command
+
+Digraph G {
+        // Revisions flow by ID
+        node [shape=box];
+        
+        R_7b278e6e2b9 ->
+        R_40939ec4df7e ->
+        R_437c691a0fe2 ;
+        
+        
+        // Revision comments, displayed beside the described revision node
+        node [shape=none];
+        {
+        rank=same;
+        R_7b278e6e2b9;
+        M_7b278e6e2b9 [label="First Alembic Migration revision."];       
+        }
+        { rank=same;                
+        R_40939ec4df7e;
+        M_40939ec4df7e [label="posts and categories"];
+        }
+        {
+        rank=same;
+        R_437c691a0fe2;
+        M_437c691a0fe2 [label="contacts and emails"];
+        }
+        }
