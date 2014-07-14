@@ -62,6 +62,9 @@ def init_api_manager(app):
 
     api_manager.init_app(app, flask_sqlalchemy_db=db) # needs db as init_app argument
     contacts.api_contact = api_manager.create_api_blueprint(contacts.models.Contact,
+                                                            # include_columns=[
+                                                            #     'id', 'first_name', 'last_name',
+                                                            #     'emails', 'emails.email'],
                                                             methods=['GET', 'POST', 'PATCH', 'DELETE'],
                                                             url_prefix='/api/v0')
     # the url for listing contacts will be: $HOST:$PORT/api/v0/contact

@@ -19,7 +19,7 @@ cannot be used directly because we want to encrypt password,
 We may be able to use `alembic.context <http://alembic.readthedocs.org/en/latest/api.html#module-alembic.migration>`_
 but `manager.command <http://flask-script.readthedocs.org/en/latest/#creating-and-running-commands>`_ might be a better option .
 
-:seealso: http://albembic.readthedocs.org/en/latest/cookbook.html#conditional-migration-elements
+:seealso: http://alembic.readthedocs.org/en/latest/cookbook.html#conditional-migration-elements
 
 Revision ID: 7b278e6e2b9
 Revises: None
