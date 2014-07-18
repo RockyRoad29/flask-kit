@@ -27,7 +27,7 @@ class TestContactsPages(ContactsTestCase):
         :return:
         """
         print self.client
-        response = self.client.get(url_for('contacts.index'))
+        response = self.client.get(url_for('contacts.index'), follow_redirects=True)
         self.assert200(response)
 
     def testJohnDoe(self):

@@ -119,11 +119,15 @@ def init_data():
 
     :seealso: `~manage.schema`
     """
-    db.drop_all()
-    db.create_all()
-
-    admin = User(username=app.config['ADMIN_USERNAME'], email=app.config['ADMIN_EMAIL'], password=app.config['ADMIN_PASSWORD'])
-    admin.save()
+    print "database schema unchanged. Use `manage schema` to migrate if needed."
+    #db.drop_all()
+    #db.create_all()
+    admin = User.query.get(1)
+    if admin:
+        print "Initial user already exists:", admin.username, '<' + admin.email + '>'
+    else:
+        admin = User(username=app.config['ADMIN_USERNAME'], email=app.config['ADMIN_EMAIL'], password=app.config['ADMIN_PASSWORD'])
+        admin.save()
 
 @manager.command
 def list_routes():

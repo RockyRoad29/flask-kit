@@ -86,6 +86,9 @@ class Email(CRUDMixin, db.Model):
     status = db.Column(db.Enum('active', 'suspended', 'error'), nullable=False, default='active')
     notes = db.Column(db.Text)
 
+    def __str__(self):
+        return "%s <%s>" % (self.contact, self.email)
+
 class Phone(CRUDMixin, db.Model):
     __tablename__ = 'phones'
     # Composite primary key

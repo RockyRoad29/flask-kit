@@ -1,0 +1,10 @@
+{# A basic form rendering leaving all layout to field widgets #}
+{# Context: form, action #}
+{% extends "layout.html" %}
+{% block content %}
+<form method="POST" action="{{ action }}">
+    {% for fld in form %}
+    {{ fld() }}
+    {% endfor %}
+</form>
+{% endblock %}

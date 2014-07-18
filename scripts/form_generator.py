@@ -10,6 +10,7 @@ from pprint import pprint
 from base import User
 from ext import db
 from flask import current_app
+import flask
 from flask.ext.sqlalchemy import Model
 from flask.ext.wtf import Form
 from scripts.gen_imports import ImportsGenerator
@@ -18,7 +19,7 @@ import wtforms
 from wtforms.ext.csrf.fields import CSRFTokenField
 from wtforms.ext.sqlalchemy.orm import model_form
 import yaml
-from wtforms.ext.sqlalchemy.validators import Unique
+#from wtforms.ext.sqlalchemy.validators import Unique
 __author__ = 'rockyroad'
 
 
@@ -27,6 +28,7 @@ class FormModuleGenerator():
         self.models = self.find_models(package_name)
         current_app.logger.debug('Package: %s : found %d models', package_name, len(self.models))
         self.imports = ImportsGenerator()
+        self.add_import(flask.ext.wtf.Form)
         self.forms = []
         pprint(FormGenerator.samples)
         assert(wtforms.validators.Required in FormGenerator.samples)
@@ -90,12 +92,15 @@ class FormGenerator():
                # all I get is wtforms.fields.core.UnboundField
                #wtforms.fields.simple.TextField(),
                #wtforms.fields.core.DateTimeField(),
+               #wtforms.fields.core.DateField(),
+               #wtforms.fields.core.SelectField(),
                f for f in my_form()
                ] + [
                # Widgets
                wtforms.widgets.core.TextInput(),
                wtforms.widgets.core.Select(),
                wtforms.ext.sqlalchemy.fields.QuerySelectMultipleField(),
+               wtforms.widgets.core.CheckboxInput(),
                # Validators
                wtforms.validators.Optional(),
                wtforms.validators.Required(),
@@ -111,7 +116,7 @@ class FormGenerator():
     def add_import(self, the_class):
         if self.parent:
             self.parent.add_import(the_class)
-        if not (the_class in self.samples):
+        if not (the_class in self.samples) and (str(the_class).find('.fields.') < 0):
             current_app.logger.warning("No default values for %r", the_class)
 
     def add_member(self, fld, validators, widget, descr):
@@ -227,7 +232,7 @@ def form_from_meta(meta):
 
 def forms4package(package_name):
     import logging
-    current_app.logger.setLevel(logging.DEBUG)
+    current_app.logger.setLevel(logging.INFO)
     gen = FormModuleGenerator(package_name)
     return gen.gen_all()
 

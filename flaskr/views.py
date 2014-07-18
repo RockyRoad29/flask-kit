@@ -67,6 +67,7 @@ class EntryDetailView(EntryBaseView, DetailView):
     template = 'entry_detail.html'
     # Note: template 'base.detail.html' would override 'flaskr.detail.html'
     #       so we prefix filename to keep it in this blueprint.
+    list_view = '.list'
     pass
 flaskr.add_url_rule('/entry/<id>', view_func = EntryDetailView.as_view('entry'))
 

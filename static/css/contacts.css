@@ -1,0 +1,10 @@
+form {
+    background-color: #ffffaa;
+}
+#emails li {
+    display: inline-flex;
+    margin: 1px 5px
+}
+#emails label {
+    display: none;
+}
