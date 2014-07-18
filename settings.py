@@ -31,7 +31,7 @@ class BaseConfig(object):
     see also: :py:attr:`flask.Flask.default_config`
     """
     DEBUG = False
-    SECRET_KEY = "MY_VERY_SECRET_KEY"
+    SECRET_KEY = '\xd6\xe7TyRJGT\x88\x0eB\xf3\x07\x15uV\xb2\x90\xc3x\x0f\xdc\xf9*'
     SQLALCHEMY_DATABASE_URI = 'sqlite:///prod.db'
     ADMIN_USERNAME='admin'
     ADMIN_PASSWORD='default'

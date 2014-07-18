@@ -51,8 +51,11 @@ def navigation():
     sa_blog_page = {'name': 'SA Blog',
                      'url': url_for('sa_blog.index'),
                      }
+    contacts_page = {'name': 'Contacts',
+                     'url': url_for('contacts.index'),
+                     }
 
-    return {'navigation': (main_page, flaskr_page, sa_blog_page, info_page)}
+    return {'navigation': (main_page, flaskr_page, sa_blog_page, contacts_page, info_page)}
 
 
 def common_forms():
