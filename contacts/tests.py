@@ -232,3 +232,7 @@ class TestContactsAddressModel(ContactsTestCase):
             print e.message
         db.session.rollback()
         self.assertEquals(1, Address.query.count())
+
+class TestForms(KitTestCase):
+    def testViewForm(self):
+        pass

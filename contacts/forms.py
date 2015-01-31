@@ -18,7 +18,7 @@ from wtforms.validators import DataRequired, Optional, Length
 from wtforms import Form as WTForm
 
 # Never render this form publicly because it won't have a csrf_token
-class EmailForm(WTForm):
+class EmailForm(Form):
     email = EmailField(u'Email')
 
     status = SelectField(u'Status', validators=[DataRequired(), ],
